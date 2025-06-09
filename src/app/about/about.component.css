@@ -1,0 +1,78 @@
+.about-container {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/bg.jpg') no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 60px 40px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+ 
+.back-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #00bfff;
+    color: #fff;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+ 
+.about-title {
+    font-size: 36px;
+    color: #00bfff;
+    margin-bottom: 10px;
+}
+ 
+.about-subtitle {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+ 
+.about-description {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 10px;
+    margin: 0 auto 40px auto;
+    max-width: 900px;
+    line-height: 1.6;
+}
+ 
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+ 
+.info-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 10px;
+    width: 250px;
+    transition: transform 0.3s;
+}
+ 
+.info-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.2);
+}
+ 
+.icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+ 
+.explore-button {
+    margin-top: 40px;
+    padding: 14px 30px;
+    background-color: #00bfff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+}
+ 

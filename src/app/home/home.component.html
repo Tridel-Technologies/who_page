@@ -1,95 +1,93 @@
-<div class="home" style="background-image: url('../../assets/bg.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-
+<div class="home">
+    <div class="top_section">
+        <p>Connenting Environmental Science,<br>Engineering and Technology </p>
+        <img src="../../assets/Tridel-logo.png" alt="Tridel_Logo">
+    </div>
+    <div class="back" (click)="back()"></div>
     <div class="logo" *ngIf="!is_tapped_air && !is_tapped_marine && !is_tapped_terrain">
         <div class="main_section" (click)="moveLogo('main')"></div>
         <div class="about_call" (click)="moveLogo('about')"></div>
+        <p>
+            Tridel Technologies
+        </p>
+        <div class="glow-line mt-2"></div>
+ 
     </div>
-
+ 
     <div class="about" (click)="showNextParagraph()" *ngIf="isTapped_about">
         <p *ngFor="let para of visibleParagraphs" class="typing-animation" [innerHTML]="para"></p>
     </div>
-
+ 
     <div class="cirle-globe" *ngIf="is_tapped_main">
-        <img
-            src="assets/Air.png"
-            class="globe-part globe-air"
-            (click)="moveGlobe('air')"
-            alt="Air"
-        />
-        <img
-            src="assets/land.png"
-            class="globe-part globe-land"
-            (click)="moveGlobe('terrain')"
-            alt="Land"
-        />
-        <img
-            src="assets/water.png"
-            class="globe-part globe-water"
-            (click)="moveGlobe('marine')"
-            alt="Water"
-        />
+ 
+        <div class="top" id="top-source" *ngIf="is_tapped_main" (click)="moveGlobe('air')">
+        </div>
+        <div class="center" id="top-source2" *ngIf="is_tapped_main" (click)="moveGlobe('marine')"></div>
+        <div class="bottom" id="top-source3" *ngIf="is_tapped_main" (click)="moveGlobe('terrain')"></div>
     </div>
-
+ 
     <div class="aerial-mapping zoomable-widget" id="target1" *ngIf="is_tapped_air">
         <h4 *ngIf="!isAerialOpen">Aerial Mapping</h4>
         <div *ngIf="isAerialOpen" class="main_aerial">
-            <!-- <div class="aerial-left"> -->
-                <img src="../../assets/BM2S.png" class="aerial-img" alt="Aerial Mapping">
-            <!-- </div> -->
-            <!-- <div class="aerial-right"></div> -->
-            <!-- <div class="round-aearial"></div>
-            <div class="round-aearial2"></div> -->
+            <div class="aerial-left"></div>
+            <div class="aerial-right"></div>
+            <div class="round-aearial"></div>
+            <div class="round-aearial2"></div>
+ 
+ 
         </div>
-
+ 
     </div>
     <div class="satellite-derived zoomable-widget" id="target2" *ngIf="is_tapped_air">
-        <h4 *ngIf="!isSatelliteOpen">Satillite Derived Products</h4>
-        <div *ngIf="isSatelliteOpen">
-            <img src="../../assets/BM2S.png" class="aerial-img" alt="Aerial Mapping">
-        </div>
+        <h4 *ngIf="!isAerialOpen">Satillite Derived Products</h4>
     </div>
     <div class="weather-forecase zoomable-widget" id="target3" *ngIf="is_tapped_air">
-        <h4 *ngIf="!isWeatherOpen">Weather Forecasting</h4>
-        <div *ngIf="isWeatherOpen">
-            <img src="../../assets/BM2S.png" class="aerial-img" alt="Aerial Mapping">
-        </div>
+        <h4 *ngIf="!isAerialOpen">Weather Forecasting</h4>
     </div>
-
+ 
     <div class="buoys zoomable-widget" id="center-target1" *ngIf="is_tapped_marine">
-        <h4 *ngIf="!isBuoysOpen" style="color: white;">Buoys</h4>
+        <h4 *ngIf="!isBuoysOpen" style="color: white; align-self: center; margin-left: 40%;">Buoys</h4>
+ 
         <div *ngIf="isBuoysOpen" class="buoys-left">
             <div class="buoy-list" *ngFor="let item of buoyItems" draggable="true"
                 (dragstart)="onDragStart($event, item)">
                 {{ item }}
             </div>
         </div>
-        <div *ngIf="isBuoysOpen&&droppedItems==='Data Buoy'" class="extra-data-buoy">
-            <div class="buoy-list" *ngFor="let item of  DatabuoyItems" draggable="true"
+        <!-- 'Coastal Data Buoy',
+        'Deep Water Buoy',
+        'NUS with Winch',
+        'Wind profiler Buoy',
+        'wave powered Buoy',
+        'Drifter Buoy', -->
+        <!-- Sub items for 'Data Buoy' -->
+        <div *ngIf="isBuoysOpen && droppedItems === 'Data Buoy'&& droppedItems1 ==='Data Buoy' ||droppedItems1 ==='Coastal Data Buoy'||droppedItems1 ==='Deep Water Buoy'||droppedItems1 ==='NUS with Winch'||droppedItems1 ==='Wind profiler Buoy'||droppedItems1 ==='wave powered Buoy' || droppedItems1=== 'Drifter Buoy'"
+            class="extra-data-buoy">
+            <div class="buoy-list" *ngFor="let item of DatabuoyItems" draggable="true"
                 (dragstart)="onDragStart($event, item)">
                 {{ item }}
             </div>
         </div>
-
-
-        <div
-            *ngIf="droppedItems==='Data Buoy'&& isBuoysOpen" class="land-buoys" (dragover)="allowDrop1($event)"
-            (drop)="onDrop1($event)">
-            <div class="heading" *ngIf="droppedItems1">
-                {{ droppedItems1 }}
+ 
+        <!-- If 'Data Buoy' is dropped -->
+        <div *ngIf="droppedItems === 'Data Buoy' && isBuoysOpen" class="land-buoys" [ngStyle]="{ width: '80%' }"
+            (dragover)="allowDrop1($event)" (drop)="onDrop1($event)">
+            <div class="coastal-buoy" *ngIf="dropBuoyis === 'Coastal Data Buoy'"></div>
+            <div class="navigational-buoy" *ngIf="dropBuoyis ==='Navigation Buoy'"></div>
+        </div>
+ 
+        <!-- If other than 'Data Buoy' is dropped -->
+        <div *ngIf="droppedItems !== 'Data Buoy' && droppedItems1 !== 'Data Buoy'" class="land-buoys"
+            [ngStyle]="{ width: '90%' }" (dragover)="allowDrop($event)" (drop)="onDrop($event)">
+            <div class="coastal-buoy" *ngIf="dropBuoyis === 'Coastal Data Buoy'"></div>
+            <div class="navigational-buoy" *ngIf="dropBuoyis ==='Navigation Buoy'">
+ 
             </div>
-            <img *ngIf="droppedItems1 === 'Data Buoy'" src="../../assets/Tridel-Coastal-Buoy.png" class="buoy-image" alt="Data Buoy">
-            <img *ngIf="droppedItems1 === 'Navigation Buoy'" src="../../assets/Tridel-Navigation-Buoy.png" class="buoy-image" alt="Weather Buoy">
-            <img *ngIf="droppedItems1 === 'Mooring Buoy'" src="../../assets/Seafloor-Tridrone.png" class="buoy-image" alt="Wave Buoy">
-            <img *ngIf="droppedItems1 === 'Coastal Data Buoy'" src="../../assets/Seafloor-Tridrone.png" class="buoy-image" alt="Wave Buoy">
-            <img *ngIf="droppedItems1 === 'Deep Water Buoy'" src="../../assets/Seafloor-Tridrone.png" class="buoy-image" alt="Wave Buoy">
-            <img *ngIf="droppedItems1 === 'NUS with Winch'" src="../../assets/Seafloor-Tridrone.png" class="buoy-image" alt="Wave Buoy">
-            <img *ngIf="droppedItems1 === 'Wind profiler Buoy'" src="../../assets/Seafloor-Tridrone.png" class="buoy-image" alt="Wave Buoy">
-            <img *ngIf="droppedItems1 === 'wave powered Buoy'" src="../../assets/Seafloor-Tridrone.png" class="buoy-image" alt="Wave Buoy">
-            <img *ngIf="droppedItems1 === 'Drifter Buoy'" src="../../assets/Seafloor-Tridrone.png" class="buoy-image" alt="Wave Buoy">
         </div>
     </div>
-
-
+ 
+ 
+ 
     <div class="usv zoomable-widget" id="center-target2" *ngIf="is_tapped_marine">
         <h4 style="color: white;" *ngIf="!isUsvOpen">USV</h4>
         <div *ngIf="isUsvOpen" class="buoys-left">
@@ -98,18 +96,20 @@
                 {{ item }}
             </div>
         </div>
-
+ 
         <div *ngIf="isUsvOpen" class="land-buoys" (dragover)="allowDrop2($event)" (drop)="onDrop2($event)">
-            <div class="buoy-list" *ngIf="droppedItems2 !=='Seafloor HydroCat-550'">
-                {{ droppedItems }}
+            <div class="buoy-list"
+                *ngIf="droppedItems2 !=='Seafloor HydroCat-550' && droppedItems2 !=='Seafloor TriDrone'">
+                {{ droppedItems2 }}
             </div>
+ 
             <div class="seafloor" *ngIf="droppedItems2 ==='Seafloor HydroCat-550'">
-                <h3>Seafloor Hydrocat 550</h3>
+                <!-- <h3>Seafloor Hydrocat 550</h3>
                 <p>The HydroCat-550 USV is capable of transiting from inshore to nearshore enviroments with
                     high-resolution equipment payloads to conduct preplanned autonomous hysdrographic surveys.</p>
-
+ 
                 <p>Key Features</p>
-
+ 
                 <ul>
                     <li>Can be transported via trailer, programmed to execute missions, and navigate up to sea State 5
                         conditions with its Aluminium hull construction.</li>
@@ -118,17 +118,18 @@
                     <li>Height: 2.3 m</li>
                     <li>Equipment Payload: 356 kg</li>
                     <li>{{`Edurance: 4-18 hours @2.5km`}}</li>
-                </ul>
+                </ul> -->
             </div>
-            <div *ngIf="droppedItems2 ==='Seafloor HydroCat-550'" class="main-round-seafloor">
+            <div class="tridrone" *ngIf="droppedItems2 ==='Seafloor TriDrone'"></div>
+            <!-- <div *ngIf="droppedItems2 ==='Seafloor HydroCat-550'" class="main-round-seafloor">
                 <div class="image-seafloor-round">
-
+ 
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
-
-
+ 
+ 
     <div class="survay-vessals zoomable-widget" id="center-target3" *ngIf="is_tapped_marine">
         <h4 style="color: white;" *ngIf="!isSurveyVesselOpen">Survey Vessels </h4>
         <div *ngIf="isSurveyVesselOpen" class="buoys-left">
@@ -137,16 +138,16 @@
                 {{ item }}
             </div>
         </div>
-
+ 
         <div *ngIf="isSurveyVesselOpen" class="land-buoys" (dragover)="allowDrop3($event)" (drop)="onDrop3($event)">
             <div class="buoy-list" *ngIf="droppedItems3">
                 {{ droppedItems }}
             </div>
         </div>
     </div>
-
-
-
+ 
+ 
+ 
     <div class="central-systems zoomable-widget" id="center-target4" *ngIf="is_tapped_marine">
         <h4 style="color: white;" *ngIf="!isCentralSystemsOpen"> Central Systems</h4>
         <div *ngIf="isCentralSystemsOpen" class="buoys-left">
@@ -155,9 +156,10 @@
                 {{ item }}
             </div>
         </div>
-
+ 
         <div *ngIf="isCentralSystemsOpen" class="land-buoys" (dragover)="allowDrop4($event)" (drop)="onDrop4($event)">
-            <div class="buoy-list" *ngIf="droppedItems4">
+            <div class="buoy-list"
+                *ngIf="droppedItems4 !=='GeoDB' && droppedItems4 !=='TEMS'&& droppedItems4 !=='TSMS'&& droppedItems4 !=='ATtide'">
                 {{ droppedItems4 }}
             </div>
             <div class="geodb_main" *ngIf="droppedItems4==='GeoDB'">
@@ -166,7 +168,7 @@
                 <div class="second-last-db-round" *ngIf="rotationcount>1"></div>
                 <div class="third-round-db" *ngIf="rotationcount>0"></div>
                 <div class="center-db" (click)="tapped_center_db()"></div>
-
+ 
                 <div class="content_geodb">
                     <h4>Geospatial DataBase</h4>
                     <p>A geospatial database enables the centralized integration of water resources, environmental
@@ -176,17 +178,22 @@
                     <img src="../../assets/geo-img.png" alt="">
                 </div>
             </div>
-
-
+            <div class="tems" *ngIf="droppedItems4 ==='TEMS'"></div>
+            <div class="tsms" *ngIf="droppedItems4 === 'ATtide'"></div>
+            <div class="attide" *ngIf="droppedItems4 === 'TSMS'"></div>
+ 
+ 
         </div>
     </div>
-
-
+ 
+ 
     <div class="beach-monitoring zoomable-widget" id="bottom-target1" *ngIf="is_tapped_terrain">
-        <h4>Beach Monitoring System</h4>
+        <h4 *ngIf="!isBeachMonitoringOpen">Beach Monitoring System</h4>
+        <div *ngIf="isBeachMonitoringOpen" class="beach-ms"></div>
     </div>
     <div class="port-monitoring zoomable-widget" id="bottom-target2" *ngIf="is_tapped_terrain">
-        <h4>Port Monitoring Systems</h4>
+        <h4 *ngIf="!isPortMonitoringOpen">Port Monitoring Systems</h4>
+        <div *ngIf="isPortMonitoringOpen" class="beach-ms"></div>
     </div>
     <div class="air-quality zoomable-widget" id="bottom-target3" *ngIf="is_tapped_terrain">
         <h4>Air Quality Systems</h4>
@@ -197,21 +204,21 @@
     <div class="met-ocean zoomable-widget" id="bottom-target5" *ngIf="is_tapped_terrain">
         <h4>MetOcean Systems</h4>
     </div>
-
+ 
     <!-- SVG overlay -->
     <svg class="svg-connector">
         <path *ngFor="let path of paths" [attr.d]="path" class="line" />
         <!-- <path *ngIf="is_tapped_main" [attr.d]="path2" class="line" />
         <path *ngIf="is_tapped_main" [attr.d]="path3" class="line" /> -->
     </svg>
-
+ 
     <!-- <app-zoomable></app-zoomable> -->
     <svg class="svg-connector">
         <path *ngFor="let path of paths" [attr.d]="path" class="line" />
         <!-- <path *ngIf="is_tapped_main" [attr.d]="path2" class="line" />
         <path *ngIf="is_tapped_main" [attr.d]="path3" class="line" /> -->
     </svg>
-
+ 
     <!-- <svg width="120%" height="50" class="air-line">
         <defs>
             <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
@@ -243,29 +250,29 @@
     <div class="waterre"></div>
     <div class="landddd"></div> -->
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 <!-- <div class="circle-widget">
-
+ 
                 <div class="layer layer1">
                     <img src="https://via.placeholder.com/40" class="img img1" />
                     <img src="https://via.placeholder.com/40" class="img img2" />
                     <img src="https://via.placeholder.com/40" class="img img3" />
                     <img src="https://via.placeholder.com/40" class="img img4" />
                 </div>
-
-
+ 
+ 
                 <div class="layer layer2">
                     <span class="title title1">Title 1</span>
                     <span class="title title2">Title 2</span>
@@ -274,14 +281,14 @@
                     <span class="title title5">Title 5</span>
                     <span class="title title6">Title 6</span>
                 </div>
-
-
+ 
+ 
                 <div class="layer layer3">
                     <p class="text">Central Info 1</p>
                     <p class="text">Central Info 2</p>
                 </div>
-
-
+ 
+ 
                 <div class="layer layer4">
                     <div class="center-dot"></div>
                 </div>
