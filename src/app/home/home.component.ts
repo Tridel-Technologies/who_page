@@ -401,8 +401,10 @@ tapped_center_db(){
   this.rotationcount = this.rotationcount+1
 }
   onDragStart(event: DragEvent, item: string) {
+    console.log("drag start",item)
     if (event.dataTransfer) {
       event.dataTransfer.setData('text/plain', item);
+      event.dataTransfer.setData('image', '../../assets/Tridel-Coastal-Buoy.png');
     }
   }
 
