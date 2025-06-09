@@ -1,5 +1,5 @@
 <div class="home">
-
+    <div class="back" (click)="back()"></div>
     <div class="logo" *ngIf="!is_tapped_air && !is_tapped_marine && !is_tapped_terrain">
         <div class="main_section" (click)="moveLogo('main')"></div>
         <div class="about_call" (click)="moveLogo('about')"></div>
@@ -37,39 +37,46 @@
     </div>
 
     <div class="buoys zoomable-widget" id="center-target1" *ngIf="is_tapped_marine">
-        <h4 *ngIf="!isBuoysOpen" style="color: white;">Buoys</h4>
+        <h4 *ngIf="!isBuoysOpen" style="color: white; align-self: center; margin-left: 40%;">Buoys</h4>
+
         <div *ngIf="isBuoysOpen" class="buoys-left">
             <div class="buoy-list" *ngFor="let item of buoyItems" draggable="true"
                 (dragstart)="onDragStart($event, item)">
                 {{ item }}
             </div>
         </div>
-        <div *ngIf="isBuoysOpen&&droppedItems==='Data Buoy'" class="extra-data-buoy">
-            <div class="buoy-list" *ngFor="let item of  DatabuoyItems" draggable="true"
+        <!-- 'Coastal Data Buoy',
+        'Deep Water Buoy',
+        'NUS with Winch',
+        'Wind profiler Buoy',
+        'wave powered Buoy',
+        'Drifter Buoy', -->
+        <!-- Sub items for 'Data Buoy' -->
+        <div *ngIf="isBuoysOpen && droppedItems === 'Data Buoy'&& droppedItems1 ==='Data Buoy' ||droppedItems1 ==='Coastal Data Buoy'||droppedItems1 ==='Deep Water Buoy'||droppedItems1 ==='NUS with Winch'||droppedItems1 ==='Wind profiler Buoy'||droppedItems1 ==='wave powered Buoy' || droppedItems1=== 'Drifter Buoy'"
+            class="extra-data-buoy">
+            <div class="buoy-list" *ngFor="let item of DatabuoyItems" draggable="true"
                 (dragstart)="onDragStart($event, item)">
                 {{ item }}
             </div>
         </div>
 
+        <!-- If 'Data Buoy' is dropped -->
+        <div *ngIf="droppedItems === 'Data Buoy' && isBuoysOpen" class="land-buoys" [ngStyle]="{ width: '80%' }"
+            (dragover)="allowDrop1($event)" (drop)="onDrop1($event)">
+            <div class="coastal-buoy" *ngIf="dropBuoyis === 'Coastal Data Buoy'"></div>
+            <div class="navigational-buoy" *ngIf="dropBuoyis ==='Navigation Buoy'"></div>
+        </div>
 
-        <div [ngStyle]="{'width':droppedItems==='Data Buoy'?'70%':'85%'}"
-            *ngIf="droppedItems==='Data Buoy'&& isBuoysOpen" class="land-buoys" (dragover)="allowDrop1($event)"
-            (drop)="onDrop1($event)">
-            <div class="buoy-list" *ngIf="droppedItems1">
-                {{ droppedItems1 }}
+        <!-- If other than 'Data Buoy' is dropped -->
+        <div *ngIf="droppedItems !== 'Data Buoy' && droppedItems1 !== 'Data Buoy'" class="land-buoys"
+            [ngStyle]="{ width: '90%' }" (dragover)="allowDrop($event)" (drop)="onDrop($event)">
+            <div class="coastal-buoy" *ngIf="dropBuoyis === 'Coastal Data Buoy'"></div>
+            <div class="navigational-buoy" *ngIf="dropBuoyis ==='Navigation Buoy'">
+
             </div>
         </div>
-        @if (droppedItems!=='Data Buoy') {
-
-        <div [ngStyle]="{'width':droppedItems==='Data Buoy'?'70%':'85%'}"
-            *ngIf="droppedItems!=='Data Buoy'&& droppedItems1!=='Data Buoy'" class="land-buoys"
-            (dragover)="allowDrop($event)" (drop)="onDrop($event)">
-            <div class="buoy-list" *ngIf="droppedItems">
-                {{ droppedItems }}
-            </div>
-        </div>
-        }
     </div>
+
 
 
     <div class="usv zoomable-widget" id="center-target2" *ngIf="is_tapped_marine">
@@ -82,11 +89,13 @@
         </div>
 
         <div *ngIf="isUsvOpen" class="land-buoys" (dragover)="allowDrop2($event)" (drop)="onDrop2($event)">
-            <div class="buoy-list" *ngIf="droppedItems2 !=='Seafloor HydroCat-550'">
-                {{ droppedItems }}
+            <div class="buoy-list"
+                *ngIf="droppedItems2 !=='Seafloor HydroCat-550' && droppedItems2 !=='Seafloor TriDrone'">
+                {{ droppedItems2 }}
             </div>
+
             <div class="seafloor" *ngIf="droppedItems2 ==='Seafloor HydroCat-550'">
-                <h3>Seafloor Hydrocat 550</h3>
+                <!-- <h3>Seafloor Hydrocat 550</h3>
                 <p>The HydroCat-550 USV is capable of transiting from inshore to nearshore enviroments with
                     high-resolution equipment payloads to conduct preplanned autonomous hysdrographic surveys.</p>
 
@@ -100,13 +109,14 @@
                     <li>Height: 2.3 m</li>
                     <li>Equipment Payload: 356 kg</li>
                     <li>{{`Edurance: 4-18 hours @2.5km`}}</li>
-                </ul>
+                </ul> -->
             </div>
-            <div *ngIf="droppedItems2 ==='Seafloor HydroCat-550'" class="main-round-seafloor">
+            <div class="tridrone" *ngIf="droppedItems2 ==='Seafloor TriDrone'"></div>
+            <!-- <div *ngIf="droppedItems2 ==='Seafloor HydroCat-550'" class="main-round-seafloor">
                 <div class="image-seafloor-round">
 
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -139,7 +149,8 @@
         </div>
 
         <div *ngIf="isCentralSystemsOpen" class="land-buoys" (dragover)="allowDrop4($event)" (drop)="onDrop4($event)">
-            <div class="buoy-list" *ngIf="droppedItems4">
+            <div class="buoy-list"
+                *ngIf="droppedItems4 !=='GeoDB' && droppedItems4 !=='TEMS'&& droppedItems4 !=='TSMS'&& droppedItems4 !=='ATtide'">
                 {{ droppedItems4 }}
             </div>
             <div class="geodb_main" *ngIf="droppedItems4==='GeoDB'">
@@ -158,6 +169,9 @@
                     <img src="../../assets/geo-img.png" alt="">
                 </div>
             </div>
+            <div class="tems" *ngIf="droppedItems4 ==='TEMS'"></div>
+            <div class="tsms" *ngIf="droppedItems4 === 'ATtide'"></div>
+            <div class="attide" *ngIf="droppedItems4 === 'TSMS'"></div>
 
 
         </div>
@@ -165,7 +179,8 @@
 
 
     <div class="beach-monitoring zoomable-widget" id="bottom-target1" *ngIf="is_tapped_terrain">
-        <h4>Beach Monitoring System</h4>
+        <h4 *ngIf="!isBeachMonitoringOpen">Beach Monitoring System</h4>
+        <div *ngIf="isBeachMonitoringOpen" class="beach-ms"></div>
     </div>
     <div class="port-monitoring zoomable-widget" id="bottom-target2" *ngIf="is_tapped_terrain">
         <h4>Port Monitoring Systems</h4>

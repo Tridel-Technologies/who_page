@@ -50,6 +50,19 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     }
   }
 
+  back(){
+    this.is_tapped_main = false;
+    this.is_tapped_air = false;
+    this.is_tapped_terrain = false;
+    this.is_tapped_marine = false;
+    this.isTapped_about = false
+    this.paths=[];
+    const logo = document.querySelector('.logo');
+   
+      logo?.classList.remove('animated1');
+      logo?.classList.remove('animated_r');
+
+  }
   moveGlobe(call: string) {
     this.is_tapped_air = call === 'air';
     this.is_tapped_marine = call === 'marine';
@@ -63,32 +76,32 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     const globe = document.querySelector('.cirle-globe') as HTMLElement;
    
     globe?.classList.remove('goleft');
-    setTimeout(() => {
-      air_line?.classList.remove('go');
-      water_line?.classList.remove('go');
-      land_line?.classList.remove('go');
-      airr?.classList.remove('go');
-      waterrr?.classList.remove('go');
-      landdd?.classList.remove('go');
-    }, 50);
+    // setTimeout(() => {
+    //   air_line?.classList.remove('go');
+    //   water_line?.classList.remove('go');
+    //   land_line?.classList.remove('go');
+    //   airr?.classList.remove('go');
+    //   waterrr?.classList.remove('go');
+    //   landdd?.classList.remove('go');
+    // }, 50);
 
     void globe!.offsetWidth; // force reflow
     
     globe!.classList.add('goleft');
-    void air_line!.offsetWidth; // force reflow
-    void water_line!.offsetWidth; // force reflow
-    void land_line!.offsetWidth; // force reflow
-    void airr!.offsetWidth; // force reflow
-    void waterrr!.offsetWidth; // force reflow
-    void landdd!.offsetWidth; // force reflow
-    setTimeout(() => {
-      air_line!.classList.add('go');
-      water_line!.classList.add('go');
-      land_line!.classList.add('go');
-      airr!.classList.add('go');
-      landdd!.classList.add('go');
-      waterrr!.classList.add('go');
-    }, 50);
+    // void air_line!.offsetWidth; // force reflow
+    // void water_line!.offsetWidth; // force reflow
+    // void land_line!.offsetWidth; // force reflow
+    // void airr!.offsetWidth; // force reflow
+    // void waterrr!.offsetWidth; // force reflow
+    // void landdd!.offsetWidth; // force reflow
+    // setTimeout(() => {
+    //   air_line!.classList.add('go');
+    //   water_line!.classList.add('go');
+    //   land_line!.classList.add('go');
+    //   airr!.classList.add('go');
+    //   landdd!.classList.add('go');
+    //   waterrr!.classList.add('go');
+    // }, 50);
 
     setTimeout(() => {
       if (this.is_tapped_air) this.drawPaths_air();
@@ -384,64 +397,74 @@ this.is_tapped_terrain=false;
 
 
 
+buoyItems: string[] = ['Data Buoy', 'Navigation Buoy', 'Mooring Buoy'];
+DatabuoyItems: string[] = [
+  'Coastal Data Buoy',
+  'Deep Water Buoy',
+  'NUS with Winch',
+  'Wind profiler Buoy',
+  'wave powered Buoy',
+  'Drifter Buoy',
+];
+USVData: string[] = ['Seafloor TriDrone', 'Seafloor HydroCat-550', 'Aquilon 5600', 'Aquilon 8000'];
+Survey_Vessel: string[] = ['Monohul Survey Vessel', 'Catamaran Survey Vessel', 'ECFS & Ship borne Weather station', 'Deck Gears'];
+Central_System: string[] = ['TEMS', 'eSpacia', 'ATtide', 'Modelling and Forecasting', 'GeoDB', 'ENC/PNC', 'TSMS'];
 
- buoyItems: string[] = ['Data Buoy', 'Navigation Buoy', 'Mooring Buoy'];
-  DatabuoyItems: string[] = ['Coastal Data Buoy', 'Deep Water Buoy', 'NUS with Winch', 'Wind profiler Buoy', 'wave powered Buoy', 'Drifter Buoy'];
-  USVData:string[]=['Seafloor TriDrone', 'Seafloor HydroCat-550', 'Aquilon 5600', 'Aquilon 8000'];
-  Survey_Vessel:string[]=['Monohul Survey Vessel', 'Catamaran Survey Vessel', 'ECFS & Ship borne Weather station', 'Deck Gears'];
-  Central_System:string[]=['TEMS', 'eSpacia', 'ATtide', 'Modelling and Forecasting', 'GeoDB','ENC/PNC', 'TSMS']
-  droppedItems='Data Buoy';
-  droppedItems1!:string;
-  droppedItems2!: string;
-  droppedSubItems!:string
-  droppedItems3!: string;
-  droppedItems4!: string;
-  rotationcount:number=0
-tapped_center_db(){
-  this.rotationcount = this.rotationcount+1
+droppedItems: string = '';
+droppedItems1: string = '';
+droppedItems2: string = '';
+droppedItems3: string = '';
+droppedItems4: string = '';
+droppedSubItems: string = '';
+dropBuoyis: string = '';
+
+rotationcount: number = 0;
+
+tapped_center_db() {
+  this.rotationcount++;
 }
-  onDragStart(event: DragEvent, item: string) {
-    if (event.dataTransfer) {
-      event.dataTransfer.setData('text/plain', item);
-    }
-  }
 
-  allowDrop(event: DragEvent) {
-    event.preventDefault();
-  }
+onDragStart(event: DragEvent, item: string) {
+  event.dataTransfer?.setData('text/plain', item);
+}
 
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    const item = event.dataTransfer?.getData('text/plain');
-    console.log("drop")
-    if (item) {
-      this.droppedItems= item;
-    }
-  }
-   onDragStartSubItem(event: DragEvent, item: string) {
-    event.dataTransfer?.setData('subItem', item);
-  }
+allowDrop(event: DragEvent) {
+  event.preventDefault();
+}
 
-  allowDrop1(event: DragEvent) {
-    event.preventDefault();
-  }
-  onDropSubItem(event: DragEvent) {
-    event.preventDefault();
-    const item = event.dataTransfer?.getData('subItem');
-    if (item && !this.droppedSubItems.includes(item)) {
-      this.droppedSubItems=item;
-    }
-  }
+allowDrop1(event: DragEvent) {
+  event.preventDefault();
+}
 
-  onDrop1(event: DragEvent) {
-    event.preventDefault();
-    const item = event.dataTransfer?.getData('text/plain');
-        console.log("drop1")
-    if (item) {
-      this.droppedItems1= item;
-    }
+onDrop(event: DragEvent) {
+  event.preventDefault();
+  const item = event.dataTransfer?.getData('text/plain');
+  if (item) {
+    this.droppedItems = item;
+    this.droppedItems1 = ''; // Reset sub-drop area
   }
+}
 
+onDrop1(event: DragEvent) {
+  event.preventDefault();
+  const item = event.dataTransfer?.getData('text/plain');
+  if (item) {
+    this.droppedItems1 = item;
+    this.dropBuoyis = item;
+  }
+}
+
+onDragStartSubItem(event: DragEvent, item: string) {
+  event.dataTransfer?.setData('subItem', item);
+}
+
+onDropSubItem(event: DragEvent) {
+  event.preventDefault();
+  const item = event.dataTransfer?.getData('subItem');
+  if (item && !this.droppedSubItems.includes(item)) {
+    this.droppedSubItems = item;
+  }
+}
 
 
 
