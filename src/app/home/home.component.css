@@ -1,14 +1,18 @@
-.home{
+.home {
     height: 100%;
     width: 100%;
     background: #083e54;
-background: linear-gradient(270deg,rgba(8, 62, 84, 1) 0%, rgba(5, 152, 181, 1) 50%, rgba(83, 88, 237, 1) 100%);
+    background: linear-gradient(270deg, rgba(8, 62, 84, 1) 0%, rgba(5, 152, 181, 1) 50%, rgba(83, 88, 237, 1) 100%);
+    /* background-image: url(../../assets/bg.png);
+    background-size: 100% 100%; */
+    /* transform: translate(-50%, -50%); */
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     backdrop-filter: blur(12px);
 }
+ 
 .back{
     /* background-color: #00c853; */
     height: 60px;
@@ -18,13 +22,42 @@ background: linear-gradient(270deg,rgba(8, 62, 84, 1) 0%, rgba(5, 152, 181, 1) 5
     left: 0;
     z-index: 1;
 }
-.logo{
+
+.top_section {
+    width: 95%;
+    height: 15%;
+    z-index: 1000;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    left: 0%;
+    top: 0%;
+    font-size: 25px;
+    color: white;
+    /* color: rgb(203 213 225 / var(--tw-text-opacity, 1)); */
+    font-weight: 700;
+    text-align: start;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 20px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 2s ease-in-out;
+}
+ 
+.top_section p {
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+ 
+/* .logo {
     height: 70%;
     width: 40%;
-    /* background-color: aqua; */
+    background-color: aqua;
     position: absolute;
     transition: all 0.6s ease-in-out;
-}
+} */
+ 
 @keyframes shrinkAndMove {
   0% {
     height: 70%;
@@ -83,21 +116,118 @@ background: linear-gradient(270deg,rgba(8, 62, 84, 1) 0%, rgba(5, 152, 181, 1) 5
     align-items: center;
 }
 
-.main_section{
-    height: 80%;
+.logo p {
     width: 100%;
-    background-image: url(../../assets/Tridel-logo.png);
+    text-align: center;
+    position: relative;
+    top: 0%;
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 2px;
+    /* font-family: 'Jost', sans-serif; */
+    /* color: rgb(203 213 225 / var(--tw-text-opacity, 1)); */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 2s ease-in-out;
+}
+ 
+.glow-line2 {
+    position: relative;
+    top: -35%;
+    left: 0%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #00f7ff, #00d9ff, #00f7ff);
+    border-radius: 2px;
+    /* animation: blinkGlow 1s infinite alternate; */
+    box-shadow: 0 0 10px #00f7ff, 0 0 20px #00d9ff, 0 0 30px #00f7ff;
+}
+ 
+@keyframes blinkGlow {
+    0% {
+        opacity: 0.3;
+        box-shadow: 0 0 5px #00f7ff;
+    }
+ 
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 10px #00f7ff, 0 0 20px #00d9ff, 0 0 30px #00f7ff;
+    }
+}
+ 
+.glow-line {
+    position: relative;
+    top: -97%;
+    left: -30%;
+    width: 160%;
+    height: 8px;
+    /* Thicker for a 'water line' feel */
+    background: transparent;
+    border-radius: 4px;
+    overflow: hidden;
+}
+ 
+/* Glowing animated water light */
+.glow-line::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100px;
+    background: linear-gradient(90deg, transparent, #02d8f4, #00e5ff, #00bcd4, transparent);
+    animation: glowMove 4s infinite ease-in-out;
+    border-radius: 4px;
+    opacity: 0.6;
+    filter: blur(2px);
+    /* Soft blur for water glow */
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.6),
+        0 0 20px rgba(0, 188, 212, 0.4),
+        0 0 30px rgba(0, 188, 212, 0.2);
+}
+ 
+@keyframes glowMove {
+    0% {
+        left: 0%;
+        opacity: 0.3;
+    }
+ 
+    25% {
+        opacity: 1;
+    }
+ 
+    50% {
+        left: 100%;
+        opacity: 1;
+    }
+ 
+    75% {
+        opacity: 1;
+    }
+ 
+    100% {
+        left: 0%;
+        opacity: 0.3;
+    }
+}
+ 
+ 
+ 
+.main_section {
+    height: 80%;
+    width: 90%;
+    background-image: url(../../assets/tridel_logo.png);
     background-size: 100% 100%;
+    animation: fadeIn 2s ease-in-out;
     /* background-color: aliceblue; */
 }
-.about_call{
+ 
+/* .about_call {
     height: 20%;
     width: 125%;
     background-image: url(../../assets/tridel.png);
     background-size: 100% 100%;
-    /* background-color: rgba(127, 255, 212, 0.682); */
-}
-
+    background-color: rgba(127, 255, 212, 0.682);
+} */
+ 
 .logo.animated1 {
     animation: shrinkAndMove 0.7s ease-out forwards;
 }
@@ -148,7 +278,7 @@ app-zoomable{
 .about{
     height: 60%;
     width: 30%;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -205,42 +335,295 @@ app-zoomable{
   50% { border-color: transparent }
 } */
 
-.cirle-globe{
-    height:70%;
-    width: 30%;
-    border-radius: 50%;
-    /* background-color: #037cf5; */
-    /* background-image: url(../../assets/globe.png); */
-    
+
+ 
+.globe-description {
+    position: absolute;
+    top: 24%;
+    left: 8%;
+    width: 25%;
+    height: 20%;
+    color: white;
+    font-size: 24px;
+    line-height: 1.2;
+    text-align: left;
+    z-index: 2;
+}
+.globe-description p{
+    text-align: justify;
+    /* margin-top: 5px; */
+}
+ 
+/* .cirle-globe{
+    height:85%;
+    width: 34%;
+    background: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: absolute;
+    left: 38%;
+    top: 15;
+} */
+ 
+.cirle-globe {
+    height: 70%;
+    width: 35%;
+    /* border-radius: 50%; */
+    /* background-color: #2c3e50; */
+    background-image: url(../../assets/globe-line.png);
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     /* overflow: hidden; */
-    animation: globe 2s ease-out forwards;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: animateGlobe 1.5s ease-out forwards;
+    /* z-index: 10; */
 }
-.top{
-    height: 33%;
+@keyframes goleft_globe {
+    0%{
+        top: 50%;
+        left: 50%;
+
+    }
+    100%{
+        height: 40%;
+        width: 20%;
+        top: 50%;
+        left: 27%;
+    }
+    
+}
+
+.globe-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+        height: 100%;
     width: 100%;
-    background-image: url(../../assets/Air.png);
-    background-size: 100% 100%;
-    /* background-color: #2c3e50; */
-    position: absolute;
-    top: 8%;
-    animation: topto-center 2s ease-in-out forwards;
-}
-.center{
-    height: 33%;
-    width: 101%;
-    background-image: url(../../assets/water.png);
-    background-size: 100% 100%;
-    /* background-color: #11c97c; */
-    position: absolute;
-    top: 39%;
+    animation: air-left 0.7s ease-in-out forwards;
+    gap: 140px; /* Adjust spacing as needed */
 
 }
+.main-points{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-color: #00bcd4;
+    top: -5%;
+    left: 20%;
+
+}
+ 
+@keyframes animateGlobe {
+    0% {
+        width: 50px;
+        height: 50px;
+        top: 5%;
+        left: 95%;
+        transform: translate(-100%, 0%);
+        opacity: 0;
+    }
+ 
+    50% {
+        opacity: 0.3;
+    }
+    75%{
+        opacity: 0.5;
+    }
+ 
+    100% {
+        width: 35%;
+        height: 70%;
+        top: 50%;
+        left: 60%;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+ 
+ 
+.air-line{
+    left: -10%;
+    top: -5%;
+    font-weight: bolder;
+    width: 8%;
+    position: absolute;
+    font-weight: bolder;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    border: 3px solid rgb(200, 206, 211);
+    border-radius: 6px;
+    text-align: center;
+    width: 180px;
+    height: 50px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    background-color: #146383;
+    cursor: pointer;
+    /* animation: air-left 0.7s ease-in-out forwards; */
+}
+.airline-go{
+
+    left: -10%;
+    top: -5%;
+    font-weight: bolder;
+    width: 8%;
+    position: absolute;
+    font-weight: bolder;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    border: 3px solid rgb(200, 206, 211);
+    border-radius: 6px;
+    text-align: center;
+    width: 80px;
+    height: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    background-color: #146383;
+    cursor: pointer;
+    /* animation: air-left 0.7s ease-in-out forwards; */
+
+}
+.airline-go-active{
+      left: -10%;
+    top: -5%;
+    font-weight: bolder;
+    width: 8%;
+    position: absolute;
+    font-weight: bolder;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    border: 3px solid rgb(0, 116, 211);
+    border-radius: 6px;
+    text-align: center;
+    width: 80px;
+    height: 30px;
+    box-shadow: 0 2px 8px rgba(0, 68, 255, 0.3);
+    background-color: #146383;
+    cursor: pointer;
+}
+@keyframes air-left {
+    0%{
+         left: 38%;
+        top: 11%;
+    }
+    100%{
+        left: 10%;
+        top: 11%;
+    }
+}
+.air-line.go{
+    height: 30px;
+    width: 70px;
+}
+.waterline-go{
+    top: 16%;
+    right: -22%;
+    font-weight: bolder;
+    width: 8%;
+    position: absolute;
+    /* transition: rotate(180deg); */
+    /* z-index: 1; */
+    font-weight: bolder;
+    color: white;
+    font-size: 13px;
+    border: 3px solid rgb(200, 206, 211);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    background-color: #146383;
+    cursor: pointer;
+}
+.water-line{
+    top: 16%;
+    right: -22%;
+    font-weight: bolder;
+    width: 8%;
+    position: absolute;
+    /* transition: rotate(180deg); */
+    /* z-index: 1; */
+    font-weight: bolder;
+    color: white;
+    font-size: 30px;
+    border: 3px solid rgb(200, 206, 211);
+    border-radius: 6px;
+    text-align: center;
+    width: 130px;
+    height: 50px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    background-color: #146383;
+    cursor: pointer;
+}
+.landline-go{
+    bottom: 16%;
+    right: -22%;
+    width: 8%;
+    position: absolute;
+    /* transition: rotate(180deg); */
+    /* z-index: 1; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    color: white;
+    font-size: 13px;
+    border: 3px solid rgb(200, 206, 211);
+    border-radius: 6px;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    background-color: #146383;
+    cursor: pointer;
+}
+.land-line{
+    bottom: 16%;
+    right: -35%;
+    width: 8%;
+    position: absolute;
+    /* transition: rotate(180deg); */
+    /* z-index: 1; */
+    font-weight: bolder;
+    color: white;
+    font-size: 30px;
+    border: 3px solid rgb(200, 206, 211);
+    border-radius: 6px;
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    background-color: #146383;
+    cursor: pointer;
+}
+ 
+/* Container needs to be relative for absolute positioning */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+ 
 @keyframes bottomto-center {
     0%{
         bottom: -10%;
@@ -257,42 +640,10 @@ app-zoomable{
         top: 8%;
     }
 }
-.bottom{
-    height: 33%;
-    width: 98%;
-    background-image: url(../../assets/land.png);
-    background-size: 100% 100%;
-    position: absolute;
-    bottom: 9%;
-    animation: bottomto-center 2s ease-in-out forwards;
-
-    /* background-color: #559be1; */
-}
-.air-line{
-    left: 50%;
-    top: 20%;
-    position: absolute;
-}
-.water-line{
-    top: 50%;
-    width: 20%;
-    left:55%;
-    position: absolute;
-    /* transition: rotate(180deg); */
-    /* z-index: 1; */
-}
-.land-line{
-    top: 70%;
-    left:50%;
-    width: 20%;
-    position: absolute;
-    /* transition: rotate(180deg); */
-    /* z-index: 1; */
-}
 .airrr{
     height: 50px;
     width: 150px;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -310,19 +661,19 @@ app-zoomable{
 .landddd.go{
     animation: goleft_line3 0.7s ease-in-out forwards;
 }
-.air-line.go{
-    animation: go-left-line 0.7s ease-in-out forwards;
+.air-line{
+    animation: go-left-line 3s ease-in-out forwards;
 }
-.land-line.go{
-    animation: go-left-line3 0.7s ease-in-out forwards;
+.land-line{
+    animation: go-left-line 3s ease-in-out forwards;
 }
-.water-line.go{
-    animation: go-left-line2 0.7s ease-in-out forwards;
+.water-line{
+    animation: go-left-line 3s ease-in-out forwards;
 }
 .waterre{
 height: 50px;
     width: 150px;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -334,7 +685,7 @@ height: 50px;
 .landddd{
 height: 50px;
     width: 150px;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -384,27 +735,13 @@ height: 50px;
     top: 70%;
     }
 }
-@keyframes goleft_globe {
-    0%{
-        top: 15%;
-        left: 32%;
-
-    }
-    100%{
-        top: 15%;
-        left: 10%;
-    }
-    
-}
 
 @keyframes go-left-line {
     0%{
-    left: 50%;
-    top: 20%;
+    opacity: 0;
     }
     100%{
-    left: 30%;
-    top: 20%;
+    opacity: 1;
     }
 }
 @keyframes go-left-line2 {
@@ -428,12 +765,12 @@ height: 50px;
     }
 }
 @keyframes globe {
-    0%{
+    /* 0%{
         opacity: 0;
     }   
     100%{
         opacity: 10;
-    }
+    } */
 }
 
 
@@ -444,7 +781,8 @@ height: 50px;
     right: 10%;
     top: 10%;
     color: white;
-    background-color: rgba(243, 243, 243, 0.257);
+    
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -474,7 +812,7 @@ z-index:1000;
     right: 10%;
     top: 10%;
     color: white;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -486,7 +824,7 @@ z-index:1000;
     position: absolute;
     right: 10%;
     top: 40%;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px; display: flex;
@@ -502,7 +840,7 @@ z-index:1000;
     right: 10%;
     top: 10%;
     color: white;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -514,7 +852,7 @@ z-index:1000;
     position: absolute;
     right: 10%;
     top: 70%;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px; display: flex;
@@ -530,7 +868,7 @@ z-index:1000;
     right: 10%;
     top: 10%;
     color: white;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -577,7 +915,7 @@ z-index:1000;
     position: absolute;
     right: 10%;
     top: 10%;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px; display: flex;
@@ -606,7 +944,7 @@ height: 100px;
     position: absolute;
     right: 10%;
     top: 30%;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px; display: flex;
@@ -621,7 +959,7 @@ z-index:1000;
     right: 10%;
     top: 10%;
     color: white;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -634,7 +972,7 @@ height: 100px;
     position: absolute;
     right: 10%;
     top: 50%;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px; display: flex;
@@ -648,7 +986,7 @@ z-index:1000;
     right: 10%;
     top: 10%;
     color: white;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -660,7 +998,7 @@ height: 100px;
     position: absolute;
     right: 10%;
     top: 70%;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -676,7 +1014,7 @@ z-index:1000;
     right: 10%;
     top: 10%;
     color: white;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -691,7 +1029,7 @@ height: 100px;
     position: absolute;
     right: 10%;
     top: 6%;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -709,7 +1047,7 @@ z-index:1000;
     right: 10%;
     top: 10%;
     color: white;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -721,7 +1059,7 @@ height: 100px;
     position: absolute;
     right: 10%;
     top: 24%;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -738,7 +1076,7 @@ z-index:1000;
     right: 10%;
     top: 10%;
     color: white;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -750,7 +1088,7 @@ height: 100px;
     position: absolute;
     right: 10%;
     top: 44%;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -767,7 +1105,7 @@ z-index:1000;
     right: 10%;
     top: 10%;
     color: white;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -779,7 +1117,7 @@ height: 100px;
     position: absolute;
     right: 10%;
     top: 64%;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -796,7 +1134,7 @@ z-index:1000;
     right: 10%;
     top: 10%;
     color: white;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -808,7 +1146,7 @@ z-index:1000;
     position: absolute;
     right: 10%;
     top: 84%;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -826,7 +1164,7 @@ z-index:1000;
     right: 10%;
     top: 10%;
     color: white;
-    background-color: rgba(243, 243, 243, 0.257);
+    background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
@@ -1213,9 +1551,9 @@ height: 100%;
     width: 90%;
     margin: 5px;
     border-radius: 10px;
-    background-color: rgba(243, 243, 243, 0.117);
+    background-color: rgb(255, 255, 255);
     backdrop-filter: blur(12px);
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
     justify-content: center;

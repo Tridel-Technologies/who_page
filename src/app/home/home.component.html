@@ -1,22 +1,59 @@
 <div class="home">
 
     <div class="back" (click)="back()"></div>
-    <div class="logo" *ngIf="!is_tapped_air && !is_tapped_marine && !is_tapped_terrain">
-        <div class="main_section" (click)="moveLogo('main')"></div>
-        <div class="about_call" (click)="moveLogo('about')"></div>
+
+    <div class="top_section" *ngIf="!is_tapped_main">
+        <p>Connecting<br>Environmental Science,<br>Engineering and Technology </p>
+        <img src="../../assets/slides/globe.png" alt="Tridel_Logo">
     </div>
 
+    <div class="top_section" *ngIf="is_tapped_main"
+        [ngStyle]="{'height':is_tapped_air|| is_tapped_marine || is_tapped_terrain ? '50px':'','width':is_tapped_air|| is_tapped_marine || is_tapped_terrain?'50px':'' }">
+        <!-- <p>Connecting<br>Environmental Science,<br>Engineering and Technology </p> -->
+        <img src="../../assets/tridel_logo.png" alt="Tridel_Logo">
+    </div>
+
+    <div class="logo" *ngIf="!is_tapped_air && !is_tapped_marine && !is_tapped_terrain && !is_tapped_main">
+        <div class="main_section" (click)="moveLogo('main')"></div>
+        <div class="about_call" (click)="moveLogo('about')"></div>
+        <div *ngIf="!is_tapped_main">
+            <p>
+                Tridel Technologies
+            </p>
+            <div class="glow-line mt-2"></div>
+            <div class="glow-line2 mt-2"></div>
+        </div>
+    </div>
+    <!-- <div class="main-points">
+
+
+    </div> -->
     <div class="about" (click)="showNextParagraph()" *ngIf="isTapped_about">
         <p *ngFor="let para of visibleParagraphs" class="typing-animation" [innerHTML]="para"></p>
     </div>
 
-    <div class="cirle-globe" *ngIf="is_tapped_main">
+    <div class="globe-section" *ngIf="is_tapped_main">
+        <div class="globe-description" style="color:white;"
+            *ngIf="!is_tapped_air && !is_tapped_marine && !is_tapped_terrain">
+            <p>Tridel specialises in end-to-end Marine, Environmental survey and monitoring solutions.</p>
 
-        <div class="top" id="top-source" *ngIf="is_tapped_main" (click)="moveGlobe('air')">
+            <p>We build Manned & Unmanned Survey Platforms, Buoys, and Monitoring systems.</p>
+            <p>Tridel provides turnkey solutions to customer specific problems, system integration, deployment, data
+                analytics, and system maintenance.</p>
+            <p> We also deliver survey projects in Hydrographic value chain as per IHO standards.</p>
         </div>
-        <div class="center" id="top-source2" *ngIf="is_tapped_main" (click)="moveGlobe('marine')"></div>
-        <div class="bottom" id="top-source3" *ngIf="is_tapped_main" (click)="moveGlobe('terrain')"></div>
+        <div class="cirle-globe">
+            <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? is_tapped_air? 'airline-go-active':'airline-go': 'air-line'"
+                id="top-source" (click)="moveGlobe('air')">AIR/ATMOS</div>
+            <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? 'waterline-go': 'water-line'"
+                id="top-source2" (click)="moveGlobe('marine')">MARINE</div>
+            <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? 'landline-go': 'land-line'"
+                id="top-source3" (click)="moveGlobe('terrain')">TERRESTRIAL</div>
+            <!-- <img src="../../assets/globe.png" alt="Globe" style="width:100%;height:100%;object-fit:contain;" /> -->
+        </div>
     </div>
+
+
 
     <div class="aerial-mapping zoomable-widget" id="target1" *ngIf="is_tapped_air">
         <div class="close" *ngIf="isAerialOpen || isSatelliteOpen || isWeatherOpen"
@@ -27,7 +64,7 @@
         </div>
     </div>
     <div class="satellite-derived zoomable-widget" id="target2" *ngIf="is_tapped_air">
-        <h4 *ngIf="!isSatelliteOpen">Satillite Derived Products</h4>
+        <h4 *ngIf="!isSatelliteOpen">Satellite Derived Products</h4>
         <div *ngIf="isSatelliteOpen" class="main_sattllite fullscreen-bg" id="main_sattlliter"
             (dblclick)="toggleFullscreen('main_sattlliter')" (touchend)="onTouchEnddd($event, 'main_sattlliter')">
         </div>
@@ -238,7 +275,7 @@
                 </g>
             </svg>
         </div>
-        <h4 style="color: white;" *ngIf="!isSurveyVesselOpen">Survey Vessels </h4>
+        <h4 style="color: white;" *ngIf="!isSurveyVesselOpen">Survey Vessel </h4>
         <div *ngIf="isSurveyVesselOpen" class="buoys-left">
             <div class="buoy-list" *ngFor="let item of Survey_Vessel" draggable="true"
                 (dragstart)="onDragStart3($event, item)">
@@ -298,7 +335,7 @@
                 </g>
             </svg>
         </div>
-        <h4 style="color: white;" *ngIf="!isCentralSystemsOpen"> Central Systems</h4>
+        <h4 style="color: white;" *ngIf="!isCentralSystemsOpen"> Central System</h4>
         <div *ngIf="isCentralSystemsOpen" class="buoys-left">
             <div class="buoy-list" *ngFor="let item of Central_System" draggable="true"
                 (dragstart)="onDragStart4($event, item)">
@@ -374,7 +411,7 @@
         <div class="close" *ngIf="isPortMonitoringOpen"
             (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
             x</div>
-        <h4 *ngIf="!isPortMonitoringOpen">Port Monitoring Systems</h4>
+        <h4 *ngIf="!isPortMonitoringOpen">Port Monitoring System</h4>
         <div *ngIf="isPortMonitoringOpen" class="port-monitoringg fullscreen-bg" id="portDiv"
             (dblclick)="toggleFullscreen('portDiv')" (touchend)="onTouchEnddd($event, 'portDiv')"></div>
     </div>
@@ -383,7 +420,7 @@
         <div class="close" *ngIf="isAirQualityOpen"
             (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
             x</div>
-        <h4 *ngIf="!isAirQualityOpen">Air Quality Systems</h4>
+        <h4 *ngIf="!isAirQualityOpen">Air Quality Monitoring System</h4>
         <div *ngIf="isAirQualityOpen" class="air-qualityy fullscreen-bg" id="airDiv"
             (dblclick)="toggleFullscreen('airDiv')" (touchend)="onTouchEnddd($event, 'airDiv')"></div>
     </div>
@@ -392,7 +429,7 @@
         <div class="close" *ngIf="isGroundWaterOpen"
             (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
             x</div>
-        <h4 *ngIf="!isGroundWaterOpen">Ground Water Monitoring Systems</h4>
+        <h4 *ngIf="!isGroundWaterOpen">Ground Water Monitoring System</h4>
         <div *ngIf="isGroundWaterOpen" class="ground-waterr fullscreen-bg" id="groundDiv"
             (dblclick)="toggleFullscreen('groundDiv')" (touchend)="onTouchEnddd($event, 'groundDiv')"></div>
     </div>
@@ -401,7 +438,7 @@
         <div class="close" *ngIf=" isMetOceanOpen"
             (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
             x</div>
-        <h4 *ngIf="!isMetOceanOpen">MetOcean Systems</h4>
+        <h4 *ngIf="!isMetOceanOpen">MetOcean System</h4>
         <div *ngIf="isMetOceanOpen" class="met-oceann fullscreen-bg" id="metDiv" (dblclick)="toggleFullscreen('metDiv')"
             (touchend)="onTouchEnddd($event, 'metDiv')"></div>
     </div>

@@ -63,6 +63,7 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
       logo?.classList.remove('animated_r');
 
   }
+
   moveGlobe(call: string) {
     this.is_tapped_air = call === 'air';
     this.is_tapped_marine = call === 'marine';
@@ -77,9 +78,9 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
    
     globe?.classList.remove('goleft');
     // setTimeout(() => {
-    //   air_line?.classList.remove('go');
-    //   water_line?.classList.remove('go');
-    //   land_line?.classList.remove('go');
+      air_line?.classList.remove('go');
+      water_line?.classList.remove('go');
+      land_line?.classList.remove('go');
     //   airr?.classList.remove('go');
     //   waterrr?.classList.remove('go');
     //   landdd?.classList.remove('go');
@@ -88,16 +89,16 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     void globe!.offsetWidth; // force reflow
     
     globe!.classList.add('goleft');
-    // void air_line!.offsetWidth; // force reflow
-    // void water_line!.offsetWidth; // force reflow
-    // void land_line!.offsetWidth; // force reflow
+    void air_line!.offsetWidth; // force reflow
+    void water_line!.offsetWidth; // force reflow
+    void land_line!.offsetWidth; // force reflow
     // void airr!.offsetWidth; // force reflow
     // void waterrr!.offsetWidth; // force reflow
     // void landdd!.offsetWidth; // force reflow
     // setTimeout(() => {
-    //   air_line!.classList.add('go');
-    //   water_line!.classList.add('go');
-    //   land_line!.classList.add('go');
+      air_line!.classList.add('go');
+      water_line!.classList.add('go');
+      land_line!.classList.add('go');
     //   airr!.classList.add('go');
     //   landdd!.classList.add('go');
     //   waterrr!.classList.add('go');
@@ -113,15 +114,15 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
   paths: string[] = [];
 
   drawPaths_air() {
-    // this.setPaths('top-source', ['target1', 'target2', 'target3']);
+    this.setPaths('top-source', ['target1', 'target2', 'target3']);
   }
 
   drawPaths_marine() {
-    // this.setPaths('top-source2', ['center-target1', 'center-target2', 'center-target3', 'center-target4']);
+    this.setPaths('top-source2', ['center-target1', 'center-target2', 'center-target3', 'center-target4']);
   }
 
   drawPaths_terrain() {
-    // this.setPaths('top-source3', ['bottom-target1', 'bottom-target2', 'bottom-target3', 'bottom-target4', 'bottom-target5']);
+    this.setPaths('top-source3', ['bottom-target1', 'bottom-target2', 'bottom-target3', 'bottom-target4', 'bottom-target5']);
   }
 
   setPaths(sourceId: string, targetIds: string[]) {
@@ -449,7 +450,7 @@ DatabuoyItems: string[] = [
   'Deep Water Buoy',
   'NUS with Winch',
   'Wind profiler Buoy',
-  'wave powered Buoy',
+  'Wave powered Buoy',
   'Drifter Buoy',
 ];
 USVData: string[] = ['Seafloor TriDrone', 'Seafloor HydroCat-550', 'Aquilon 5600', 'Aquilon 8000'];
