@@ -1,4 +1,5 @@
 <div class="home">
+
     <div class="back" (click)="back()"></div>
     <div class="logo" *ngIf="!is_tapped_air && !is_tapped_marine && !is_tapped_terrain">
         <div class="main_section" (click)="moveLogo('main')"></div>
@@ -18,25 +19,53 @@
     </div>
 
     <div class="aerial-mapping zoomable-widget" id="target1" *ngIf="is_tapped_air">
+        <div class="close" *ngIf="isAerialOpen || isSatelliteOpen || isWeatherOpen"
+            (click)="zoomOutt(['aerial-mapping', 'satellite-derived', 'weather-forecase'])">x</div>
         <h4 *ngIf="!isAerialOpen">Aerial Mapping</h4>
-        <div *ngIf="isAerialOpen" class="main_aerial">
-            <div class="aerial-left"></div>
-            <div class="aerial-right"></div>
-            <div class="round-aearial"></div>
-            <div class="round-aearial2"></div>
-
-
+        <div *ngIf="isAerialOpen" class="main_aerial fullscreen-bg" id="main_aerialr"
+            (dblclick)="toggleFullscreen('main_aerialr')" (touchend)="onTouchEnddd($event, 'main_aeriral')">
         </div>
-
     </div>
     <div class="satellite-derived zoomable-widget" id="target2" *ngIf="is_tapped_air">
-        <h4 *ngIf="!isAerialOpen">Satillite Derived Products</h4>
+        <h4 *ngIf="!isSatelliteOpen">Satillite Derived Products</h4>
+        <div *ngIf="isSatelliteOpen" class="main_sattllite fullscreen-bg" id="main_sattlliter"
+            (dblclick)="toggleFullscreen('main_sattlliter')" (touchend)="onTouchEnddd($event, 'main_sattlliter')">
+        </div>
     </div>
     <div class="weather-forecase zoomable-widget" id="target3" *ngIf="is_tapped_air">
-        <h4 *ngIf="!isAerialOpen">Weather Forecasting</h4>
+        <h4 *ngIf="!isWeatherOpen">Weather Forecasting</h4>
+        <div *ngIf="isWeatherOpen" class="main_weather fullscreen-bg" id="main_weatherr"
+            (dblclick)="toggleFullscreen('main_weatherr')" (touchend)="onTouchEnddd($event, 'main_weatherr')">
+        </div>
     </div>
 
     <div class="buoys zoomable-widget" id="center-target1" *ngIf="is_tapped_marine">
+        <div class="close"
+            *ngIf="isBuoysOpen || isUsvOpen || isSatelliteOpen||isSurveyVesselOpen|| isCentralSystemsOpen|| isBeachMonitoringOpen|| isPortMonitoringOpen|| isAirQualityOpen||isGroundWaterOpen|| isMetOceanOpen"
+            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            x</div>
+        <div class="navigations" *ngIf="isBuoysOpen">
+            <div class="left-arrow" (click)="prevBuoy()">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                    style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                    <g>
+                        <path fill="#ffff"
+                            d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                    </g>
+                </svg>
+            </div>
+
+
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" (click)="nextBuoy()"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                <g>
+                    <path fill="#ffff"
+                        d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                </g>
+            </svg>
+        </div>
         <h4 *ngIf="!isBuoysOpen" style="color: white; align-self: center; margin-left: 40%;">Buoys</h4>
 
         <div *ngIf="isBuoysOpen" class="buoys-left">
@@ -63,8 +92,40 @@
         <!-- If 'Data Buoy' is dropped -->
         <div *ngIf="droppedItems === 'Data Buoy' && isBuoysOpen" class="land-buoys" [ngStyle]="{ width: '80%' }"
             (dragover)="allowDrop1($event)" (drop)="onDrop1($event)">
-            <div class="coastal-buoy" *ngIf="dropBuoyis === 'Coastal Data Buoy'"></div>
-            <div class="navigational-buoy" *ngIf="dropBuoyis ==='Navigation Buoy'"></div>
+            <div *ngIf="dropBuoyis === 'Coastal Data Buoy'" class="coastal-buoy fullscreen-bg" id="coastalBuoy"
+                (dblclick)="toggleFullscreen('coastalBuoy')" (touchend)="onTouchEnddd($event, 'coastalBuoy')">
+            </div>
+
+            <div class="navigational-buoy fullscreen-bg" *ngIf="dropBuoyis === 'Navigation Buoy'" id="navigationalBuoy"
+                (dblclick)="toggleFullscreen('navigationalBuoy')" (touchend)="onTouchEnddd($event, 'navigationalBuoy')">
+            </div>
+
+            <div class="Deep-Water-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'Deep Water Buoy'" id="deepWaterBuoy"
+                (dblclick)="toggleFullscreen('deepWaterBuoy')" (touchend)="onTouchEnddd($event, 'deepWaterBuoy')">
+            </div>
+
+            <div class="NUS-with-Winch fullscreen-bg" *ngIf="dropBuoyis === 'NUS with Winch'" id="nusWithWinch"
+                (dblclick)="toggleFullscreen('nusWithWinch')" (touchend)="onTouchEnddd($event, 'nusWithWinch')">
+            </div>
+
+            <div class="Wind-profiler-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'Wind profiler Buoy'"
+                id="windProfilerBuoy" (dblclick)="toggleFullscreen('windProfilerBuoy')"
+                (touchend)="onTouchEnddd($event, 'windProfilerBuoy')">
+            </div>
+
+            <div class="wave-powered-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'wave powered Buoy'" id="wavePoweredBuoy"
+                (dblclick)="toggleFullscreen('wavePoweredBuoy')" (touchend)="onTouchEnddd($event, 'wavePoweredBuoy')">
+            </div>
+
+            <div class="Drifter-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'Drifter Buoy'" id="drifterBuoy"
+                (dblclick)="toggleFullscreen('drifterBuoy')" (touchend)="onTouchEnddd($event, 'drifterBuoy')">
+            </div>
+
+            <div class="Mooring-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'Mooring Buoy'" id="mooringBuoy"
+                (dblclick)="toggleFullscreen('mooringBuoy')" (touchend)="onTouchEnddd($event, 'mooringBuoy')">
+            </div>
+
+
         </div>
 
         <!-- If other than 'Data Buoy' is dropped -->
@@ -72,14 +133,42 @@
             [ngStyle]="{ width: '90%' }" (dragover)="allowDrop($event)" (drop)="onDrop($event)">
             <div class="coastal-buoy" *ngIf="dropBuoyis === 'Coastal Data Buoy'"></div>
             <div class="navigational-buoy" *ngIf="dropBuoyis ==='Navigation Buoy'">
-
+                <!-- <div class="Deep Water Buoy" *ngIf="dropBuoyis ==='Deep Water Buoy'"></div>
+                <div class="NUS with Winch" *ngIf="dropBuoyis ==='NUS with Winch'"></div>
+                <div class="Wind profiler Buoy" *ngIf="dropBuoyis ==='Wind profiler Buoy'"></div>
+                <div class="wave powered Buoy" *ngIf="dropBuoyis ==='wave powered Buoy'"></div>
+                <div class="Drifter Buoy" *ngIf="dropBuoyis ==='Drifter Buoy'"></div>
+                <div class="Mooring Buoy" *ngIf="dropBuoyis ==='Mooring Buoy'"></div> -->
             </div>
+
         </div>
     </div>
 
 
 
     <div class="usv zoomable-widget" id="center-target2" *ngIf="is_tapped_marine">
+        <div class="navigations" *ngIf="isUsvOpen">
+            <div class="left-arrow" (click)="prevusv()">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                    style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                    <g>
+                        <path fill="#ffff"
+                            d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                    </g>
+                </svg>
+            </div>
+
+
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" (click)="nextusv()"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                <g>
+                    <path fill="#ffff"
+                        d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                </g>
+            </svg>
+        </div>
         <h4 style="color: white;" *ngIf="!isUsvOpen">USV</h4>
         <div *ngIf="isUsvOpen" class="buoys-left">
             <div class="buoy-list" *ngFor="let item of USVData" draggable="true"
@@ -90,38 +179,65 @@
 
         <div *ngIf="isUsvOpen" class="land-buoys" (dragover)="allowDrop2($event)" (drop)="onDrop2($event)">
             <div class="buoy-list"
-                *ngIf="droppedItems2 !=='Seafloor HydroCat-550' && droppedItems2 !=='Seafloor TriDrone'">
+                *ngIf="droppedItems2 !=='Seafloor HydroCat-550' && droppedItems2 !=='Seafloor TriDrone' && droppedItems2 !=='Aquilon 8000' && droppedItems2 !=='Aquilon 5600'">
                 {{ droppedItems2 }}
             </div>
 
-            <div class="seafloor" *ngIf="droppedItems2 ==='Seafloor HydroCat-550'">
-                <!-- <h3>Seafloor Hydrocat 550</h3>
-                <p>The HydroCat-550 USV is capable of transiting from inshore to nearshore enviroments with
-                    high-resolution equipment payloads to conduct preplanned autonomous hysdrographic surveys.</p>
-
-                <p>Key Features</p>
-
-                <ul>
-                    <li>Can be transported via trailer, programmed to execute missions, and navigate up to sea State 5
-                        conditions with its Aluminium hull construction.</li>
-                    <li>Length: 5.5 m</li>
-                    <li>Widtth: 2.5 m</li>
-                    <li>Height: 2.3 m</li>
-                    <li>Equipment Payload: 356 kg</li>
-                    <li>{{`Edurance: 4-18 hours @2.5km`}}</li>
-                </ul> -->
+            <div class="seafloor fullscreen-bg" *ngIf="droppedItems2 === 'Seafloor HydroCat-550'" id="seafloorDiv"
+                (dblclick)="toggleFullscreen('seafloorDiv')" (touchend)="onTouchEnddd($event, 'seafloorDiv')">
             </div>
-            <div class="tridrone" *ngIf="droppedItems2 ==='Seafloor TriDrone'"></div>
-            <!-- <div *ngIf="droppedItems2 ==='Seafloor HydroCat-550'" class="main-round-seafloor">
+
+            <div class="tridrone fullscreen-bg" *ngIf="droppedItems2 === 'Seafloor TriDrone'" id="tridroneDiv"
+                (dblclick)="toggleFullscreen('tridroneDiv')" (touchend)="onTouchEnddd($event, 'tridroneDiv')">
+            </div>
+
+            <div class="aquilon-5600 fullscreen-bg" *ngIf="droppedItems2 === 'Aquilon 5600'" id="aquilon5600Div"
+                (dblclick)="toggleFullscreen('aquilon5600Div')" (touchend)="onTouchEnddd($event, 'aquilon5600Div')">
+            </div>
+
+            <div class="aquilon-8000 fullscreen-bg" *ngIf="droppedItems2 === 'Aquilon 8000'" id="aquilon8000Div"
+                (dblclick)="toggleFullscreen('aquilon8000Div')" (touchend)="onTouchEnddd($event, 'aquilon8000Div')">
+            </div>
+
+        </div>
+        <!-- <div *ngIf="droppedItems2 ==='Seafloor HydroCat-550'" class="main-round-seafloor">
                 <div class="image-seafloor-round">
 
                 </div>
             </div> -->
-        </div>
+
+        <!-- <div *ngIf="droppedItems2 ==='Seafloor HydroCat-550'" class="main-round-seafloor">
+                <div class="image-seafloor-round">
+
+                </div>
+            </div> -->
+
     </div>
 
 
     <div class="survay-vessals zoomable-widget" id="center-target3" *ngIf="is_tapped_marine">
+        <div class="navigations" *ngIf="isSurveyVesselOpen">
+            <div class="left-arrow" (click)="prevsurvey()">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                    style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                    <g>
+                        <path fill="#ffff"
+                            d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                    </g>
+                </svg>
+            </div>
+
+
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" (click)="nextsurvey()"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                <g>
+                    <path fill="#ffff"
+                        d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                </g>
+            </svg>
+        </div>
         <h4 style="color: white;" *ngIf="!isSurveyVesselOpen">Survey Vessels </h4>
         <div *ngIf="isSurveyVesselOpen" class="buoys-left">
             <div class="buoy-list" *ngFor="let item of Survey_Vessel" draggable="true"
@@ -131,15 +247,57 @@
         </div>
 
         <div *ngIf="isSurveyVesselOpen" class="land-buoys" (dragover)="allowDrop3($event)" (drop)="onDrop3($event)">
-            <div class="buoy-list" *ngIf="droppedItems3">
+            <div class="buoy-list"
+                *ngIf="droppedItems3 !== 'Monohul Survey Vessel'&& droppedItems3 !=='Catamaran Survey Vessel'&& droppedItems3 !=='ECFS & Ship borne Weather station' &&droppedItems3 !=='Deck Gears'">
                 {{ droppedItems }}
             </div>
+            <div class="Monohul-Survey-Vessel fullscreen-bg" *ngIf="droppedItems3 === 'Monohul Survey Vessel'"
+                id="monohulDiv" (dblclick)="toggleFullscreen('monohulDiv')"
+                (touchend)="onTouchEnddd($event, 'monohulDiv')">
+            </div>
+
+            <div class="Catamaran-Survey-Vessel fullscreen-bg" *ngIf="droppedItems3 === 'Catamaran Survey Vessel'"
+                id="catamaranDiv" (dblclick)="toggleFullscreen('catamaranDiv')"
+                (touchend)="onTouchEnddd($event, 'catamaranDiv')">
+            </div>
+
+            <div class="ECFS-Ship-borne-Weather-station fullscreen-bg"
+                *ngIf="droppedItems3 === 'ECFS & Ship borne Weather station'" id="ecfsDiv"
+                (dblclick)="toggleFullscreen('ecfsDiv')" (touchend)="onTouchEnddd($event, 'ecfsDiv')">
+            </div>
+
+            <div class="Deck-Gears fullscreen-bg" *ngIf="droppedItems3 === 'Deck Gears'" id="deckGearsDiv"
+                (dblclick)="toggleFullscreen('deckGearsDiv')" (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+
         </div>
     </div>
 
 
 
     <div class="central-systems zoomable-widget" id="center-target4" *ngIf="is_tapped_marine">
+        <div class="navigations" *ngIf="isCentralSystemsOpen">
+            <div class="left-arrow" (click)="prevcontrol()">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                    style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                    <g>
+                        <path fill="#ffff"
+                            d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                    </g>
+                </svg>
+            </div>
+
+
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" (click)="nextcontrol()"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                <g>
+                    <path fill="#ffff"
+                        d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                </g>
+            </svg>
+        </div>
         <h4 style="color: white;" *ngIf="!isCentralSystemsOpen"> Central Systems</h4>
         <div *ngIf="isCentralSystemsOpen" class="buoys-left">
             <div class="buoy-list" *ngFor="let item of Central_System" draggable="true"
@@ -150,10 +308,10 @@
 
         <div *ngIf="isCentralSystemsOpen" class="land-buoys" (dragover)="allowDrop4($event)" (drop)="onDrop4($event)">
             <div class="buoy-list"
-                *ngIf="droppedItems4 !=='GeoDB' && droppedItems4 !=='TEMS'&& droppedItems4 !=='TSMS'&& droppedItems4 !=='ATtide'">
+                *ngIf="droppedItems4 !=='GeoDB' && droppedItems4 !=='TEMS'&& droppedItems4 !=='TSMS'&& droppedItems4 !=='ATtide' && droppedItems4 !== 'eSpacia' &&droppedItems4 !== 'Modelling and Forecasting' && droppedItems4 !== 'ENC/PNC'&&droppedItems4 !== 'GeoDB'">
                 {{ droppedItems4 }}
             </div>
-            <div class="geodb_main" *ngIf="droppedItems4==='GeoDB'">
+            <!-- <div class="geodb_main" *ngIf="droppedItems4==='GeoDB'">
                 <div class="geodb-round-main" *ngIf="rotationcount>2">
                 </div>
                 <div class="second-last-db-round" *ngIf="rotationcount>1"></div>
@@ -168,10 +326,36 @@
                         better decision-making</p>
                     <img src="../../assets/geo-img.png" alt="">
                 </div>
+            </div> -->
+            <div class="tems fullscreen-bg" *ngIf="droppedItems4 === 'TEMS'" id="temsDiv"
+                (dblclick)="toggleFullscreen('temsDiv')" (touchend)="onTouchEnddd($event, 'temsDiv')">
             </div>
-            <div class="tems" *ngIf="droppedItems4 ==='TEMS'"></div>
-            <div class="tsms" *ngIf="droppedItems4 === 'ATtide'"></div>
-            <div class="attide" *ngIf="droppedItems4 === 'TSMS'"></div>
+
+            <div class="tsms fullscreen-bg" *ngIf="droppedItems4 === 'TSMS'" id="tsmsDiv"
+                (dblclick)="toggleFullscreen('tsmsDiv')" (touchend)="onTouchEnddd($event, 'tsmsDiv')">
+            </div>
+
+            <div class="attide fullscreen-bg" *ngIf="droppedItems4 === 'ATtide'" id="attideDiv"
+                (dblclick)="toggleFullscreen('attideDiv')" (touchend)="onTouchEnddd($event, 'attideDiv')">
+            </div>
+
+            <div class="eSpacia fullscreen-bg" *ngIf="droppedItems4 === 'eSpacia'" id="espaciaDiv"
+                (dblclick)="toggleFullscreen('espaciaDiv')" (touchend)="onTouchEnddd($event, 'espaciaDiv')">
+            </div>
+
+            <div class="Modelling-and-Forecasting fullscreen-bg" *ngIf="droppedItems4 === 'Modelling and Forecasting'"
+                id="modellingDiv" (dblclick)="toggleFullscreen('modellingDiv')"
+                (touchend)="onTouchEnddd($event, 'modellingDiv')">
+            </div>
+
+            <div class="ENC fullscreen-bg" *ngIf="droppedItems4 === 'ENC/PNC'" id="encDiv"
+                (dblclick)="toggleFullscreen('encDiv')" (touchend)="onTouchEnddd($event, 'encDiv')">
+            </div>
+
+            <div class="geodb fullscreen-bg" *ngIf="droppedItems4 === 'GeoDB'" id="geodbDiv"
+                (dblclick)="toggleFullscreen('geodbDiv')" (touchend)="onTouchEnddd($event, 'geodbDiv')">
+            </div>
+
 
 
         </div>
@@ -179,21 +363,49 @@
 
 
     <div class="beach-monitoring zoomable-widget" id="bottom-target1" *ngIf="is_tapped_terrain">
+        <div class="close" *ngIf="isBeachMonitoringOpen"
+            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            x</div>
         <h4 *ngIf="!isBeachMonitoringOpen">Beach Monitoring System</h4>
-        <div *ngIf="isBeachMonitoringOpen" class="beach-ms"></div>
+        <div *ngIf="isBeachMonitoringOpen" class="beach-ms fullscreen-bg" id="beachDiv"
+            (dblclick)="toggleFullscreen('beachDiv')" (touchend)="onTouchEnddd($event, 'beachDiv')"></div>
     </div>
     <div class="port-monitoring zoomable-widget" id="bottom-target2" *ngIf="is_tapped_terrain">
-        <h4>Port Monitoring Systems</h4>
+        <div class="close" *ngIf="isPortMonitoringOpen"
+            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            x</div>
+        <h4 *ngIf="!isPortMonitoringOpen">Port Monitoring Systems</h4>
+        <div *ngIf="isPortMonitoringOpen" class="port-monitoringg fullscreen-bg" id="portDiv"
+            (dblclick)="toggleFullscreen('portDiv')" (touchend)="onTouchEnddd($event, 'portDiv')"></div>
     </div>
+
     <div class="air-quality zoomable-widget" id="bottom-target3" *ngIf="is_tapped_terrain">
-        <h4>Air Quality Systems</h4>
+        <div class="close" *ngIf="isAirQualityOpen"
+            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            x</div>
+        <h4 *ngIf="!isAirQualityOpen">Air Quality Systems</h4>
+        <div *ngIf="isAirQualityOpen" class="air-qualityy fullscreen-bg" id="airDiv"
+            (dblclick)="toggleFullscreen('airDiv')" (touchend)="onTouchEnddd($event, 'airDiv')"></div>
     </div>
+
     <div class="ground-water zoomable-widget" id="bottom-target4" *ngIf="is_tapped_terrain">
-        <h4>Ground Water Monitoring Systems</h4>
+        <div class="close" *ngIf="isGroundWaterOpen"
+            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            x</div>
+        <h4 *ngIf="!isGroundWaterOpen">Ground Water Monitoring Systems</h4>
+        <div *ngIf="isGroundWaterOpen" class="ground-waterr fullscreen-bg" id="groundDiv"
+            (dblclick)="toggleFullscreen('groundDiv')" (touchend)="onTouchEnddd($event, 'groundDiv')"></div>
     </div>
+
     <div class="met-ocean zoomable-widget" id="bottom-target5" *ngIf="is_tapped_terrain">
-        <h4>MetOcean Systems</h4>
+        <div class="close" *ngIf=" isMetOceanOpen"
+            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            x</div>
+        <h4 *ngIf="!isMetOceanOpen">MetOcean Systems</h4>
+        <div *ngIf="isMetOceanOpen" class="met-oceann fullscreen-bg" id="metDiv" (dblclick)="toggleFullscreen('metDiv')"
+            (touchend)="onTouchEnddd($event, 'metDiv')"></div>
     </div>
+
 
     <!-- SVG overlay -->
     <svg class="svg-connector">

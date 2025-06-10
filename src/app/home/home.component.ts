@@ -113,28 +113,56 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
   paths: string[] = [];
 
   drawPaths_air() {
-    this.setPaths('top-source', ['target1', 'target2', 'target3']);
+    // this.setPaths('top-source', ['target1', 'target2', 'target3']);
   }
 
   drawPaths_marine() {
-    this.setPaths('top-source2', ['center-target1', 'center-target2', 'center-target3', 'center-target4']);
+    // this.setPaths('top-source2', ['center-target1', 'center-target2', 'center-target3', 'center-target4']);
   }
 
   drawPaths_terrain() {
-    this.setPaths('top-source3', ['bottom-target1', 'bottom-target2', 'bottom-target3', 'bottom-target4', 'bottom-target5']);
+    // this.setPaths('top-source3', ['bottom-target1', 'bottom-target2', 'bottom-target3', 'bottom-target4', 'bottom-target5']);
   }
 
   setPaths(sourceId: string, targetIds: string[]) {
-    const source = document.getElementById(sourceId);
-    if (!source) return;
+  const source = document.getElementById(sourceId);
+  if (!source) return;
 
-    this.paths = targetIds
-      .map(id => {
-        const target = document.getElementById(id);
-        return target ? this.generateCurvedPath(source, target) : '';
-      })
-      .filter(path => path !== '');
+  const targetRects: DOMRect[] = [];
+  for (let id of targetIds) {
+    const el = document.getElementById(id);
+    if (el) targetRects.push(el.getBoundingClientRect());
   }
+
+  if (targetRects.length === 0) return;
+
+  const sourceRect = source.getBoundingClientRect();
+  const sourceX = sourceRect.right;
+  const sourceY = sourceRect.top + sourceRect.height / 2;
+
+  // Compute junction point between source and middle of targets
+  const minY = Math.min(...targetRects.map(r => r.top + r.height / 2));
+  const maxY = Math.max(...targetRects.map(r => r.top + r.height / 2));
+  const junctionY = (minY + maxY) / 2;
+  const junctionX = sourceX + 50; // 50px to the right
+
+  // Build paths: one from source to junction, others from junction to targets
+  const paths: string[] = [];
+
+  // Vertical line from source to junction
+  paths.push(`M ${sourceX},${sourceY} L ${junctionX},${junctionY}`);
+
+  for (const rect of targetRects) {
+    const targetX = rect.left;
+    const targetY = rect.top + rect.height / 2;
+
+    // Path from junction to each target
+    paths.push(`M ${junctionX},${junctionY} L ${targetX},${targetY}`);
+  }
+
+  this.paths = paths;
+}
+
 
   generateCurvedPath(fromEl: HTMLElement, toEl: HTMLElement): string {
     const fromRect = fromEl.getBoundingClientRect();
@@ -262,9 +290,27 @@ return target.classList.contains('opened');
     logo!.classList.remove('opened');
     // logo!.classList.add('');
     this.setZoomedWidgetState('clas')
+    this.droppedItems1 = '';
+    this.droppedItems =''
+    this.dropBuoyis = ''
   }
+   zoomOutt(clas: string[]) {
+    clas.forEach(className => {
+    const element = document.querySelector(`.${className}`);
+    if (element) {
+      element.classList.remove('opened');
+    }
+  });
+
+  this.setZoomedWidgetState(''); // Or don't call it at all
+  this.droppedItems1 = '';
+  this.droppedItems = '';
+  this.dropBuoyis = '';
+}
 
 
+
+// currentIindex: number = 0;
 
 
   // Air
@@ -410,6 +456,82 @@ USVData: string[] = ['Seafloor TriDrone', 'Seafloor HydroCat-550', 'Aquilon 5600
 Survey_Vessel: string[] = ['Monohul Survey Vessel', 'Catamaran Survey Vessel', 'ECFS & Ship borne Weather station', 'Deck Gears'];
 Central_System: string[] = ['TEMS', 'eSpacia', 'ATtide', 'Modelling and Forecasting', 'GeoDB', 'ENC/PNC', 'TSMS'];
 
+currentMainIndex: number = 0;
+currentSubIndex: number = 0;
+
+currentusvIndex:number=0;
+currentsurveyIndex:number=0;
+currentcontrolIndex:number=0;
+nextBuoy() {
+  if (this.droppedItems === 'Data Buoy') {
+    this.currentSubIndex = (this.currentSubIndex + 1) % this.DatabuoyItems.length;
+    this.droppedItems1 = this.DatabuoyItems[this.currentSubIndex];
+    this.dropBuoyis = this.droppedItems1
+  } else {
+    this.currentMainIndex = (this.currentMainIndex + 1) % this.buoyItems.length;
+    this.droppedItems = this.buoyItems[this.currentMainIndex];
+
+    // reset sub-selection if switching out of Data Buoy
+    if (this.droppedItems !== 'Data Buoy') {
+      this.droppedItems1 = this.droppedItems;
+      this.dropBuoyis = this.droppedItems1
+    } else {
+      this.currentSubIndex = 0;
+      this.droppedItems1 = this.DatabuoyItems[this.currentSubIndex];
+      this.dropBuoyis = this.droppedItems1
+    }
+  }
+  console.log(this.droppedItems, this.droppedItems1)
+}
+
+
+prevBuoy() {
+  if (this.droppedItems === 'Data Buoy') {
+    this.currentSubIndex = (this.currentSubIndex - 1 + this.DatabuoyItems.length) % this.DatabuoyItems.length;
+    this.droppedItems1 = this.DatabuoyItems[this.currentSubIndex];
+    this.dropBuoyis = this.droppedItems1
+  } else {
+    this.currentMainIndex = (this.currentMainIndex - 1 + this.buoyItems.length) % this.buoyItems.length;
+    this.droppedItems = this.buoyItems[this.currentMainIndex];
+
+    // reset sub-selection if switching out of Data Buoy
+    if (this.droppedItems !== 'Data Buoy') {
+      this.droppedItems1 = this.droppedItems;
+      this.dropBuoyis = this.droppedItems1
+    } else {
+      this.currentSubIndex = 0;
+      this.droppedItems1 = this.DatabuoyItems[this.currentSubIndex];
+      this.dropBuoyis = this.droppedItems1
+    }
+  }
+}
+nextusv(){
+this.currentusvIndex = (this.currentusvIndex + 1) % this.USVData.length
+  this.droppedItems2 = this.USVData[this.currentusvIndex];
+}
+prevusv(){
+this.currentusvIndex = (this.currentusvIndex - 1 + this.USVData.length) % this.USVData.length;
+this.droppedItems2 = this.USVData[this.currentusvIndex];
+}
+
+nextsurvey(){
+this.currentsurveyIndex = (this.currentsurveyIndex + 1) % this.Survey_Vessel.length
+  this.droppedItems3 = this.Survey_Vessel[this.currentsurveyIndex];
+}
+prevsurvey(){
+this.currentsurveyIndex = (this.currentsurveyIndex - 1 + this.Survey_Vessel.length) % this.Survey_Vessel.length;
+this.droppedItems3 = this.Survey_Vessel[this.currentsurveyIndex];
+}
+
+nextcontrol(){
+this.currentcontrolIndex = (this.currentcontrolIndex + 1) % this.Central_System.length
+  this.droppedItems4= this.Central_System[this.currentcontrolIndex];
+}
+prevcontrol(){
+this.currentcontrolIndex = (this.currentcontrolIndex - 1 + this.Central_System.length) % this.Central_System.length;
+this.droppedItems4 = this.Central_System[this.currentcontrolIndex];
+}
+
 droppedItems: string = '';
 droppedItems1: string = '';
 droppedItems2: string = '';
@@ -535,5 +657,35 @@ onDropSubItem(event: DragEvent) {
       this.droppedItems4= item;
     }
   }
+
+
+
+
+  private lastTap = 0;
+  lastTapTime: number = 0;
+
+onTouchEnddd(event: TouchEvent, divId: string) {
+  const currentTime = new Date().getTime();
+  const tapLength = currentTime - this.lastTapTime;
+
+  if (tapLength < 300 && tapLength > 0) {
+    this.toggleFullscreen(divId);
+  }
+
+  this.lastTapTime = currentTime;
+}
+
+toggleFullscreen(divId: string) {
+  const element = document.getElementById(divId);
+  if (!element) return;
+
+  if (!document.fullscreenElement) {
+    element.requestFullscreen().catch((err) => {
+      console.error(`Error attempting fullscreen: ${err.message}`);
+    });
+  } else {
+    document.exitFullscreen();
+  }
+}
 
 }
