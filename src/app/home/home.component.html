@@ -7,13 +7,17 @@
         <img src="../../assets/slides/globe.png" alt="Tridel_Logo">
     </div>
 
-    <div class="top_section" *ngIf="is_tapped_main"
+    <div class="top_section2" *ngIf="is_tapped_main"
         [ngStyle]="{'height':is_tapped_air|| is_tapped_marine || is_tapped_terrain ? '50px':'','width':is_tapped_air|| is_tapped_marine || is_tapped_terrain?'50px':'' }">
         <!-- <p>Connecting<br>Environmental Science,<br>Engineering and Technology </p> -->
         <img src="../../assets/tridel_logo.png" alt="Tridel_Logo">
     </div>
 
-    <div class="logo" *ngIf="!is_tapped_air && !is_tapped_marine && !is_tapped_terrain && !is_tapped_main">
+    <div class="bottom_section" *ngIf="is_tapped_main && !is_tapped_air && !is_tapped_marine && !is_tapped_terrain">
+        <p>Connecting<br>Environmental Science,<br>Engineering and Technology </p>
+    </div>
+
+    <div class=" logo" *ngIf="!is_tapped_air && !is_tapped_marine && !is_tapped_terrain && !is_tapped_main">
         <div class="main_section" (click)="moveLogo('main')"></div>
         <div class="about_call" (click)="moveLogo('about')"></div>
         <div *ngIf="!is_tapped_main">
@@ -45,9 +49,9 @@
         <div class="cirle-globe">
             <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? is_tapped_air? 'airline-go-active':'airline-go': 'air-line'"
                 id="top-source" (click)="moveGlobe('air')">AIR/ATMOS</div>
-            <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? 'waterline-go': 'water-line'"
+            <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? is_tapped_marine? 'waterline-go-active': 'waterline-go': 'water-line'"
                 id="top-source2" (click)="moveGlobe('marine')">MARINE</div>
-            <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? 'landline-go': 'land-line'"
+            <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? is_tapped_terrain? 'landline-go-active': 'landline-go': 'land-line'"
                 id="top-source3" (click)="moveGlobe('terrain')">TERRESTRIAL</div>
             <!-- <img src="../../assets/globe.png" alt="Globe" style="width:100%;height:100%;object-fit:contain;" /> -->
         </div>
@@ -106,8 +110,8 @@
         <h4 *ngIf="!isBuoysOpen" style="color: white; align-self: center; margin-left: 40%;">Buoys</h4>
 
         <div *ngIf="isBuoysOpen" class="buoys-left">
-            <div class="buoy-list" *ngFor="let item of buoyItems" draggable="true"
-                (dragstart)="onDragStart($event, item)">
+            <div [ngClass]="dropBuoyis ===item? 'buoy-list-selected':'buoy-list'" *ngFor="let item of buoyItems"
+                draggable="true" (dragstart)="onDragStart($event, item)">
                 {{ item }}
             </div>
         </div>
@@ -118,9 +122,11 @@
         'wave powered Buoy',
         'Drifter Buoy', -->
         <!-- Sub items for 'Data Buoy' -->
-        <div *ngIf="isBuoysOpen && droppedItems === 'Data Buoy'&& droppedItems1 ==='Data Buoy' ||droppedItems1 ==='Coastal Data Buoy'||droppedItems1 ==='Deep Water Buoy'||droppedItems1 ==='NUS with Winch'||droppedItems1 ==='Wind profiler Buoy'||droppedItems1 ==='wave powered Buoy' || droppedItems1=== 'Drifter Buoy'"
+        <div *ngIf="isBuoysOpen && droppedItems === 'Data Buoy'&& droppedItems1 ==='Data Buoy' ||droppedItems1 ==='Coastal Data Buoy'||droppedItems1 ==='Deep Water Buoy'||droppedItems1 ==='NUS with Winch'||droppedItems1 ==='Wind Profiler Buoy'||droppedItems1 ==='Wave Powered Buoy' || droppedItems1=== 'Drifter Buoy'"
             class="extra-data-buoy">
-            <div class="buoy-list" *ngFor="let item of DatabuoyItems" draggable="true"
+            <div [ngClass]="dropBuoyis ===item? 'buoy-list-selected':'buoy-list'" *ngFor="let item of DatabuoyItems"
+                draggable="true"
+                [ngStyle]="{'margin-left':item===dropBuoyis?'15px':'5px', 'border': item===dropBuoyis?'2px solid rgb(0, 255, 13)':''}"
                 (dragstart)="onDragStart($event, item)">
                 {{ item }}
             </div>
@@ -133,10 +139,12 @@
                 (dblclick)="toggleFullscreen('coastalBuoy')" (touchend)="onTouchEnddd($event, 'coastalBuoy')">
             </div>
 
-            <div class="navigational-buoy fullscreen-bg" *ngIf="dropBuoyis === 'Navigation Buoy'" id="navigationalBuoy"
+            <div class="navigational-buoy fullscreen-bg" *ngIf="dropBuoyis === 'Data Buoy'" id="navigationalBuoy"
                 (dblclick)="toggleFullscreen('navigationalBuoy')" (touchend)="onTouchEnddd($event, 'navigationalBuoy')">
             </div>
-
+            <div class="data-buoy fullscreen-bg" *ngIf="dropBuoyis === 'Navigation Buoy'" id="navigationalBuoy"
+                (dblclick)="toggleFullscreen('navigationalBuoy')" (touchend)="onTouchEnddd($event, 'navigationalBuoy')">
+            </div>
             <div class="Deep-Water-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'Deep Water Buoy'" id="deepWaterBuoy"
                 (dblclick)="toggleFullscreen('deepWaterBuoy')" (touchend)="onTouchEnddd($event, 'deepWaterBuoy')">
             </div>
@@ -145,12 +153,12 @@
                 (dblclick)="toggleFullscreen('nusWithWinch')" (touchend)="onTouchEnddd($event, 'nusWithWinch')">
             </div>
 
-            <div class="Wind-profiler-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'Wind profiler Buoy'"
+            <div class="Wind-profiler-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'Wind Profiler Buoy'"
                 id="windProfilerBuoy" (dblclick)="toggleFullscreen('windProfilerBuoy')"
                 (touchend)="onTouchEnddd($event, 'windProfilerBuoy')">
             </div>
 
-            <div class="wave-powered-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'wave powered Buoy'" id="wavePoweredBuoy"
+            <div class="wave-powered-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'Wave Powered Buoy'" id="wavePoweredBuoy"
                 (dblclick)="toggleFullscreen('wavePoweredBuoy')" (touchend)="onTouchEnddd($event, 'wavePoweredBuoy')">
             </div>
 
@@ -209,6 +217,7 @@
         <h4 style="color: white;" *ngIf="!isUsvOpen">USV</h4>
         <div *ngIf="isUsvOpen" class="buoys-left">
             <div class="buoy-list" *ngFor="let item of USVData" draggable="true"
+                [ngStyle]="{'margin-left':item===droppedItems2?'15px':'5px', 'border': item===droppedItems2?'2px solid rgb(0, 255, 13)':''}"
                 (dragstart)="onDragStart2($event, item)">
                 {{ item }}
             </div>
@@ -276,19 +285,36 @@
             </svg>
         </div>
         <h4 style="color: white;" *ngIf="!isSurveyVesselOpen">Survey Vessel </h4>
-        <div *ngIf="isSurveyVesselOpen" class="buoys-left">
-            <div class="buoy-list" *ngFor="let item of Survey_Vessel" draggable="true"
-                (dragstart)="onDragStart3($event, item)">
-                {{ item }}
+        <div *ngIf="isSurveyVesselOpen " class="buoys-left">
+            <div class="buoy-list" *ngFor="let item of Survey_Vessel"
+                [ngStyle]="{'margin-left':item===droppedItems3?'15px':'5px', 'border': item===droppedItems3?'2px solid rgb(0, 255, 13)':''}"
+                draggable="true" (dragstart)="onDragStart3($event, item)">
+                <p>{{ item }}</p>
+            </div>
+        </div>
+        <div class="extra-data-buoy" *ngIf="showvessels || showwinch && isSurveyVesselOpen">
+            <div class="buoy-list" *ngFor="let item of deck_gears" draggable="true"
+                [ngStyle]="{'margin-left':item===droppedItems3?'15px':'5px', 'border': item===droppedItems3?'2px solid rgb(0, 255, 13)':''}"
+                (dragstart)="onDragStart5($event, item)">
+                <p>{{ item }}</p>
+            </div>
+        </div>
+        <div class="extra-data-buoy" *ngIf="showwinch && isSurveyVesselOpen">
+            <div class="buoy-list" *ngFor="let item of winch" draggable="true" (dragstart)="onDragStart5($event, item)"
+                [ngStyle]="{'margin-left':item===droppedItems3?'15px':'5px', 'border': item===droppedItems3?'2px solid rgb(0, 255, 13)':''}">
+                <p>{{ item }}</p>
             </div>
         </div>
 
+
+
         <div *ngIf="isSurveyVesselOpen" class="land-buoys" (dragover)="allowDrop3($event)" (drop)="onDrop3($event)">
-            <div class="buoy-list"
-                *ngIf="droppedItems3 !== 'Monohul Survey Vessel'&& droppedItems3 !=='Catamaran Survey Vessel'&& droppedItems3 !=='ECFS & Ship borne Weather station' &&droppedItems3 !=='Deck Gears'">
-                {{ droppedItems }}
+            <div class="buoy-list" *ngIf="droppedItems3 !== 'Monohull Survey Vessel'&& droppedItems3 !=='Catamaran Survey Vessel'&& droppedItems3 !=='ECFS & Ship Borne Weather Station' &&droppedItems3 !=='Deck Gears'&& droppedItems3 !=='Tridel Electric Winch'&&
+                droppedItems3 !=='Tridel Electric Winch'&& droppedItems3!=='Monitoring Frames & Bottom Mounts' && droppedItems3!=='Vessel Side Mount ADCP'&& droppedItems3 !=='Profiling Winch'&& droppedItems3 !=='Surface and Subsurface Floats'&&
+                this.droppedItems3 !=='TEW 500'&& this.droppedItems3 !== 'TEW 1500'">
+                {{ droppedItems3 }}
             </div>
-            <div class="Monohul-Survey-Vessel fullscreen-bg" *ngIf="droppedItems3 === 'Monohul Survey Vessel'"
+            <div class="Monohul-Survey-Vessel fullscreen-bg" *ngIf="droppedItems3 === 'Monohull Survey Vessel'"
                 id="monohulDiv" (dblclick)="toggleFullscreen('monohulDiv')"
                 (touchend)="onTouchEnddd($event, 'monohulDiv')">
             </div>
@@ -299,11 +325,42 @@
             </div>
 
             <div class="ECFS-Ship-borne-Weather-station fullscreen-bg"
-                *ngIf="droppedItems3 === 'ECFS & Ship borne Weather station'" id="ecfsDiv"
+                *ngIf="droppedItems3 === 'ECFS & Ship Borne Weather Station'" id="ecfsDiv"
                 (dblclick)="toggleFullscreen('ecfsDiv')" (touchend)="onTouchEnddd($event, 'ecfsDiv')">
             </div>
 
             <div class="Deck-Gears fullscreen-bg" *ngIf="droppedItems3 === 'Deck Gears'" id="deckGearsDiv"
+                (dblclick)="toggleFullscreen('deckGearsDiv')" (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+
+
+            <!-- 'Monitoring Frames Bottom Mounts', 'Surface and subsurface Floats', 'Profiling Winch', 'Vessel Side Mount ADCP', 'Tridel Electric Winch' -->
+            <div class="Monitoring-Frames-Bottom-Mounts fullscreen-bg"
+                *ngIf="droppedItems3 === 'Monitoring Frames & Bottom Mounts'" id="deckGearsDiv"
+                (dblclick)="toggleFullscreen('deckGearsDiv')" (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+            <div class="Surface-and-subsurface-Floats fullscreen-bg"
+                *ngIf="droppedItems3 === 'Surface and Subsurface Floats'" id="deckGearsDiv"
+                (dblclick)="toggleFullscreen('deckGearsDiv')" (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+            <div class="Profiling-Winch fullscreen-bg" *ngIf="droppedItems3 === 'Profiling Winch'" id="deckGearsDiv"
+                (dblclick)="toggleFullscreen('deckGearsDiv')" (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+            <div class="Vessel-Side-Mount-ADCP fullscreen-bg" *ngIf="droppedItems3 === 'Vessel Side Mount ADCP'"
+                id="deckGearsDiv" (dblclick)="toggleFullscreen('deckGearsDiv')"
+                (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+            <div class="Tridel-Electric-Winch fullscreen-bg" *ngIf="droppedItems3 === 'Tridel Electric Winch'"
+                id="deckGearsDiv" (dblclick)="toggleFullscreen('deckGearsDiv')"
+                (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+
+
+            <!-- TEW 500', 'TEW 1500' -->
+            <div class="TEW-500 fullscreen-bg" *ngIf="droppedItems3 === 'TEW 500'" id="deckGearsDiv"
+                (dblclick)="toggleFullscreen('deckGearsDiv')" (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+            <div class="TEW-1500 fullscreen-bg" *ngIf="droppedItems3 === 'TEW 1500'" id="deckGearsDiv"
                 (dblclick)="toggleFullscreen('deckGearsDiv')" (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
             </div>
 
@@ -338,14 +395,15 @@
         <h4 style="color: white;" *ngIf="!isCentralSystemsOpen"> Central System</h4>
         <div *ngIf="isCentralSystemsOpen" class="buoys-left">
             <div class="buoy-list" *ngFor="let item of Central_System" draggable="true"
+                [ngStyle]="{'margin-left':item===droppedItems4?'15px':'5px', 'border': item===droppedItems4?'2px solid rgb(0, 255, 13)':''}"
                 (dragstart)="onDragStart4($event, item)">
-                {{ item }}
+                <p>{{ item }}</p>
             </div>
         </div>
 
         <div *ngIf="isCentralSystemsOpen" class="land-buoys" (dragover)="allowDrop4($event)" (drop)="onDrop4($event)">
             <div class="buoy-list"
-                *ngIf="droppedItems4 !=='GeoDB' && droppedItems4 !=='TEMS'&& droppedItems4 !=='TSMS'&& droppedItems4 !=='ATtide' && droppedItems4 !== 'eSpacia' &&droppedItems4 !== 'Modelling and Forecasting' && droppedItems4 !== 'ENC/PNC'&&droppedItems4 !== 'GeoDB'">
+                *ngIf="droppedItems4 !=='GeoDB' && droppedItems4 !=='TEMS'&& droppedItems4 !=='TSMS'&& droppedItems4 !=='ATtide' && droppedItems4 !== 'eSpecia' &&droppedItems4 !== 'Modelling and Forecasting' && droppedItems4 !== 'ENC/PNC'&&droppedItems4 !== 'GeoDB'">
                 {{ droppedItems4 }}
             </div>
             <!-- <div class="geodb_main" *ngIf="droppedItems4==='GeoDB'">
@@ -376,7 +434,7 @@
                 (dblclick)="toggleFullscreen('attideDiv')" (touchend)="onTouchEnddd($event, 'attideDiv')">
             </div>
 
-            <div class="eSpacia fullscreen-bg" *ngIf="droppedItems4 === 'eSpacia'" id="espaciaDiv"
+            <div class="eSpacia fullscreen-bg" *ngIf="droppedItems4 === 'eSpecia'" id="espaciaDiv"
                 (dblclick)="toggleFullscreen('espaciaDiv')" (touchend)="onTouchEnddd($event, 'espaciaDiv')">
             </div>
 
@@ -446,9 +504,8 @@
 
     <!-- SVG overlay -->
     <svg class="svg-connector">
-        <path *ngFor="let path of paths" [attr.d]="path" class="line" />
-        <!-- <path *ngIf="is_tapped_main" [attr.d]="path2" class="line" />
-        <path *ngIf="is_tapped_main" [attr.d]="path3" class="line" /> -->
+        <path *ngFor="let path of pathsData; let i = index" [attr.d]="path.d" class="line" [attr.id]="'line-' + i">
+        </path>
     </svg>
 
     <!-- <app-zoomable></app-zoomable> -->

@@ -43,6 +43,48 @@
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     animation: fadeIn 2s ease-in-out;
 }
+
+.top_section2 {
+    width: 10%;
+    height: 15%;
+    z-index: 1000;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    left: 0%;
+    top: 0%;
+    font-size: 25px;
+    color: white;
+    /* color: rgb(203 213 225 / var(--tw-text-opacity, 1)); */
+    font-weight: 700;
+    text-align: start;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 20px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 2s ease-in-out;
+}
+
+.bottom_section {
+    width: 25%;
+    height: 15%;
+    z-index: 1000;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    bottom: 5%;
+    right: 0%;
+    font-size: 25px;
+    color: white;
+    /* color: rgb(203 213 225 / var(--tw-text-opacity, 1)); */
+    font-weight: 700;
+    text-align: start;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 20px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 2s ease-in-out;
+}
  
 .top_section p {
     margin-top: 0px;
@@ -339,12 +381,12 @@ app-zoomable{
  
 .globe-description {
     position: absolute;
-    top: 24%;
+    top: 18%;
     left: 8%;
     width: 25%;
     height: 20%;
     color: white;
-    font-size: 24px;
+    font-size: 23px;
     line-height: 1.2;
     text-align: left;
     z-index: 2;
@@ -561,6 +603,7 @@ app-zoomable{
     font-weight: bolder;
     width: 8%;
     position: absolute;
+    align-content: center;
     /* transition: rotate(180deg); */
     /* z-index: 1; */
     font-weight: bolder;
@@ -571,6 +614,28 @@ app-zoomable{
     text-align: center;
     width: 130px;
     height: 50px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    background-color: #146383;
+    cursor: pointer;
+}.waterline-go-active{
+    top: 16%;
+    right: -22%;
+    font-weight: bolder;
+    width: 8%;
+    position: absolute;
+    /* transition: rotate(180deg); */
+    /* z-index: 1; */
+    font-weight: bolder;
+    color: white;
+    font-size: 13px;
+    border: 3px solid rgb(0, 116, 211);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+    height: 30px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     background-color: #146383;
     cursor: pointer;
@@ -597,11 +662,37 @@ app-zoomable{
     background-color: #146383;
     cursor: pointer;
 }
+ 
+.landline-go-active{
+    bottom: 16%;
+    right: -22%;
+    width: 8%;
+    position: absolute;
+    /* transition: rotate(180deg); */
+    /* z-index: 1; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    color: white;
+    font-size: 13px;
+    border: 3px solid rgb(0, 116, 211);
+    border-radius: 6px;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    background-color: #146383;
+    cursor: pointer;
+}
+ 
+ 
 .land-line{
     bottom: 16%;
     right: -35%;
     width: 8%;
     position: absolute;
+    align-content: center;
     /* transition: rotate(180deg); */
     /* z-index: 1; */
     font-weight: bolder;
@@ -920,7 +1011,7 @@ z-index:1000;
     border: 1px solid white;
     border-radius: 10px; display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
     flex-direction: row;
     z-index: 1000;
 }
@@ -1212,7 +1303,7 @@ z-index:1000;
     flex-direction: row;
     position: relative;
     border-radius: 10px;
-    background-image: url(../../assets/slides/Satellite-Derived-Projects.png);
+    background-image: url(../../assets/slides/about.png);
     background-size: 100% 100%;
     animation: openLands 0.9s ease-in-out forwards;
 }
@@ -1226,7 +1317,7 @@ z-index:1000;
     flex-direction: row;
     position: relative;
     border-radius: 10px;
-    background-image: url(../../assets/slides/Satellite-Derived-Projects.png);
+    background-image: url(../../assets/slides/about.png);
     background-size: 100% 100%;
     animation: openLands 0.9s ease-in-out forwards;
 }
@@ -1240,7 +1331,7 @@ z-index:1000;
     flex-direction: row;
     position: relative;
     border-radius: 10px;
-    background-image: url(../../assets/slides/Electronic-Navigational-Charts.png);
+    background-image: url(../../assets/slides/about.png);
     background-size: 100% 100%;
     animation: openLands 0.9s ease-in-out forwards;
 }
@@ -1254,7 +1345,7 @@ z-index:1000;
     flex-direction: row;
     position: relative;
     border-radius: 10px;
-    background-image: url(../../assets/slides/Ground-Water-Monitoring.png);
+    background-image: url(../../assets/slides/about.png);
     background-size: 100% 100%;
     animation: openLands 0.9s ease-in-out forwards;
 }
@@ -1268,7 +1359,7 @@ z-index:1000;
     flex-direction: row;
     position: relative;
     border-radius: 10px;
-    background-image: url(../../assets/slides/Ground-Water-Monitoring.png);
+    background-image: url(../../assets/slides/about.png);
     background-size: 100% 100%;
     animation: openLands 0.9s ease-in-out forwards;
 }
@@ -1461,7 +1552,7 @@ z-index:1000;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
 }
 .land-buoys {
   height: 90%;
@@ -1473,7 +1564,7 @@ z-index:1000;
   align-items: center;
 }
 .navigations{
-    height: 30px;
+    height:25px;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -1485,8 +1576,8 @@ z-index:1000;
 
 }
 .navigations svg{
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
     cursor: pointer;
     color: white;
 }
@@ -1545,16 +1636,42 @@ height: 100%;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    text-align: center;
+    /* border:1px solid blue; */
 }
-.buoy-list{
-    height: 70px;
-    width: 90%;
+.buoy-list-selected{
+  height: 68px;
+    width: 93%;
     margin: 5px;
     border-radius: 10px;
     background-color: rgb(255, 255, 255);
     backdrop-filter: blur(12px);
     color: rgb(0, 0, 0);
     display: flex;
+    border: 2px solid rgb(0, 34, 255);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     cursor: grab;
+  user-select: none;
+}
+.buoy-list p{
+    text-align: center;
+}
+.extra-data-buoy p{
+    text-align: center;
+}
+.buoy-list{
+    height: 50px;
+    width: 80%;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    backdrop-filter: blur(12px);
+    color: rgb(0, 0, 0);
+    display: flex;
+    
+    /* border: 2px solid rgb(0, 255, 13); */
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -1665,13 +1782,105 @@ height: 100%;
     border-radius: 10px;
     animation: openLands 0.8s ease-in-out forwards;
     background-color: #406478;
-    background-image: url(../../assets/slides/Drifter-Buoys.png);
+    background-image: url(../../assets/slides/about.png);
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+.Monitoring-Frames-Bottom-Mounts{
+height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/about.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Surface-and-subsurface-Floats{
+height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/about.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Profiling-Winch{
+height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/about.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Vessel-Side-Mount-ADCP{
+height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/about.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Tridel-Electric-Winch{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Tridel-Electric-Winch-TEW-500.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.TEW-500{
+height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Tridel-Electric-Winch-TEW-500.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.TEW-1500{
+height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Tridel-Electric-Winch-TEW-1500.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .seafloor h3{
     width: 80%;
 
@@ -1883,7 +2092,16 @@ height: 100%;
         height: 100%;
     width:98%;
     background-color: #00c853;
-    background-image: url(../../assets/Tridel-Navigation-Buoy.png);
+    background-image: url(../../assets/slides/TDB.png);
+    background-size: 100% 100%;
+    border-radius: 10px;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+.data-buoy{
+     height: 100%;
+    width:98%;
+    background-color: #00c853;
+    background-image: url(../../assets/slides/TNB.png);
     background-size: 100% 100%;
     border-radius: 10px;
     animation: openLands 0.9s ease-in-out forwards;

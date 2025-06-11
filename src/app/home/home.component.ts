@@ -78,9 +78,9 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
    
     globe?.classList.remove('goleft');
     // setTimeout(() => {
-      air_line?.classList.remove('go');
-      water_line?.classList.remove('go');
-      land_line?.classList.remove('go');
+      // air_line?.classList.remove('go');
+      // water_line?.classList.remove('go');
+      // land_line?.classList.remove('go');
     //   airr?.classList.remove('go');
     //   waterrr?.classList.remove('go');
     //   landdd?.classList.remove('go');
@@ -89,16 +89,16 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     void globe!.offsetWidth; // force reflow
     
     globe!.classList.add('goleft');
-    void air_line!.offsetWidth; // force reflow
-    void water_line!.offsetWidth; // force reflow
-    void land_line!.offsetWidth; // force reflow
+    // void air_line!.offsetWidth; // force reflow
+    // void water_line!.offsetWidth; // force reflow
+    // void land_line!.offsetWidth; // force reflow
     // void airr!.offsetWidth; // force reflow
     // void waterrr!.offsetWidth; // force reflow
     // void landdd!.offsetWidth; // force reflow
     // setTimeout(() => {
-      air_line!.classList.add('go');
-      water_line!.classList.add('go');
-      land_line!.classList.add('go');
+      // air_line!.classList.add('go');
+      // water_line!.classList.add('go');
+      // land_line!.classList.add('go');
     //   airr!.classList.add('go');
     //   landdd!.classList.add('go');
     //   waterrr!.classList.add('go');
@@ -124,6 +124,7 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
   drawPaths_terrain() {
     this.setPaths('top-source3', ['bottom-target1', 'bottom-target2', 'bottom-target3', 'bottom-target4', 'bottom-target5']);
   }
+pathsData: { d: string }[] = [];
 
   setPaths(sourceId: string, targetIds: string[]) {
   const source = document.getElementById(sourceId);
@@ -140,29 +141,37 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
   const sourceRect = source.getBoundingClientRect();
   const sourceX = sourceRect.right;
   const sourceY = sourceRect.top + sourceRect.height / 2;
+const distance = this.is_tapped_air? 400:200;
+  const spineX = sourceX +  distance; // horizontal offset for spine
 
-  // Compute junction point between source and middle of targets
-  const minY = Math.min(...targetRects.map(r => r.top + r.height / 2));
-  const maxY = Math.max(...targetRects.map(r => r.top + r.height / 2));
-  const junctionY = (minY + maxY) / 2;
-  const junctionX = sourceX + 50; // 50px to the right
+  const spineYs = targetRects.map(r => r.top + r.height / 2);
+  const minY = Math.min(...spineYs);
+  const maxY = Math.max(...spineYs);
 
-  // Build paths: one from source to junction, others from junction to targets
-  const paths: string[] = [];
+  // We'll store just the path data ('d' attribute) here.
+  // The length calculation will happen once the SVG path element is rendered in the DOM.
+  const pathsData: { d: string }[] = [];
 
-  // Vertical line from source to junction
-  paths.push(`M ${sourceX},${sourceY} L ${junctionX},${junctionY}`);
+  // 1. Horizontal from source to start of vertical spine
+  const path1 = `M ${sourceX},${sourceY} L ${spineX},${sourceY}`;
+  pathsData.push({ d: path1 });
 
+  // 2. Vertical spine line
+  const path2 = `M ${spineX},${minY} L ${spineX},${maxY}`;
+  pathsData.push({ d: path2 });
+
+  // 3. Horizontal lines from spine to each target
   for (const rect of targetRects) {
     const targetX = rect.left;
     const targetY = rect.top + rect.height / 2;
-
-    // Path from junction to each target
-    paths.push(`M ${junctionX},${junctionY} L ${targetX},${targetY}`);
+    const path3 = `M ${spineX},${targetY} L ${targetX},${targetY}`;
+    pathsData.push({ d: path3 });
   }
 
-  this.paths = paths;
+  // Assign to a component property that your template can iterate over.
+  this.pathsData = pathsData;
 }
+
 
 
   generateCurvedPath(fromEl: HTMLElement, toEl: HTMLElement): string {
@@ -294,6 +303,8 @@ return target.classList.contains('opened');
     this.droppedItems1 = '';
     this.droppedItems =''
     this.dropBuoyis = ''
+    this.showwinch = false;
+    this.showvessels = false;
   }
    zoomOutt(clas: string[]) {
     clas.forEach(className => {
@@ -364,6 +375,8 @@ setZoomedWidgetState(className: string) {
 
     case 'buoys':
       this.isBuoysOpen = true;
+      this.dropBuoyis = 'Data Buoy';
+
       break;
     case 'usv':
       this.isUsvOpen = true;
@@ -449,13 +462,16 @@ DatabuoyItems: string[] = [
   'Coastal Data Buoy',
   'Deep Water Buoy',
   'NUS with Winch',
-  'Wind profiler Buoy',
-  'Wave powered Buoy',
+  'Wind Profiler Buoy',
+  'Wave Powered Buoy',
   'Drifter Buoy',
 ];
 USVData: string[] = ['Seafloor TriDrone', 'Seafloor HydroCat-550', 'Aquilon 5600', 'Aquilon 8000'];
-Survey_Vessel: string[] = ['Monohul Survey Vessel', 'Catamaran Survey Vessel', 'ECFS & Ship borne Weather station', 'Deck Gears'];
-Central_System: string[] = ['TEMS', 'eSpacia', 'ATtide', 'Modelling and Forecasting', 'GeoDB', 'ENC/PNC', 'TSMS'];
+Survey_Vessel: string[] = ['Monohull Survey Vessel', 'Catamaran Survey Vessel', 'ECFS & Ship Borne Weather Station', 'Deck Gears'];
+deck_gears:string[]=['Monitoring Frames & Bottom Mounts', 'Surface and Subsurface Floats', 'Profiling Winch', 'Vessel Side Mount ADCP', 'Tridel Electric Winch'];
+winch:string[]=['TEW 500', 'TEW 1500'];
+Central_System: string[] = ['TEMS', 'eSpecia', 'ATtide', 'Modelling and Forecasting', 'GeoDB', 'ENC/PNC', 'TSMS'];
+
 
 currentMainIndex: number = 0;
 currentSubIndex: number = 0;
@@ -574,6 +590,7 @@ onDrop1(event: DragEvent) {
   if (item) {
     this.droppedItems1 = item;
     this.dropBuoyis = item;
+    console.log("dropped buoy", this.dropBuoyis, this.droppedItems1)
   }
 }
 
@@ -626,12 +643,67 @@ onDropSubItem(event: DragEvent) {
   allowDrop3(event: DragEvent) {
     event.preventDefault();
   }
+showvessels:boolean = false;
+showwinch:boolean = false;
+ onDrop3(event: DragEvent) {
+  event.preventDefault();
+  const item = event.dataTransfer?.getData('text/plain');
+  if (!item) return;
 
-  onDrop3(event: DragEvent) {
+  this.droppedvessel = item;
+  console.log("vessel is",this.droppedvessel)
+
+  setTimeout(() => {
+    const surveyItems = ['Monohul Survey Vessel', 'Catamaran Survey Vessel', 'ECFS & Ship borne Weather station'];
+    if (surveyItems.includes(item)) {
+      this.droppedItems3 = item;
+    } else {
+      this.droppedItems3 = item; // Handles 'Deck Gears' and others
+    }
+
+    if(this.droppedvessel === 'Deck Gears'|| this.droppedvessel === 'Monitoring Frames & Bottom Mounts'||this.droppedvessel === 'Surface and Subsurface Floats' ||this.droppedvessel === 'Profiling Winch'||this.droppedvessel ===  'Vessel Side Mount ADCP'||this.droppedvessel ===  'Tridel Electric Winch' ){
+      this.showvessels = true;
+
+    }else{
+      this.showvessels = false
+    }
+
+  
+  }, 50);
+    if(this.droppedvessel === 'Tridel Electric Winch' || this.droppedvessel ==='TEW 500' || this.droppedvessel === 'TEW 1500'){
+      this.showwinch = true;
+
+    }else{
+      this.showwinch = false
+    }
+}
+
+
+droppedvessel:string='';
+ hiddenVessels:string[] = ['Monohul Survey Vessel', 'ECFS & Ship borne Weather station', 'Catamaran Survey Vessel'];
+shouldShow = !this.hiddenVessels.includes(this.droppedvessel);
+  onDragStart5(event: DragEvent, item: string) {
+    if (event.dataTransfer) {
+      event.dataTransfer.setData('text/plain', item);
+    }
+  }
+
+  allowDrop5(event: DragEvent) {
+    event.preventDefault();
+  }
+
+  onDrop5(event: DragEvent) {
     event.preventDefault();
     const item = event.dataTransfer?.getData('text/plain');
     if (item) {
       this.droppedItems3= item;
+      // 'Monohul Survey Vessel', 'Catamaran Survey Vessel', 'ECFS & Ship borne Weather station'
+      if(this.droppedvessel === 'Monohul Survey Vessel'||this.droppedvessel ==='ECFS & Ship borne Weather station' ||this.droppedvessel ==='Catamaran Survey Vessel'){
+        this.droppedvessel = item;
+      }else{
+
+      }
+
     }
   }
 
