@@ -381,7 +381,7 @@ app-zoomable{
  
 .globe-description {
     position: absolute;
-    top: 18%;
+    top: 16%;
     left: 8%;
     width: 25%;
     height: 20%;
@@ -391,9 +391,12 @@ app-zoomable{
     text-align: left;
     z-index: 2;
 }
+.globe-description h2{
+    text-align: center;
+}
 .globe-description p{
     text-align: justify;
-    /* margin-top: 5px; */
+    margin-top: -5px;
 }
  
 /* .cirle-globe{
@@ -557,6 +560,7 @@ app-zoomable{
     width: 80px;
     height: 30px;
     box-shadow: 0 2px 8px rgba(0, 68, 255, 0.3);
+    transform: scale(1.25);
     background-color: #146383;
     cursor: pointer;
 }
@@ -638,6 +642,7 @@ app-zoomable{
     height: 30px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     background-color: #146383;
+    transform: scale(1.2);
     cursor: pointer;
 }
 .landline-go{
@@ -683,6 +688,7 @@ app-zoomable{
     height: 30px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     background-color: #146383;
+    transform:scale(1.2);
     cursor: pointer;
 }
  
@@ -1072,9 +1078,9 @@ height: 100px;
 }.survay-vessals.opened{
 z-index:1000;
      height: 80%;
-    width: 80%;
+    width: 85%;
     position: absolute;
-    right: 10%;
+    right: 7.5%;
     top: 10%;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
@@ -1644,20 +1650,96 @@ height: 100%;
     width: 93%;
     margin: 5px;
     border-radius: 10px;
-    background-color: rgb(255, 255, 255);
+    background-color: #1995AD;
     backdrop-filter: blur(12px);
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     display: flex;
-    border: 2px solid rgb(0, 34, 255);
+    /* border: 2px solid rgb(0, 34, 255); */
     flex-direction: column;
     justify-content: center;
     align-items: center;
      cursor: grab;
   user-select: none;
 }
+.buoy-list-selected p{
+    text-align: center;
+    font-size: 13px;
+}
 .buoy-list p{
     text-align: center;
+    font-size: 13px;
 }
+
+
+
+/* tooltip */
+ #top-source::after {
+    content: attr(data-tooltip); /* Get text from data-tooltip attribute */
+    position: absolute;
+    bottom: 120%; /* Position above the div */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+#top-source:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+ #top-source2::after {
+    content: attr(data-tooltip); /* Get text from data-tooltip attribute */
+    position: absolute;
+    bottom: 120%; /* Position above the div */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+#top-source2:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+ #top-source3::after {
+    content: attr(data-tooltip); /* Get text from data-tooltip attribute */
+    position: absolute;
+    bottom: 120%; /* Position above the div */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+#top-source3:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+/* end tooltip */
 .extra-data-buoy p{
     text-align: center;
 }
@@ -1677,6 +1759,27 @@ height: 100%;
     align-items: center;
      cursor: grab;
   user-select: none;
+}
+.buoy-list1{
+    height: 50px;
+    width: 80%;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #1995AD,;
+    backdrop-filter: blur(12px);
+    color: rgb(255, 255, 255);
+    display: flex;
+    
+    /* border: 2px solid rgb(0, 255, 13); */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     cursor: grab;
+  user-select: none;
+}
+.buoy-list1 p{
+    text-align: center;
+    font-size: 13px;
 }
 
 
@@ -1731,6 +1834,19 @@ height: 100%;
     animation: openLands 0.8s ease-in-out forwards;
     background-color: #406478;
     background-image: url(../../assets/slides/Tridel-Aquilon-8000.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.tridel-ark{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Tridel-Ark.png);
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
@@ -1808,7 +1924,7 @@ height: 100%;
     border-radius: 10px;
     animation: openLands 0.8s ease-in-out forwards;
     background-color: #406478;
-    background-image: url(../../assets/slides/about.png);
+    background-image: url(../../assets/slides/Surface-and-Subsurface-Floats.png);
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
@@ -1821,7 +1937,7 @@ height: 100%;
     border-radius: 10px;
     animation: openLands 0.8s ease-in-out forwards;
     background-color: #406478;
-    background-image: url(../../assets/slides/about.png);
+    background-image: url(../../assets/slides/Profiling-Winch.png);
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
@@ -1834,7 +1950,7 @@ height: 100%;
     border-radius: 10px;
     animation: openLands 0.8s ease-in-out forwards;
     background-color: #406478;
-    background-image: url(../../assets/slides/about.png);
+    background-image: url(../../assets/slides/Vessel-Side-Mount-ADCP-Frame.png);
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
@@ -2119,7 +2235,7 @@ height: 100%;
 .beach-ms{
     height: 100%;
     width: 100%;
-    background-image: url(../../assets/BM2S.png);
+    background-image: url(../../assets/slides//BMS.png);
     background-size: 100% 100%;
      animation: openLands 0.9s ease-in-out forwards;
 }

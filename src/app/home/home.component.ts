@@ -461,12 +461,10 @@ buoyItems: string[] = ['Data Buoy', 'Navigation Buoy', 'Mooring Buoy'];
 DatabuoyItems: string[] = [
   'Coastal Data Buoy',
   'Deep Water Buoy',
-  'NUS with Winch',
-  'Wind Profiler Buoy',
-  'Wave Powered Buoy',
+  'Data Buoy with Winch',
   'Drifter Buoy',
 ];
-USVData: string[] = ['Seafloor TriDrone', 'Seafloor HydroCat-550', 'Aquilon 5600', 'Aquilon 8000'];
+USVData: string[] = ['Seafloor TriDrone', 'Seafloor HydroCat-550', 'Aquilon 5600', 'Aquilon 8000', 'Tridel Ark'];
 Survey_Vessel: string[] = ['Monohull Survey Vessel', 'Catamaran Survey Vessel', 'ECFS & Ship Borne Weather Station', 'Deck Gears'];
 deck_gears:string[]=['Monitoring Frames & Bottom Mounts', 'Surface and Subsurface Floats', 'Profiling Winch', 'Vessel Side Mount ADCP', 'Tridel Electric Winch'];
 winch:string[]=['TEW 500', 'TEW 1500'];
@@ -480,6 +478,7 @@ currentusvIndex:number=0;
 currentsurveyIndex:number=0;
 currentcontrolIndex:number=0;
 nextBuoy() {
+  
   if (this.droppedItems === 'Data Buoy') {
     this.currentSubIndex = (this.currentSubIndex + 1) % this.DatabuoyItems.length;
     this.droppedItems1 = this.DatabuoyItems[this.currentSubIndex];
@@ -562,6 +561,47 @@ rotationcount: number = 0;
 tapped_center_db() {
   this.rotationcount++;
 }
+
+
+touchStartXx: number = 0;
+touchStartY: number = 0;
+touchThreshold: number = 30; // Minimum distance to consider it a swipe
+swipedItem: string | null = null;
+
+onTouchStartt(item: string, event:Event) {
+  this.swipedItem = item;
+  this.touchStartXx = 0;
+  this.touchStartY = 0;
+  // Use `touches[0]` for actual touch position
+  document.addEventListener('touchmove', this.trackTouch, { passive: false });
+  document.addEventListener('touchend', this.finishTouch);
+}
+
+trackTouch = (event: TouchEvent) => {
+  if (event.touches.length > 0) {
+    this.touchStartXx = event.touches[0].clientX;
+    this.touchStartY = event.touches[0].clientY;
+  }
+};
+
+finishTouch = (event: TouchEvent) => {
+  const touchEndX = event.changedTouches[0].clientX;
+  const touchEndY = event.changedTouches[0].clientY;
+
+  const deltaX = touchEndX - this.touchStartXx;
+  const deltaY = touchEndY - this.touchStartY;
+
+  // Check for horizontal swipe
+  if (Math.abs(deltaX) > this.touchThreshold && Math.abs(deltaY) < 50) {
+    console.log('Swipe detected for', this.swipedItem);
+    // this.handleSwipeDrop(this.swipedItem!); // Your drop logic here
+
+  }
+
+  // Cleanup
+  document.removeEventListener('touchmove', this.trackTouch);
+  document.removeEventListener('touchend', this.finishTouch);
+};
 
 onDragStart(event: DragEvent, item: string) {
   event.dataTransfer?.setData('text/plain', item);
