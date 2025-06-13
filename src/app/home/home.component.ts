@@ -142,7 +142,7 @@ pathsData: { d: string }[] = [];
   const sourceRect = source.getBoundingClientRect();
   const sourceX = sourceRect.right;
   const sourceY = sourceRect.top + sourceRect.height / 2;
-const distance = this.is_tapped_air? 400:200;
+const distance = this.is_tapped_air? 650:200;
   const spineX = sourceX +  distance; // horizontal offset for spine
 
   const spineYs = targetRects.map(r => r.top + r.height / 2);
