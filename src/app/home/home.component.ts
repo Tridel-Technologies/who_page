@@ -61,6 +61,7 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
    
       logo?.classList.remove('animated1');
       logo?.classList.remove('animated_r');
+this.pathsData = [];
 
   }
 
