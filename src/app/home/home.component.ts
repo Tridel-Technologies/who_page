@@ -477,50 +477,29 @@ currentSubIndex: number = 0;
 currentusvIndex:number=0;
 currentsurveyIndex:number=0;
 currentcontrolIndex:number=0;
+
+
 nextBuoy() {
-  
-  if (this.droppedItems === 'Data Buoy') {
-    this.currentSubIndex = (this.currentSubIndex + 1) % this.DatabuoyItems.length;
-    this.droppedItems1 = this.DatabuoyItems[this.currentSubIndex];
-    this.dropBuoyis = this.droppedItems1
-  } else {
-    this.currentMainIndex = (this.currentMainIndex + 1) % this.buoyItems.length;
-    this.droppedItems = this.buoyItems[this.currentMainIndex];
+  const allItems = [ ...this.DatabuoyItems];
+  let currentIndex = allItems.indexOf(this.dropBuoyis);
 
-    // reset sub-selection if switching out of Data Buoy
-    if (this.droppedItems !== 'Data Buoy') {
-      this.droppedItems1 = this.droppedItems;
-      this.dropBuoyis = this.droppedItems1
-    } else {
-      this.currentSubIndex = 0;
-      this.droppedItems1 = this.DatabuoyItems[this.currentSubIndex];
-      this.dropBuoyis = this.droppedItems1
-    }
+  if (currentIndex < allItems.length - 1) {
+    this.dropBuoyis = allItems[currentIndex + 1];
   }
-  console.log(this.droppedItems, this.droppedItems1)
+  console.log(this.dropBuoyis)
 }
-
 
 prevBuoy() {
-  if (this.droppedItems === 'Data Buoy') {
-    this.currentSubIndex = (this.currentSubIndex - 1 + this.DatabuoyItems.length) % this.DatabuoyItems.length;
-    this.droppedItems1 = this.DatabuoyItems[this.currentSubIndex];
-    this.dropBuoyis = this.droppedItems1
-  } else {
-    this.currentMainIndex = (this.currentMainIndex - 1 + this.buoyItems.length) % this.buoyItems.length;
-    this.droppedItems = this.buoyItems[this.currentMainIndex];
+  const allItems = [...this.buoyItems, ...this.DatabuoyItems];
+  let currentIndex = allItems.indexOf(this.dropBuoyis);
 
-    // reset sub-selection if switching out of Data Buoy
-    if (this.droppedItems !== 'Data Buoy') {
-      this.droppedItems1 = this.droppedItems;
-      this.dropBuoyis = this.droppedItems1
-    } else {
-      this.currentSubIndex = 0;
-      this.droppedItems1 = this.DatabuoyItems[this.currentSubIndex];
-      this.dropBuoyis = this.droppedItems1
-    }
+  if (currentIndex > 0) {
+    this.dropBuoyis = allItems[currentIndex - 1];
   }
 }
+
+
+
 nextusv(){
 this.currentusvIndex = (this.currentusvIndex + 1) % this.USVData.length
   this.droppedItems2 = this.USVData[this.currentusvIndex];
@@ -529,14 +508,50 @@ prevusv(){
 this.currentusvIndex = (this.currentusvIndex - 1 + this.USVData.length) % this.USVData.length;
 this.droppedItems2 = this.USVData[this.currentusvIndex];
 }
+nextsurvey() {
+  console.log(this.droppedItems3);
 
-nextsurvey(){
-this.currentsurveyIndex = (this.currentsurveyIndex + 1) % this.Survey_Vessel.length
-  this.droppedItems3 = this.Survey_Vessel[this.currentsurveyIndex];
+  if (this.deck_gears.includes(this.droppedItems3)) {
+    const index = this.deck_gears.indexOf(this.droppedItems3);
+    if (index < this.deck_gears.length - 1) {
+      this.droppedItems3 = this.deck_gears[index + 1];
+    } else {
+      this.droppedItems3 = this.deck_gears[0];
+    }
+  } else if (this.winch.includes(this.droppedItems3)) {
+    const index = this.winch.indexOf(this.droppedItems3);
+    if (index < this.winch.length - 1) {
+      this.droppedItems3 = this.winch[index + 1];
+    } else {
+      this.droppedItems3 = this.winch[0];
+    }
+  }
+
+  console.log(this.droppedItems3);
 }
+
 prevsurvey(){
-this.currentsurveyIndex = (this.currentsurveyIndex - 1 + this.Survey_Vessel.length) % this.Survey_Vessel.length;
-this.droppedItems3 = this.Survey_Vessel[this.currentsurveyIndex];
+     console.log(this.droppedItems3);
+
+  if (this.deck_gears.includes(this.droppedItems3)) {
+    const index = this.deck_gears.indexOf(this.droppedItems3);
+    if (index < this.deck_gears.length - 1) {
+      this.droppedItems3 = this.deck_gears[index - 1];
+    } else {
+      this.droppedItems3 = this.deck_gears[0];
+    }
+  } else if (this.winch.includes(this.droppedItems3)) {
+    const index = this.winch.indexOf(this.droppedItems3);
+    if (index < this.winch.length - 1) {
+      this.droppedItems3 = this.winch[index - 1];
+    } else {
+      this.droppedItems3 = this.winch[0];
+    }
+  }
+
+  console.log(this.droppedItems3);
+// this.currentsurveyIndex = (this.currentsurveyIndex - 1 + this.Survey_Vessel.length) % this.Survey_Vessel.length;
+// this.droppedItems3 = this.Survey_Vessel[this.currentsurveyIndex];
 }
 
 nextcontrol(){
@@ -622,6 +637,49 @@ onDrop(event: DragEvent) {
     this.droppedItems = item;
     this.droppedItems1 = ''; // Reset sub-drop area
   }
+}
+selectItem(item:string){
+   this.droppedItems1 = item;
+    this.dropBuoyis = item;
+    console.log("dropped buoy", this.dropBuoyis, this.droppedItems1)
+}
+selectItem2(item:string){
+   this.droppedItems2 = item;
+    // this.dropBuoyis = item;
+    console.log("dropped buoy", this.dropBuoyis, this.droppedItems1)
+}
+selectItem3(item:string){
+   this.droppedvessel = item;
+  console.log("vessel is",this.droppedvessel)
+
+  setTimeout(() => {
+    const surveyItems = ['Monohul Survey Vessel', 'Catamaran Survey Vessel', 'ECFS & Ship borne Weather station'];
+    if (surveyItems.includes(item)) {
+      this.droppedItems3 = item;
+    } else {
+      this.droppedItems3 = item; // Handles 'Deck Gears' and others
+    }
+
+    if(this.droppedvessel === 'Deck Gears'|| this.droppedvessel === 'Monitoring Frames & Bottom Mounts'||this.droppedvessel === 'Surface and Subsurface Floats' ||this.droppedvessel === 'Profiling Winch'||this.droppedvessel ===  'Vessel Side Mount ADCP'||this.droppedvessel ===  'Tridel Electric Winch' ){
+      this.showvessels = true;
+
+    }else{
+      this.showvessels = false
+    }
+
+  
+  }, 50);
+    if(this.droppedvessel === 'Tridel Electric Winch' || this.droppedvessel ==='TEW 500' || this.droppedvessel === 'TEW 1500'){
+      this.showwinch = true;
+
+    }else{
+      this.showwinch = false
+    }
+}
+selectItem4(item:string){
+   this.droppedItems4 = item;
+    // this.dropBuoyis = item;
+    // console.log("dropped buoy", this.dropBuoyis, this.droppedItems1)
 }
 
 onDrop1(event: DragEvent) {
