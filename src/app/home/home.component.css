@@ -1421,6 +1421,9 @@ z-index:1000;
     animation: openLands 0.9s ease-in-out forwards;
 }
 .Mooring-Buoy{
+
+    background-image: url(../../assets/slides/Mooring-Buoys.png);
+   
     height: 100%;
     width: 100%;
     background-color: white;
@@ -1430,9 +1433,14 @@ z-index:1000;
     flex-direction: row;
     position: relative;
     border-radius: 10px;
-    background-image: url(../../assets/slides/Mooring-Buoys.png);
+
     background-size: 100% 100%;
     animation: openLands 0.9s ease-in-out forwards;
+}
+.moor{
+    height: 100%;
+    width: 100%;
+    background-color: #00bcd4;
 }
 .aerial-left{
     height: 100%;
@@ -2300,7 +2308,7 @@ height: 100%;
         height: 100%;
     width:98%;
     background-color: #00c853;
-    background-image: url(../../assets/slides/TDB.png);
+    background-image: url(../../assets/slides/TNB.png);
     background-size: 100% 100%;
     border-radius: 10px;
     animation: openLands 0.9s ease-in-out forwards;
@@ -2309,7 +2317,7 @@ height: 100%;
      height: 100%;
     width:98%;
     background-color: #00c853;
-    background-image: url(../../assets/slides/TNB.png);
+    background-image: url(../../assets/slides/TDB.png);
     background-size: 100% 100%;
     border-radius: 10px;
     animation: openLands 0.9s ease-in-out forwards;

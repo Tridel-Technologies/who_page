@@ -639,10 +639,19 @@ onDrop(event: DragEvent) {
     this.droppedItems1 = ''; // Reset sub-drop area
   }
 }
+showMooring:boolean=false;
 selectItem(item:string){
-   this.droppedItems1 = item;
-    this.dropBuoyis = item;
-    console.log("dropped buoy", this.dropBuoyis, this.droppedItems1)
+  if(item){
+    this.droppedItems1 = item;
+     this.dropBuoyis = item;
+     this.droppedItems = item
+     if (item === 'Mooring Buoy') {
+      this.showMooring = true;
+     }else{
+     this.showMooring= false;
+    }
+     console.log("dropped buoy",this.dropBuoyis === 'Mooring Buoy', this.dropBuoyis, item)
+  }
 }
 selectItem2(item:string){
    this.droppedItems2 = item;

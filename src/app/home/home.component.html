@@ -137,7 +137,7 @@
          dropBuoyis === 'Wind Profiler Buoy' ||
          dropBuoyis === 'Wave Powered Buoy' ||
          dropBuoyis === 'Drifter Buoy') && item === 'Data Buoy' ?'white':'',
-          }" draggable="false" (dragstart)="onDragStart($event, item)" (click)="selectItem(item)">
+          }" draggable="true" (dragstart)="onDragStart($event, item)" (click)="selectItem(item)">
                 <p>{{ item.split(' ')[0] }}<br />
                     {{ item.split(' ').slice(1).join(' ') }}</p>
             </div>
@@ -146,7 +146,7 @@
         <div *ngIf="isBuoysOpen && dropBuoyis ==='Data Buoy' && droppedItems === 'Data Buoy'|| droppedItems1 ==='Data Buoy' ||droppedItems1 ==='Coastal Data Buoy'||droppedItems1 ==='Deep Water Buoy'||droppedItems1 ==='Data Buoy with Winch'||droppedItems1 ==='Wind Profiler Buoy'||droppedItems1 ==='Wave Powered Buoy' || droppedItems1=== 'Drifter Buoy'"
             class="extra-data-buoy">
             <div [ngClass]="dropBuoyis ===item? 'buoy-list-selected1':'buoy-list1'"
-                [ngStyle]="{'width':dropBuoyis ===item?'100%':''}" *ngFor="let item of DatabuoyItems" draggable="false"
+                [ngStyle]="{'width':dropBuoyis ===item?'100%':''}" *ngFor="let item of DatabuoyItems" draggable="true"
                 (click)="selectItem(item)">
                 <p>
                     {{ item.split(' ')[0] }}<br />
@@ -156,16 +156,15 @@
         </div>
 
         <!-- If 'Data Buoy' is dropped -->
-        <div *ngIf="droppedItems === 'Data Buoy' && isBuoysOpen" class="land-buoys" (dragover)="allowDrop1($event)"
-            (drop)="onDrop1($event)">
+        <div *ngIf=" isBuoysOpen" class="land-buoys" (dragover)="allowDrop1($event)" (drop)="onDrop1($event)">
             <div *ngIf="dropBuoyis === 'Coastal Data Buoy'" class="coastal-buoy fullscreen-bg" id="coastalBuoy"
                 (dblclick)="toggleFullscreen('coastalBuoy')" (touchend)="onTouchEnddd($event, 'coastalBuoy')">
             </div>
 
-            <div class="navigational-buoy fullscreen-bg" *ngIf="dropBuoyis === 'Data Buoy'" id="navigationalBuoy"
+            <div class="navigational-buoy fullscreen-bg" *ngIf="dropBuoyis === 'Navigation Buoy'" id="navigationalBuoy"
                 (dblclick)="toggleFullscreen('navigationalBuoy')" (touchend)="onTouchEnddd($event, 'navigationalBuoy')">
             </div>
-            <div class="data-buoy fullscreen-bg" *ngIf="dropBuoyis === 'Navigation Buoy'" id="navigationalBuoy"
+            <div class="data-buoy fullscreen-bg" *ngIf="dropBuoyis == 'Data Buoy'" id="navigationalBuoy"
                 (dblclick)="toggleFullscreen('navigationalBuoy')" (touchend)="onTouchEnddd($event, 'navigationalBuoy')">
             </div>
             <div class="Deep-Water-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'Deep Water Buoy'" id="deepWaterBuoy"
@@ -189,7 +188,7 @@
                 (dblclick)="toggleFullscreen('drifterBuoy')" (touchend)="onTouchEnddd($event, 'drifterBuoy')">
             </div>
 
-            <div class="Mooring-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'Mooring Buoy'" id="mooringBuoy"
+            <div class="Mooring-Buoy fullscreen-bg" *ngIf="droppedItems1 === 'Mooring Buoy'" id="mooringBuoy"
                 (dblclick)="toggleFullscreen('mooringBuoy')" (touchend)="onTouchEnddd($event, 'mooringBuoy')">
             </div>
 
@@ -197,19 +196,19 @@
         </div>
 
         <!-- If other than 'Data Buoy' is dropped -->
-        <div *ngIf="droppedItems !== 'Data Buoy' && droppedItems1 !== 'Data Buoy'" class="land-buoys"
-            [ngStyle]="{ width: '90%' }" (dragover)="allowDrop($event)" (drop)="onDrop($event)">
-            <div class="coastal-buoy" *ngIf="dropBuoyis === 'Coastal Data Buoy'"></div>
-            <div class="navigational-buoy" *ngIf="dropBuoyis ==='Navigation Buoy'">
-                <!-- <div class="Deep Water Buoy" *ngIf="dropBuoyis ==='Deep Water Buoy'"></div>
+        <!-- <div *ngIf="droppedItems !== 'Data Buoy' && droppedItems1 !== 'Data Buoy'" class="land-buoys"
+            [ngStyle]="{ width: '90%' }" (dragover)="allowDrop($event)" (drop)="onDrop($event)"> -->
+        <!-- <div class="coastal-buoy" *ngIf="dropBuoyis === 'Coastal Data Buoy'"></div> -->
+        <!-- <div class="navigational-buoy" *ngIf="dropBuoyis ==='Navigation Buoy'"> -->
+        <!-- <div class="Deep Water Buoy" *ngIf="dropBuoyis ==='Deep Water Buoy'"></div>
                 <div class="NUS with Winch" *ngIf="dropBuoyis ==='NUS with Winch'"></div>
                 <div class="Wind profiler Buoy" *ngIf="dropBuoyis ==='Wind profiler Buoy'"></div>
                 <div class="wave powered Buoy" *ngIf="dropBuoyis ==='wave powered Buoy'"></div>
                 <div class="Drifter Buoy" *ngIf="dropBuoyis ==='Drifter Buoy'"></div>
                 <div class="Mooring Buoy" *ngIf="dropBuoyis ==='Mooring Buoy'"></div> -->
-            </div>
+        <!-- </div> -->
 
-        </div>
+        <!-- </div> -->
     </div>
 
 
