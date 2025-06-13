@@ -115,7 +115,7 @@
                 </g>
             </svg>
         </div>
-        <h4 *ngIf="!isBuoysOpen" style="color: white; align-self: center; margin-left: 40%;">Buoys</h4>
+        <h4 *ngIf="!isBuoysOpen" style="color: white; align-self: center">Buoys</h4>
         <div class="items-list" *ngIf="isBuoysOpen">
             <div [ngClass]="dropBuoyis ===item? 'buoy-list-selected':'buoy-list'" *ngFor="let item of buoyItems"
                 [ngStyle]="{'background-color':
@@ -246,10 +246,10 @@
         </div>
 
         <div *ngIf="isUsvOpen" class="land-buoys" (dragover)="allowDrop2($event)" (drop)="onDrop2($event)">
-            <div class="buoy-list"
+            <!-- <div class="buoy-list"
                 *ngIf="droppedItems2 !=='Seafloor HydroCat-550' && droppedItems2 !=='Tridel Ark'&& droppedItems2 !=='Seafloor TriDrone' && droppedItems2 !=='Aquilon 8000' && droppedItems2 !=='Aquilon 5600'">
                 {{ droppedItems2 }}
-            </div>
+            </div> -->
 
             <div class="seafloor fullscreen-bg" *ngIf="droppedItems2 === 'Seafloor HydroCat-550'" id="seafloorDiv"
                 (dblclick)="toggleFullscreen('seafloorDiv')" (touchend)="onTouchEnddd($event, 'seafloorDiv')">
@@ -310,7 +310,7 @@
             </svg>
         </div>
         <h4 style="color: white;" *ngIf="!isSurveyVesselOpen">Survey Vessel </h4>
-        <div *ngIf="isSurveyVesselOpen " class="items-list">
+        <div *ngIf="isSurveyVesselOpen" class="items-list">
             <div [ngClass]="droppedItems3 ===item? 'buoy-list-selected':'buoy-list'" *ngFor="let item of Survey_Vessel"
                 [ngStyle]="{'background-color':(showvessels || showwinch) && item ==='Deck Gears'? '#1995AD':'',
                         'color':(showvessels || showwinch) && item ==='Deck Gears'? 'white':''
@@ -338,11 +338,11 @@
 
 
         <div *ngIf="isSurveyVesselOpen" class="land-buoys" (dragover)="allowDrop3($event)" (drop)="onDrop3($event)">
-            <div class="buoy-list" *ngIf="droppedItems3 !== 'Monohull Survey Vessel'&& droppedItems3 !=='Catamaran Survey Vessel'&& droppedItems3 !=='ECFS & Ship Borne Weather Station' &&droppedItems3 !=='Deck Gears'&& droppedItems3 !=='Tridel Electric Winch'&&
+            <!-- <div class="buoy-list" *ngIf="droppedItems3 !== 'Monohull Survey Vessel'&& droppedItems3 !=='Catamaran Survey Vessel'&& droppedItems3 !=='ECFS & Ship Borne Weather Station' &&droppedItems3 !=='Deck Gears'&& droppedItems3 !=='Tridel Electric Winch'&&
                 droppedItems3 !=='Tridel Electric Winch'&& droppedItems3!=='Monitoring Frames & Bottom Mounts' && droppedItems3!=='Vessel Side Mount ADCP'&& droppedItems3 !=='Profiling Winch'&& droppedItems3 !=='Surface and Subsurface Floats'&&
                 this.droppedItems3 !=='TEW 500'&& this.droppedItems3 !== 'TEW 1500'">
                 {{ droppedItems3 }}
-            </div>
+            </div> -->
             <div class="Monohul-Survey-Vessel fullscreen-bg" *ngIf="droppedItems3 === 'Monohull Survey Vessel'"
                 id="monohulDiv" (dblclick)="toggleFullscreen('monohulDiv')"
                 (touchend)="onTouchEnddd($event, 'monohulDiv')">
@@ -431,10 +431,10 @@
         </div>
 
         <div *ngIf="isCentralSystemsOpen" class="land-buoys" (dragover)="allowDrop4($event)" (drop)="onDrop4($event)">
-            <div class="buoy-list"
+            <!-- <div class="buoy-list"
                 *ngIf="droppedItems4 !=='GeoDB' && droppedItems4 !=='TEMS'&& droppedItems4 !=='TSMS'&& droppedItems4 !=='ATtide' && droppedItems4 !== 'eSpecia' &&droppedItems4 !== 'Modelling and Forecasting' && droppedItems4 !== 'ENC/PNC'&&droppedItems4 !== 'GeoDB'">
                 {{ droppedItems4 }}
-            </div>
+            </div> -->
             <!-- <div class="geodb_main" *ngIf="droppedItems4==='GeoDB'">
                 <div class="geodb-round-main" *ngIf="rotationcount>2">
                 </div>

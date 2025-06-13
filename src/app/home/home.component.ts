@@ -142,7 +142,7 @@ pathsData: { d: string }[] = [];
   const sourceRect = source.getBoundingClientRect();
   const sourceX = sourceRect.right;
   const sourceY = sourceRect.top + sourceRect.height / 2;
-const distance = this.is_tapped_air? 400:200;
+const distance = this.is_tapped_air? 650:200;
   const spineX = sourceX +  distance; // horizontal offset for spine
 
   const spineYs = targetRects.map(r => r.top + r.height / 2);
@@ -295,23 +295,28 @@ return target.classList.contains('opened');
   }
 
   zoomOut(clas:string) {
+    this.droppedItems1 = '';
+    this.droppedItems =''
+    this.dropBuoyis = ''
+    this.showwinch = false;
+    this.showvessels = false;
+    this.isSurveyVesselOpen = false;
     // this.scale = Math.max(this.scale - 0.1, 0.5);
     console.log('Zooming Out, Scale:', this.scale, clas);
     const logo = document.querySelector(`.${clas}`);
     logo!.classList.remove('opened');
     // logo!.classList.add('');
     this.setZoomedWidgetState('clas')
-    this.droppedItems1 = '';
-    this.droppedItems =''
-    this.dropBuoyis = ''
-    this.showwinch = false;
-    this.showvessels = false;
+    
   }
    zoomOutt(clas: string[]) {
     clas.forEach(className => {
     const element = document.querySelector(`.${className}`);
     if (element) {
       element.classList.remove('opened');
+      this.showwinch = false;
+    this.showvessels = false;
+    this.isSurveyVesselOpen = false;
     }
   });
 
