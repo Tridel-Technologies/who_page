@@ -1,7 +1,10 @@
 .home {
     height: 100%;
     width: 100%;
-    background-color: black;
+  background: linear-gradient(60deg, #2193b0, #6dd5ed, #00c9ff, #92fe9d);
+  background-size: 300% 300%;
+  animation: gradientSunrise 18s ease infinite;
+    /* background-color: black; */
     /* background: #083e54; */
     /* background: linear-gradient(270deg, rgba(8, 62, 84, 1) 0%, rgba(5, 152, 181, 1) 50%, rgba(83, 88, 237, 1) 100%); */
     /* background-image: url(../../assets/bg.png);
@@ -13,6 +16,19 @@
     position: relative;
     backdrop-filter: blur(12px);
 }
+
+body {
+  background: linear-gradient(60deg, #2193b0, #6dd5ed, #00c9ff, #92fe9d);
+  background-size: 300% 300%;
+  animation: gradientOcean 12s ease-in-out infinite;
+}
+
+@keyframes gradientSunrise {
+  0% { background-position: 0% 100%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 100%; }
+}
+
  
 .back{
     /* background-color: #00c853; */
@@ -22,6 +38,7 @@
     top: 0;
     left: 0;
     z-index: 1;
+    cursor: pointer;
 }
 
 .top_section {
@@ -64,6 +81,7 @@
     margin-left: 20px;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     animation: fadeIn 2s ease-in-out;
+    cursor: pointer;
 }
 
 .bottom_section {
@@ -802,6 +820,9 @@ height: 50px;
 .cirle-globe.goleft{
     animation: goleft_globe 0.7s ease-in-out forwards;
 }
+.cirle-globe.goright{
+    animation: goright_globe 0.7s ease-in-out forwards;
+}
 .linee{
     z-index: 1;
     position: absolute;
@@ -880,6 +901,24 @@ height: 50px;
 }
 
 
+/* Right */
+@keyframes goright_globe {
+    0% {
+        height: 40%;
+        width: 20%;
+        top: 50%;
+        left: 27%;
+    }
+    100% {
+        height: 70%;
+        width: 35%;
+        top: 50%;
+        left: 60%;
+        transform: translate(-50%, -50%);
+    }
+}
+/* End */
+
 .aerial-mapping{
     height: 100px;
     width: 20%;
@@ -916,7 +955,7 @@ height: 50px;
 z-index:1000;
      height: 80%;
     width:80%;
-    background-image: url(../../assets/slides/nodes.gif);
+    background-image: url(../../assets/slides/air.gif);
     background-size: 100% 100%;
     position: absolute;
     right: 10%;
@@ -943,7 +982,7 @@ z-index:1000;
     color: white;
 }
 .satellite-derived.opened{
-background-image: url(../../assets/slides/nodes.gif);
+background-image: url(../../assets/slides/air.gif);
     background-size: 100% 100%;
 z-index:1000;
      height: 80%;
@@ -973,7 +1012,7 @@ z-index:1000;
     color: white;
 }
 .weather-forecase.opened{
-background-image: url(../../assets/slides/nodes.gif);
+background-image: url(../../assets/slides/air.gif);
     background-size: 100% 100%;
 z-index:1000;
      height: 80%;
@@ -1048,7 +1087,7 @@ z-index:1000;
     right: 5%;
     top: 10%;
     color: white;
-    background-image: url(../../assets/slides/nodes.gif);
+    background-image: url(../../assets/slides/ocean3.gif);
     background-size: 100% 100%;
     background-color: rgba(25, 24, 24, 0.257);
     backdrop-filter: blur(30px);
@@ -1070,7 +1109,7 @@ height: 100px;
     align-items: center;
 }
 .usv.opened{
-background-image: url(../../assets/slides/nodes.gif);
+background-image: url(../../assets/slides/ocean3.gif);
     background-size: 100% 100%;
 z-index:1000;
      height: 80%;
@@ -1099,7 +1138,7 @@ height: 100px;
     justify-content: center;
     align-items: center;
 }.survay-vessals.opened{
-background-image: url(../../assets/slides/nodes.gif);
+background-image: url(../../assets/slides/ocean3.gif);
     background-size: 100% 100%;
 z-index:1000;
      height: 80%;
@@ -1129,7 +1168,7 @@ height: 100px;
     align-items: center;
 }
 .central-systems.opened{
-background-image: url(../../assets/slides/nodes.gif);
+background-image: url(../../assets/slides/ocean3.gif);
     background-size: 100% 100%;
 z-index:1000;
      height: 80%;
@@ -1164,7 +1203,7 @@ height: 70px;
     color: white;
 }
 .beach-monitoring.opened{
-background-image: url(../../assets/slides/nodes.gif);
+background-image: url(../../assets/slides/Iug.gif);
     background-size: 100% 100%;
 z-index:1000;
      height: 80%;
@@ -1195,7 +1234,7 @@ height: 70px;
     align-items: center;
     color: white;
 }.port-monitoring.opened{
-background-image: url(../../assets/slides/nodes.gif);
+background-image: url(../../assets/slides/Iug.gif);
     background-size: 100% 100%;
 z-index:1000;
      height: 80%;
@@ -1226,7 +1265,7 @@ height: 70px;
     align-items: center;
     color: white;
 }.air-quality.opened{
-background-image: url(../../assets/slides/nodes.gif);
+background-image: url(../../assets/slides/Iug.gif);
     background-size: 100% 100%;
 z-index:1000;
      height: 80%;
@@ -1257,7 +1296,7 @@ height: 70px;
     align-items: center;
     color: white;
 }.ground-water.opened{
-background-image: url(../../assets/slides/nodes.gif);
+background-image: url(../../assets/slides/Iug.gif);
     background-size: 100% 100%;
 z-index:1000;
      height: 80%;
@@ -1289,7 +1328,7 @@ z-index:1000;
     color: white;
 }
 .met-ocean.opened{
-background-image: url(../../assets/slides/nodes.gif);
+background-image: url(../../assets/slides/Iug.gif);
     background-size: 100% 100%;
 z-index:1000;
      height: 80%;

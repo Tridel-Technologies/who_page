@@ -1,13 +1,13 @@
 <div class="home">
 
-    <div class="back" (click)="back()"></div>
+    <div class="back" (click)="back2()">🏠</div>
 
     <div class="top_section" *ngIf="!is_tapped_main">
         <p>Connecting<br>Environmental Science,<br>Engineering and Technology </p>
         <img src="../../assets/slides/globe.png" alt="Tridel_Logo">
     </div>
 
-    <div class="top_section2" *ngIf="is_tapped_main"
+    <div class="top_section2" (click)="back()" *ngIf="is_tapped_main"
         [ngStyle]="{'height':is_tapped_air|| is_tapped_marine || is_tapped_terrain ? '50px':'','width':is_tapped_air|| is_tapped_marine || is_tapped_terrain?'50px':'' }">
         <!-- <p>Connecting<br>Environmental Science,<br>Engineering and Technology </p> -->
         <img src="../../assets/tridel_logo.png" alt="Tridel_Logo">
@@ -32,9 +32,9 @@
 
 
     </div> -->
-    <div class="about" (click)="showNextParagraph()" *ngIf="isTapped_about">
+    <!-- <div class="about" (click)="showNextParagraph()" *ngIf="isTapped_about">
         <p *ngFor="let para of visibleParagraphs" class="typing-animation" [innerHTML]="para"></p>
-    </div>
+    </div> -->
 
     <div class="globe-section" *ngIf="is_tapped_main">
         <div class="globe-description" style="color:white;"
@@ -44,11 +44,10 @@
 
             <p>We build Manned & Unmanned Survey Platforms, Buoys, and Monitoring systems</p>
             <p>Tridel Technologies provides turnkey solutions to customer specific problems, system integration,
-                deployment, data
-                analytics, and system maintenance</p>
+                deployment, data analytics, and system maintenance</p>
             <p> We also deliver survey projects in Hydrographic value chain as per IHO standards</p>
         </div>
-        <div class="cirle-globe">
+        <div class="cirle-globe" [ngClass]="globeAnimationClass">
             <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? is_tapped_air? 'airline-go-active':'airline-go': 'air-line'"
                 id="top-source" (click)="moveGlobe('air')"
                 data-tooltip="Click here to view Air/Atmos Services & Products">
