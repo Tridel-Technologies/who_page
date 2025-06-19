@@ -1,0 +1,647 @@
+<div class="home">
+
+    <div class="back" (click)="back2()"></div>
+
+    <div class="top_section" *ngIf="!is_tapped_main">
+        <p>Connecting<br>Environmental Science,<br>Engineering and Technology </p>
+        <img src="../../assets/slides/globe.png" alt="Tridel_Logo">
+    </div>
+
+    <!-- (dblclick)="back2()" -->
+    <div class="top_section2" (click)="back()" id="backback"
+       *ngIf="is_tapped_main" data-tooltip="click to go back/double click to home"
+        [ngStyle]="{'height':is_tapped_air|| is_tapped_marine || is_tapped_terrain ? '50px':'','width':is_tapped_air|| is_tapped_marine || is_tapped_terrain?'50px':'' }">
+        <!-- <p>Connecting<br>Environmental Science,<br>Engineering and Technology </p> -->
+        <img src="../../assets/tridel_logo.png" alt="Tridel_Logo">
+    </div>
+
+    <div class="bottom_section" *ngIf="is_tapped_main && !is_tapped_air && !is_tapped_marine && !is_tapped_terrain">
+        <p>Connecting<br>Environmental Science,<br>Engineering and Technology </p>
+    </div>
+
+    <div class=" logo" *ngIf="!is_tapped_air && !is_tapped_marine && !is_tapped_terrain && !is_tapped_main">
+        <div class="main_section" (click)="moveLogo('main')"></div>
+        <div class="about_call" (click)="moveLogo('about')"></div>
+        <div *ngIf="!is_tapped_main">
+            <p>
+                Tridel Technologies
+            </p>
+            <div class="glow-line mt-2"></div>
+            <div class="glow-line2 mt-2"></div>
+        </div>
+    </div>
+    <!-- <div class="main-points">
+
+
+    </div> -->
+    <!-- <div class="about" (click)="showNextParagraph()" *ngIf="isTapped_about">
+        <p *ngFor="let para of visibleParagraphs" class="typing-animation" [innerHTML]="para"></p>
+    </div> -->
+
+    <div class="globe-section" *ngIf="is_tapped_main">
+        <div class="globe-description" style="color:white;"
+            *ngIf="!is_tapped_air && !is_tapped_marine && !is_tapped_terrain">
+            <h2>About Us</h2>
+            <p>Tridel Technologies specialises in end-to-end Marine, Environmental survey and monitoring solutions</p>
+
+            <p>We build Manned & Unmanned Survey Platforms, Buoys, and Monitoring systems</p>
+            <p>Tridel Technologies provides turnkey solutions to customer specific problems, system integration,
+                deployment, data analytics, and system maintenance</p>
+            <p> We also deliver survey projects in Hydrographic value chain as per IHO standards</p>
+        </div>
+        <div class="cirle-globe">
+            <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? is_tapped_air? 'airline-go-active':'airline-go': 'air-line'"
+                id="top-source" (click)="moveGlobe('air')"
+                data-tooltip="Click here to view Air/Atmos Services & Products">
+                AIR/ATMOS</div>
+            <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? is_tapped_marine? 'waterline-go-active': 'waterline-go': 'water-line'"
+                id="top-source2" (click)="moveGlobe('marine')"
+                data-tooltip="Click here to view MARINE Services & Products">MARINE
+            </div>
+            <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? is_tapped_terrain? 'landline-go-active': 'landline-go': 'land-line'"
+                id="top-source3" (click)="moveGlobe('terrain')"
+                data-tooltip="Click here to view TERRESTRIAL Services & Products">
+                TERRESTRIAL</div>
+            <!-- <img src="../../assets/globe.png" alt="Globe" style="width:100%;height:100%;object-fit:contain;" /> -->
+        </div>
+    </div>
+
+
+    <div class="aerial-mapping zoomable-widget" id="target1" *ngIf="is_tapped_air">
+        <div class="close" *ngIf="isAerialOpen || isSatelliteOpen || isWeatherOpen"
+            (click)="zoomOutt(['aerial-mapping', 'satellite-derived', 'weather-forecase'])">x</div>
+        <h4 *ngIf="!isAerialOpen">Aerial Mapping</h4>
+        <!-- <app-wave *ngIf="isAerialOpen"></app-wave> -->
+        <app-air *ngIf="isAerialOpen"></app-air>
+        <div *ngIf="isAerialOpen" class="main_aerial fullscreen-bg" id="main_aerialr"
+            (dblclick)="toggleFullscreen('main_aerialr')" (touchend)="onTouchEnddd($event, 'main_aeriral')">
+        </div>
+    </div>
+    <div class="satellite-derived zoomable-widget" id="target2" *ngIf="is_tapped_air">
+        <h4 *ngIf="!isSatelliteOpen">Satellite Derived Products</h4>
+        <app-air *ngIf="isSatelliteOpen"></app-air>
+        <div *ngIf="isSatelliteOpen" class="main_sattllite fullscreen-bg" id="main_sattlliter"
+            (dblclick)="toggleFullscreen('main_sattlliter')" (touchend)="onTouchEnddd($event, 'main_sattlliter')">
+        </div>
+
+    </div>
+    <div class="weather-forecase zoomable-widget" id="target3" *ngIf="is_tapped_air">
+
+        <h4 *ngIf="!isWeatherOpen">Weather Forecasting</h4>
+        <!-- <app-land style=" display: flex; height: 100%; width: 100%;" *ngIf="isWeatherOpen"></app-land> -->
+        <app-air *ngIf="isWeatherOpen"></app-air>
+        <div *ngIf="isWeatherOpen" class="main_weather fullscreen-bg" id="main_weatherr"
+            (dblclick)="toggleFullscreen('main_weatherr')" (touchend)="onTouchEnddd($event, 'main_weatherr')">
+        </div>
+    </div>
+
+    <div class="buoys zoomable-widget" id="center-target1" *ngIf="is_tapped_marine">
+        <div class="close" [ngStyle]="{'right':isSurveyVesselOpen?'-59px':''}"
+            *ngIf="isBuoysOpen || isUsvOpen || isSatelliteOpen||isSurveyVesselOpen|| isCentralSystemsOpen|| isBeachMonitoringOpen|| isPortMonitoringOpen|| isAirQualityOpen||isGroundWaterOpen|| isMetOceanOpen"
+            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            x</div>
+        <div class="navigations" *ngIf="isBuoysOpen">
+            <div class="left-arrow" (click)="prevBuoy()">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                    style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                    <g>
+                        <path fill="#ffff"
+                            d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                    </g>
+                </svg>
+            </div>
+
+
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" (click)="nextBuoy()"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                <g>
+                    <path fill="#ffff"
+                        d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                </g>
+            </svg>
+        </div>
+        <h4 *ngIf="!isBuoysOpen" style="color: white; align-self: center">Buoys</h4>
+        <app-wave *ngIf="isBuoysOpen"></app-wave>
+        <div class="items-list" *ngIf="isBuoysOpen">
+            <div [ngClass]="dropBuoyis ===item? 'buoy-list-selected':'buoy-list'" *ngFor="let item of buoyItems"
+                [ngStyle]="{'background-color':
+        (dropBuoyis === 'Data Buoy' ||
+         dropBuoyis === 'Data Buoy' ||
+         dropBuoyis === 'Coastal Data Buoy' ||
+         dropBuoyis === 'Deep Water Buoy' ||
+         dropBuoyis === 'Data Buoy with Winch' ||
+         dropBuoyis === 'Wind Profiler Buoy' ||
+         dropBuoyis === 'Wave Powered Buoy' ||
+         dropBuoyis === 'Drifter Buoy') && item === 'Data Buoy'
+          ? '#1995AD'
+          : '', 
+          'color':(dropBuoyis === 'Data Buoy' ||
+         dropBuoyis === 'Data Buoy' ||
+         dropBuoyis === 'Coastal Data Buoy' ||
+         dropBuoyis === 'Deep Water Buoy' ||
+         dropBuoyis === 'Data Buoy with Winch' ||
+         dropBuoyis === 'Wind Profiler Buoy' ||
+         dropBuoyis === 'Wave Powered Buoy' ||
+         dropBuoyis === 'Drifter Buoy') && item === 'Data Buoy' ?'white':'',
+          }" draggable="true" (dragstart)="onDragStart($event, item)" (click)="selectItem(item)">
+                <p>{{ item.split(' ')[0] }}<br />
+                    {{ item.split(' ').slice(1).join(' ') }}</p>
+            </div>
+        </div>
+
+        <div *ngIf="isBuoysOpen && dropBuoyis ==='Data Buoy' || droppedItems === 'Data Buoy'|| droppedItems1 ==='Data Buoy' ||droppedItems1 ==='Coastal Data Buoy'||droppedItems1 ==='Deep Water Buoy'||droppedItems1 ==='Data Buoy with Winch'||droppedItems1 ==='Wind Profiler Buoy'||droppedItems1 ==='Wave Powered Buoy' || droppedItems1=== 'Drifter Buoy'"
+            class="extra-data-buoy">
+            <div [ngClass]="dropBuoyis ===item? 'buoy-list-selected1':'buoy-list1'"
+                [ngStyle]="{'width':dropBuoyis ===item?'100%':''}" *ngFor="let item of DatabuoyItems" draggable="true"
+                (click)="selectItem(item)">
+                <p>
+                    {{ item.split(' ')[0] }}<br />
+                    {{ item.split(' ').slice(1).join(' ') }}
+                </p>
+            </div>
+        </div>
+
+        <!-- If 'Data Buoy' is dropped -->
+        <div *ngIf=" isBuoysOpen" class="land-buoys" (dragover)="allowDrop1($event)" (drop)="onDrop1($event)">
+            <div *ngIf="dropBuoyis === 'Coastal Data Buoy'" class="coastal-buoy fullscreen-bg" id="coastalBuoy"
+                (dblclick)="toggleFullscreen('coastalBuoy')" (touchend)="onTouchEnddd($event, 'coastalBuoy')">
+            </div>
+            <app-wave *ngif="dropBuoyis === 'Data Buoy'"></app-wave>
+            <div class="navigational-buoy fullscreen-bg" *ngIf="dropBuoyis === 'Navigation Buoy'" id="navigationalBuoy"
+                (dblclick)="toggleFullscreen('navigationalBuoy')" (touchend)="onTouchEnddd($event, 'navigationalBuoy')">
+            </div>
+            <div class="data-buoy fullscreen-bg" *ngIf="dropBuoyis == 'Data Buoy'" id="navigationalBuoy"
+                (dblclick)="toggleFullscreen('navigationalBuoy')" (touchend)="onTouchEnddd($event, 'navigationalBuoy')">
+            </div>
+            <div class="Deep-Water-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'Deep Water Buoy'" id="deepWaterBuoy"
+                (dblclick)="toggleFullscreen('deepWaterBuoy')" (touchend)="onTouchEnddd($event, 'deepWaterBuoy')">
+            </div>
+
+            <div class="NUS-with-Winch fullscreen-bg" *ngIf="dropBuoyis === 'Data Buoy with Winch'" id="nusWithWinch"
+                (dblclick)="toggleFullscreen('nusWithWinch')" (touchend)="onTouchEnddd($event, 'nusWithWinch')">
+            </div>
+
+            <div class="Wind-profiler-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'Wind Profiler Buoy'"
+                id="windProfilerBuoy" (dblclick)="toggleFullscreen('windProfilerBuoy')"
+                (touchend)="onTouchEnddd($event, 'windProfilerBuoy')">
+            </div>
+
+            <div class="wave-powered-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'Wave Powered Buoy'" id="wavePoweredBuoy"
+                (dblclick)="toggleFullscreen('wavePoweredBuoy')" (touchend)="onTouchEnddd($event, 'wavePoweredBuoy')">
+            </div>
+
+            <div class="Drifter-Buoy fullscreen-bg" *ngIf="dropBuoyis === 'Drifter Buoy'" id="drifterBuoy"
+                (dblclick)="toggleFullscreen('drifterBuoy')" (touchend)="onTouchEnddd($event, 'drifterBuoy')">
+            </div>
+
+            <div class="Mooring-Buoy fullscreen-bg" *ngIf="droppedItems1 === 'Mooring Buoy'" id="mooringBuoy"
+                (dblclick)="toggleFullscreen('mooringBuoy')" (touchend)="onTouchEnddd($event, 'mooringBuoy')">
+            </div>
+
+
+        </div>
+
+        <!-- If other than 'Data Buoy' is dropped -->
+        <!-- <div *ngIf="droppedItems !== 'Data Buoy' && droppedItems1 !== 'Data Buoy'" class="land-buoys"
+            [ngStyle]="{ width: '90%' }" (dragover)="allowDrop($event)" (drop)="onDrop($event)"> -->
+        <!-- <div class="coastal-buoy" *ngIf="dropBuoyis === 'Coastal Data Buoy'"></div> -->
+        <!-- <div class="navigational-buoy" *ngIf="dropBuoyis ==='Navigation Buoy'"> -->
+        <!-- <div class="Deep Water Buoy" *ngIf="dropBuoyis ==='Deep Water Buoy'"></div>
+                <div class="NUS with Winch" *ngIf="dropBuoyis ==='NUS with Winch'"></div>
+                <div class="Wind profiler Buoy" *ngIf="dropBuoyis ==='Wind profiler Buoy'"></div>
+                <div class="wave powered Buoy" *ngIf="dropBuoyis ==='wave powered Buoy'"></div>
+                <div class="Drifter Buoy" *ngIf="dropBuoyis ==='Drifter Buoy'"></div>
+                <div class="Mooring Buoy" *ngIf="dropBuoyis ==='Mooring Buoy'"></div> -->
+        <!-- </div> -->
+
+        <!-- </div> -->
+    </div>
+
+
+
+    <div class="usv zoomable-widget" id="center-target2" *ngIf="is_tapped_marine">
+        <div class="navigations" *ngIf="isUsvOpen">
+            <div class="left-arrow" (click)="prevusv()">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                    style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                    <g>
+                        <path fill="#ffff"
+                            d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                    </g>
+                </svg>
+            </div>
+
+
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" (click)="nextusv()"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                <g>
+                    <path fill="#ffff"
+                        d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                </g>
+            </svg>
+        </div>
+        <h4 style="color: white;" *ngIf="!isUsvOpen">USV</h4>
+        <app-wave *ngIf="isUsvOpen"></app-wave>
+        <div *ngIf="isUsvOpen" class="items-list">
+            <div [ngClass]="droppedItems2 ===item? 'buoy-list-selected':'buoy-list'" *ngFor="let item of USVData"
+                draggable="false" (dragstart)="onDragStart2($event, item)" (click)="selectItem2(item)">
+                <p>{{ item.split(' ')[0] }}<br />
+                    {{ item.split(' ').slice(1).join(' ') }}</p>
+            </div>
+        </div>
+
+        <div *ngIf="isUsvOpen" class="land-buoys" (dragover)="allowDrop2($event)" (drop)="onDrop2($event)">
+            <!-- <div class="buoy-list"
+                *ngIf="droppedItems2 !=='Seafloor HydroCat-550' && droppedItems2 !=='Tridel Ark'&& droppedItems2 !=='Seafloor TriDrone' && droppedItems2 !=='Aquilon 8000' && droppedItems2 !=='Aquilon 5600'">
+                {{ droppedItems2 }}
+            </div> -->
+
+            <div class="seafloor fullscreen-bg" *ngIf="droppedItems2 === 'Seafloor HydroCat-550'" id="seafloorDiv"
+                (dblclick)="toggleFullscreen('seafloorDiv')" (touchend)="onTouchEnddd($event, 'seafloorDiv')">
+            </div>
+
+            <div class="tridrone fullscreen-bg" *ngIf="droppedItems2 === 'Seafloor TriDrone'" id="tridroneDiv"
+                (dblclick)="toggleFullscreen('tridroneDiv')" (touchend)="onTouchEnddd($event, 'tridroneDiv')">
+            </div>
+
+            <div class="aquilon-5600 fullscreen-bg" *ngIf="droppedItems2 === 'Aquilon 5600'" id="aquilon5600Div"
+                (dblclick)="toggleFullscreen('aquilon5600Div')" (touchend)="onTouchEnddd($event, 'aquilon5600Div')">
+            </div>
+
+            <div class="aquilon-8000 fullscreen-bg" *ngIf="droppedItems2 === 'Aquilon 8000'" id="aquilon8000Div"
+                (dblclick)="toggleFullscreen('aquilon8000Div')" (touchend)="onTouchEnddd($event, 'aquilon8000Div')">
+            </div>
+            <div class="tridel-ark" *ngIf="droppedItems2 === 'Tridel Ark'" id="aquilon8000Div"
+                (dblclick)="toggleFullscreen('aquilon8000Div')" (touchend)="onTouchEnddd($event, 'aquilon8000Div')">
+            </div>
+
+        </div>
+        <!-- <div *ngIf="droppedItems2 ==='Seafloor HydroCat-550'" class="main-round-seafloor">
+                <div class="image-seafloor-round">
+
+                </div>
+            </div> -->
+
+        <!-- <div *ngIf="droppedItems2 ==='Seafloor HydroCat-550'" class="main-round-seafloor">
+                <div class="image-seafloor-round">
+
+                </div>
+            </div> -->
+
+    </div>
+
+
+    <div class="survay-vessals zoomable-widget" id="center-target3" *ngIf="is_tapped_marine">
+        <div class="navigations" *ngIf="isSurveyVesselOpen">
+            <div class="left-arrow" (click)="prevsurvey()">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                    style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                    <g>
+                        <path fill="#ffff"
+                            d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                    </g>
+                </svg>
+            </div>
+
+
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" (click)="nextsurvey()"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                <g>
+                    <path fill="#ffff"
+                        d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                </g>
+            </svg>
+        </div>
+        <h4 style="color: white;" *ngIf="!isSurveyVesselOpen">Survey Vessels </h4>
+        <app-wave *ngIf="isSurveyVesselOpen"></app-wave>
+        <div *ngIf="isSurveyVesselOpen" class="items-list">
+            <div [ngClass]="droppedItems3 ===item? 'buoy-list-selected':'buoy-list'" *ngFor="let item of Survey_Vessel"
+                [ngStyle]="{'background-color':(showvessels || showwinch) && item ==='Deck Gears'? '#1995AD':'',
+                        'color':(showvessels || showwinch) && item ==='Deck Gears'? 'white':''
+                }" draggable="false" (dragstart)="onDragStart3($event, item)" (click)="selectItem3(item)">
+                <p>{{ item.split(' ')[0] }}<br />
+                    {{ item.split(' ').slice(1).join(' ') }}</p>
+            </div>
+        </div>
+        <div class="extra-data-buoy" *ngIf="showvessels || showwinch && isSurveyVesselOpen">
+            <div [ngClass]="droppedItems3 ===item? 'buoy-list-selected1':'buoy-list1'" *ngFor="let item of deck_gears"
+                [ngStyle]="{'background-color':showwinch && item ==='Tridel Electric Winch'? '#1995AD':''}"
+                draggable="false" (dragstart)="onDragStart5($event, item)" (click)="selectItem3(item)">
+                <p>{{ item.split(' ')[0] }}<br />
+                    {{ item.split(' ').slice(1).join(' ') }}</p>
+            </div>
+        </div>
+        <div class="extra-data-buoy" *ngIf="showwinch && isSurveyVesselOpen">
+            <div  *ngFor="let item of winch" [ngClass]="droppedItems3 ===item? 'buoy-list-selected1':'buoy-list1'"
+                draggable="false" (dragstart)="onDragStart5($event, item)" (click)="selectItem3(item)">
+                <p>{{ item.split(' ')[0] }}<br />
+                    {{ item.split(' ').slice(1).join(' ') }}</p>
+            </div>
+        </div>
+
+
+
+        <div *ngIf="isSurveyVesselOpen" class="land-buoys" (dragover)="allowDrop3($event)" (drop)="onDrop3($event)">
+            <!-- <div class="buoy-list" *ngIf="droppedItems3 !== 'Monohull Survey Vessel'&& droppedItems3 !=='Catamaran Survey Vessel'&& droppedItems3 !=='ECFS & Ship Borne Weather Station' &&droppedItems3 !=='Deck Gears'&& droppedItems3 !=='Tridel Electric Winch'&&
+                droppedItems3 !=='Tridel Electric Winch'&& droppedItems3!=='Monitoring Frames & Bottom Mounts' && droppedItems3!=='Vessel Side Mount ADCP'&& droppedItems3 !=='Profiling Winch'&& droppedItems3 !=='Surface and Subsurface Floats'&&
+                this.droppedItems3 !=='TEW 500'&& this.droppedItems3 !== 'TEW 1500'">
+                {{ droppedItems3 }}
+            </div> -->
+            <div class="Monohul-Survey-Vessel fullscreen-bg" *ngIf="droppedItems3 === 'Monohull Survey Vessel'"
+                id="monohulDiv" (dblclick)="toggleFullscreen('monohulDiv')"
+                (touchend)="onTouchEnddd($event, 'monohulDiv')">
+            </div>
+
+            <div class="Catamaran-Survey-Vessel fullscreen-bg" *ngIf="droppedItems3 === 'Catamaran Survey Vessel'"
+                id="catamaranDiv" (dblclick)="toggleFullscreen('catamaranDiv')"
+                (touchend)="onTouchEnddd($event, 'catamaranDiv')">
+            </div>
+
+            <div class="ECFS-Ship-borne-Weather-station fullscreen-bg"
+                *ngIf="droppedItems3 === 'ECFS & Ship Borne Weather Station'" id="ecfsDiv"
+                (dblclick)="toggleFullscreen('ecfsDiv')" (touchend)="onTouchEnddd($event, 'ecfsDiv')">
+            </div>
+
+            <!-- <div class="Deck-Gears fullscreen-bg" *ngIf="droppedItems3 === 'Deck Gears'" id="deckGearsDiv"
+                (dblclick)="toggleFullscreen('deckGearsDiv')" (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div> -->
+
+
+            <!-- 'Monitoring Frames Bottom Mounts', 'Surface and subsurface Floats', 'Profiling Winch', 'Vessel Side Mount ADCP', 'Tridel Electric Winch' -->
+            <div class="Monitoring-Frames-Bottom-Mounts fullscreen-bg"
+                *ngIf="droppedItems3 === 'Mooring Frames & Bottom Mounts'" id="deckGearsDiv"
+                (dblclick)="toggleFullscreen('deckGearsDiv')" (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+            <div class="Surface-and-subsurface-Floats fullscreen-bg"
+                *ngIf="droppedItems3 === 'Surface and Subsurface Floats'" id="deckGearsDiv"
+                (dblclick)="toggleFullscreen('deckGearsDiv')" (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+            <div class="Profiling-Winch fullscreen-bg" *ngIf="droppedItems3 === 'Profiling Winch'" id="deckGearsDiv"
+                (dblclick)="toggleFullscreen('deckGearsDiv')" (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+            <div class="Vessel-Side-Mount-ADCP fullscreen-bg" *ngIf="droppedItems3 === 'Vessel Side Mount ADCP'"
+                id="deckGearsDiv" (dblclick)="toggleFullscreen('deckGearsDiv')"
+                (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+            <div class="Tridel-Electric-Winch fullscreen-bg" *ngIf="droppedItems3 === 'Tridel Electric Winch'"
+                id="deckGearsDiv" (dblclick)="toggleFullscreen('deckGearsDiv')"
+                (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+
+
+            <!-- TEW 500', 'TEW 1500' -->
+            <div class="TEW-500 fullscreen-bg" *ngIf="droppedItems3 === 'TEW 500'" id="deckGearsDiv"
+                (dblclick)="toggleFullscreen('deckGearsDiv')" (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+            <div class="TEW-1500 fullscreen-bg" *ngIf="droppedItems3 === 'TEW 1500'" id="deckGearsDiv"
+                (dblclick)="toggleFullscreen('deckGearsDiv')" (touchend)="onTouchEnddd($event, 'deckGearsDiv')">
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="central-systems zoomable-widget" id="center-target4" *ngIf="is_tapped_marine">
+        <div class="navigations" *ngIf="isCentralSystemsOpen">
+            <div class="left-arrow" (click)="prevcontrol()">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                    style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                    <g>
+                        <path fill="#ffff"
+                            d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                    </g>
+                </svg>
+            </div>
+
+
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" (click)="nextcontrol()"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88"
+                style="enable-background:new 0 0 122.88 122.88" xml:space="preserve">
+                <g>
+                    <path fill="#ffff"
+                        d="M37.95,4.66C45.19,1.66,53.13,0,61.44,0c16.96,0,32.33,6.88,43.44,18c5.66,5.66,10.22,12.43,13.34,19.95 c3,7.24,4.66,15.18,4.66,23.49c0,16.96-6.88,32.33-18,43.44c-5.66,5.66-12.43,10.22-19.95,13.34c-7.24,3-15.18,4.66-23.49,4.66 c-8.31,0-16.25-1.66-23.49-4.66c-7.53-3.12-14.29-7.68-19.95-13.34C12.34,99.22,7.77,92.46,4.66,84.93C1.66,77.69,0,69.75,0,61.44 c0-8.31,1.66-16.25,4.66-23.49C7.77,30.42,12.34,23.66,18,18C23.65,12.34,30.42,7.77,37.95,4.66L37.95,4.66z M50,47.13 c-2.48-2.52-2.45-6.58,0.08-9.05c2.52-2.48,6.58-2.45,9.05,0.08L77.8,57.13c2.45,2.5,2.45,6.49,0,8.98L59.49,84.72 c-2.48,2.52-6.53,2.55-9.05,0.08c-2.52-2.48-2.55-6.53-0.08-9.05l13.9-14.13L50,47.13L50,47.13z M42.86,16.55 c-5.93,2.46-11.28,6.07-15.76,10.55c-4.48,4.48-8.09,9.83-10.55,15.76c-2.37,5.71-3.67,11.99-3.67,18.58 c0,6.59,1.31,12.86,3.67,18.58c2.46,5.93,6.07,11.28,10.55,15.76c4.48,4.48,9.83,8.09,15.76,10.55c5.72,2.37,11.99,3.67,18.58,3.67 c6.59,0,12.86-1.31,18.58-3.67c5.93-2.46,11.28-6.07,15.76-10.55c4.48-4.48,8.09-9.82,10.55-15.76c2.37-5.71,3.67-11.99,3.67-18.58 c0-6.59-1.31-12.86-3.67-18.58c-2.46-5.93-6.07-11.28-10.55-15.76c-4.48-4.48-9.83-8.09-15.76-10.55 c-5.71-2.37-11.99-3.67-18.58-3.67S48.58,14.19,42.86,16.55L42.86,16.55z" />
+                </g>
+            </svg>
+        </div>
+        <h4 style="color: white;" *ngIf="!isCentralSystemsOpen"> Central System</h4>
+        <app-wave *ngIf="isCentralSystemsOpen"></app-wave>
+        <div *ngIf="isCentralSystemsOpen" class="items-list">
+            <div [ngClass]="droppedItems4 ===item? 'buoy-list-selected':'buoy-list'" *ngFor="let item of Central_System"
+                draggable="false" (dragstart)="onDragStart4($event, item)" (click)="selectItem4(item)">
+                <p>{{ item.split(' ')[0] }}<br />
+                    {{ item.split(' ').slice(1).join(' ') }}</p>
+            </div>
+        </div>
+
+        <div *ngIf="isCentralSystemsOpen" class="land-buoys" (dragover)="allowDrop4($event)" (drop)="onDrop4($event)">
+            <!-- <div class="buoy-list"
+                *ngIf="droppedItems4 !=='GeoDB' && droppedItems4 !=='TEMS'&& droppedItems4 !=='TSMS'&& droppedItems4 !=='ATtide' && droppedItems4 !== 'eSpecia' &&droppedItems4 !== 'Modelling and Forecasting' && droppedItems4 !== 'ENC/PNC'&&droppedItems4 !== 'GeoDB'">
+                {{ droppedItems4 }}
+            </div> -->
+            <!-- <div class="geodb_main" *ngIf="droppedItems4==='GeoDB'">
+                <div class="geodb-round-main" *ngIf="rotationcount>2">
+                </div>
+                <div class="second-last-db-round" *ngIf="rotationcount>1"></div>
+                <div class="third-round-db" *ngIf="rotationcount>0"></div>
+                <div class="center-db" (click)="tapped_center_db()"></div>
+
+                <div class="content_geodb">
+                    <h4>Geospatial DataBase</h4>
+                    <p>A geospatial database enables the centralized integration of water resources, environmental
+                        indicators, and air quality data-allowing real-time spatial analysis and cross-sectoral insights
+                        for
+                        better decision-making</p>
+                    <img src="../../assets/geo-img.png" alt="">
+                </div>
+            </div> -->
+            <div class="tems fullscreen-bg" *ngIf="droppedItems4 === 'TEMS'" id="temsDiv"
+                (dblclick)="toggleFullscreen('temsDiv')" (touchend)="onTouchEnddd($event, 'temsDiv')">
+            </div>
+
+            <div class="tsms fullscreen-bg" *ngIf="droppedItems4 === 'TSMS'" id="tsmsDiv"
+                (dblclick)="toggleFullscreen('tsmsDiv')" (touchend)="onTouchEnddd($event, 'tsmsDiv')">
+            </div>
+
+            <div class="attide fullscreen-bg" *ngIf="droppedItems4 === 'ATtide'" id="attideDiv"
+                (dblclick)="toggleFullscreen('attideDiv')" (touchend)="onTouchEnddd($event, 'attideDiv')">
+            </div>
+
+            <div class="eSpacia fullscreen-bg" *ngIf="droppedItems4 === 'eSpecia'" id="espaciaDiv"
+                (dblclick)="toggleFullscreen('espaciaDiv')" (touchend)="onTouchEnddd($event, 'espaciaDiv')">
+            </div>
+
+            <div class="Modelling-and-Forecasting fullscreen-bg" *ngIf="droppedItems4 === 'Modelling and Forecasting'"
+                id="modellingDiv" (dblclick)="toggleFullscreen('modellingDiv')"
+                (touchend)="onTouchEnddd($event, 'modellingDiv')">
+            </div>
+
+            <div class="ENC fullscreen-bg" *ngIf="droppedItems4 === 'ENC/PNC'" id="encDiv"
+                (dblclick)="toggleFullscreen('encDiv')" (touchend)="onTouchEnddd($event, 'encDiv')">
+            </div>
+
+            <div class="geodb fullscreen-bg" *ngIf="droppedItems4 === 'GeoDB'" id="geodbDiv"
+                (dblclick)="toggleFullscreen('geodbDiv')" (touchend)="onTouchEnddd($event, 'geodbDiv')">
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    <div class="beach-monitoring zoomable-widget" id="bottom-target1" *ngIf="is_tapped_terrain">
+        <div class="close" *ngIf="isBeachMonitoringOpen"
+            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            x</div>
+        <h4 *ngIf="!isBeachMonitoringOpen">Beach Monitoring System</h4>
+        <div *ngIf="isBeachMonitoringOpen" class="beach-ms fullscreen-bg" id="beachDiv"
+            (dblclick)="toggleFullscreen('beachDiv')" (touchend)="onTouchEnddd($event, 'beachDiv')"></div>
+
+        <app-land style="position: absolute;top: 0;left: 0;height: 100%;width: 100%;z-index: -10;pointer-events: none;"
+            *ngIf="isBeachMonitoringOpen"></app-land>
+    </div>
+
+    <div class="port-monitoring zoomable-widget" id="bottom-target2" *ngIf="is_tapped_terrain">
+        <div class="close" *ngIf="isPortMonitoringOpen"
+            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            x</div>
+        <h4 *ngIf="!isPortMonitoringOpen">Port Monitoring System</h4>
+        <div *ngIf="isPortMonitoringOpen" class="port-monitoringg fullscreen-bg" id="portDiv"
+            (dblclick)="toggleFullscreen('portDiv')" (touchend)="onTouchEnddd($event, 'portDiv')"></div>
+
+        <app-land style="position: absolute;top: 0;left: 0;height: 100%;width: 100%;z-index: -10;pointer-events: none;"
+            *ngIf="isPortMonitoringOpen"></app-land>
+    </div>
+
+    <div class="air-quality zoomable-widget" id="bottom-target3" *ngIf="is_tapped_terrain">
+        <div class="close" *ngIf="isAirQualityOpen"
+            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            x</div>
+        <h4 *ngIf="!isAirQualityOpen">Air Quality Monitoring System</h4>
+        <div *ngIf="isAirQualityOpen" class="air-qualityy fullscreen-bg" id="airDiv"
+            (dblclick)="toggleFullscreen('airDiv')" (touchend)="onTouchEnddd($event, 'airDiv')"></div>
+
+        <app-land style="position: absolute;top: 0;left: 0;height: 100%;width: 100%;z-index: -10;pointer-events: none;"
+            *ngIf="isAirQualityOpen"></app-land>
+    </div>
+
+    <div class="ground-water zoomable-widget" id="bottom-target4" *ngIf="is_tapped_terrain">
+        <div class="close" *ngIf="isGroundWaterOpen"
+            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            x</div>
+        <h4 *ngIf="!isGroundWaterOpen">Ground Water Monitoring System</h4>
+        <div *ngIf="isGroundWaterOpen" class="ground-waterr fullscreen-bg" id="groundDiv"
+            (dblclick)="toggleFullscreen('groundDiv')" (touchend)="onTouchEnddd($event, 'groundDiv')"></div>
+
+        <app-land style="position: absolute;top: 0;left: 0;height: 100%;width: 100%;z-index: -10;pointer-events: none;"
+            *ngIf="isGroundWaterOpen"></app-land>
+    </div>
+
+    <div class="met-ocean zoomable-widget" id="bottom-target5" *ngIf="is_tapped_terrain">
+        <div class="close" *ngIf=" isMetOceanOpen"
+            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            x</div>
+        <h4 *ngIf="!isMetOceanOpen">MetOcean System</h4>
+        <div *ngIf="isMetOceanOpen" class="met-oceann fullscreen-bg" id="metDiv" (dblclick)="toggleFullscreen('metDiv')"
+            (touchend)="onTouchEnddd($event, 'metDiv')"></div>
+
+        <app-land style="position: absolute;top: 0;left: 0;height: 100%;width: 100%;z-index: -10;pointer-events: none;"
+            *ngIf="isMetOceanOpen"></app-land>
+    </div>
+
+
+    <!-- SVG overlay -->
+    <svg class="svg-connector">
+        <path *ngFor="let path of pathsData; let i = index" [attr.d]="path.d" class="line" [attr.id]="'line-' + i">
+        </path>
+    </svg>
+
+    <!-- <app-zoomable></app-zoomable> -->
+    <svg class="svg-connector">
+        <path *ngFor="let path of paths" [attr.d]="path" class="line" />
+        <!-- <path *ngIf="is_tapped_main" [attr.d]="path2" class="line" />
+        <path *ngIf="is_tapped_main" [attr.d]="path3" class="line" /> -->
+    </svg>
+
+    <!-- <svg width="120%" height="50" class="air-line">
+        <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="white" />
+            </marker>
+        </defs>
+        <line x1="10" y1="25" x2="290" y2="25" stroke="white" stroke-width="2" stroke-dasharray="5,5"
+            marker-end="url(#arrowhead)" class="grow-right-to-left" />
+    </svg>
+    <svg width="120%" height="50" class="water-line">
+        <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="white" />
+            </marker>
+        </defs>
+        <line x1="10" y1="25" x2="290" y2="25" stroke="white" stroke-width="2" stroke-dasharray="5,5"
+            marker-end="url(#arrowhead)" class="grow-right-to-left" />
+    </svg>
+    <svg width="120%" height="50" class="land-line">
+        <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="white" />
+            </marker>
+        </defs>
+        <line x1="10" y1="25" x2="290" y2="25" stroke="white" stroke-width="2" stroke-dasharray="5,5"
+            marker-end="url(#arrowhead)" class="grow-right-to-left" />
+    </svg>
+    <div class="airrr"></div>
+    <div class="waterre"></div>
+    <div class="landddd"></div> -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="circle-widget">
+
+                <div class="layer layer1">
+                    <img src="https://via.placeholder.com/40" class="img img1" />
+                    <img src="https://via.placeholder.com/40" class="img img2" />
+                    <img src="https://via.placeholder.com/40" class="img img3" />
+                    <img src="https://via.placeholder.com/40" class="img img4" />
+                </div>
+
+
+                <div class="layer layer2">
+                    <span class="title title1">Title 1</span>
+                    <span class="title title2">Title 2</span>
+                    <span class="title title3">Title 3</span>
+                    <span class="title title4">Title 4</span>
+                    <span class="title title5">Title 5</span>
+                    <span class="title title6">Title 6</span>
+                </div>
+
+
+                <div class="layer layer3">
+                    <p class="text">Central Info 1</p>
+                    <p class="text">Central Info 2</p>
+                </div>
+
+
+                <div class="layer layer4">
+                    <div class="center-dot"></div>
+                </div>
+            </div> -->

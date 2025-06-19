@@ -1,0 +1,167 @@
+.land-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Sky Background */
+.sky-background {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #38bdf8, #7dd3fc, #a7f3d0);
+  background-size: 200% 200%;
+  animation: gradient-shift 20s ease infinite;
+  z-index: 0;
+}
+
+/* Sun */
+.sun {
+  position: absolute;
+  top: 50px;
+  right: 60px;
+  width: 80px;
+  height: 80px;
+  background: #facc15;
+  border-radius: 50%;
+  box-shadow: 0 0 40px #fde68a;
+  animation: float 6s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* Clouds */
+.cloud {
+  position: absolute;
+  /* background: url('../../assets/cloud.png') no-repeat; */
+  background-size: contain;
+  width: 120px;
+  height: 60px;
+  opacity: 0.7;
+  animation: moveClouds 50s linear infinite;
+  z-index: 2;
+}
+.cloud1 { top: 80px; left: 10%; animation-delay: 15s; }
+.cloud2 { top: 100px; left: 30%; animation-delay: 0s; }
+.cloud3 { top: 60px; left: 60%; animation-delay: 10s; }
+.cloud4 { top: 40px; left: 80%; animation-delay: 15s; }
+.cloud5 { top: 120px; left: 40%; animation-delay: 20s; }
+
+/* Rocky Hills */
+.hill {
+  position: absolute;
+  bottom: 0;
+  height: 180px;
+  width: 150%;
+  /* background: linear-gradient(to bottom, #b45309, #92400e); */
+  background: linear-gradient(to bottom, #6ee7b7, #22c55e, #15803d);
+  border-radius: 50% 50% 0 0;
+  z-index: 1;
+}
+.hill1 {
+  left: -20%;
+  bottom: 60px;
+}
+.hill2 {
+  left: -30%;
+  bottom: 0;
+  height: 150px;
+  /* background: linear-gradient(to bottom, #78350f, #451a03); */
+  background: linear-gradient(to bottom, #4ade80, #16a34a, #065f46);
+}
+
+.hills {
+  position: absolute;
+  bottom: 200px;
+  left: 0;
+  width: 100%;
+  height: 40vh;
+  z-index: 1;
+}
+
+/* Trees */
+.tree {
+  position: absolute;
+  bottom: 60px;
+  width: 20px;
+  height: 80px;
+  background: #78350f;
+  border-radius: 5px;
+  animation: sway 4s ease-in-out infinite;
+}
+.tree::after {
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: -15px;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #22c55e 40%, transparent 41%);
+  border-radius: 50%;
+}
+
+.animated-tree {
+  width: 120px;
+  position: absolute;
+  bottom: 20px;
+  left: 50px;
+  animation: sway 3s ease-in-out infinite;
+  transform-origin: bottom center;
+  z-index: 10;
+}
+
+.leaves {
+  transform-origin: center;
+  animation: leafSway 3s ease-in-out infinite;
+}
+
+/* Trunk sway animation */
+@keyframes sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(1.5deg); }
+}
+
+/* Slight movement in leaves */
+@keyframes leafSway {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+/* Grass */
+.grass {
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  height: 20px;
+  background: #22c55e;
+  animation: sway 2s ease-in-out infinite alternate;
+}
+
+/* Particles */
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  animation: float 10s ease-in-out infinite;
+  z-index: 10;
+}
+
+/* Animations */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes moveClouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100vw); }
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(2deg); }
+}

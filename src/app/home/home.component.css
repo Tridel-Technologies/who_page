@@ -1,0 +1,2697 @@
+.home {
+    height: 100%;
+    width: 100%;
+    /* background: linear-gradient(60deg, #2193b0, #6dd5ed, #00c9ff, #92fe9d); */
+    background-size: 300% 300%;
+    animation: gradientSunrise 18s ease infinite;
+    background-color: black;
+    /* background: #083e54; */
+    /* background: linear-gradient(270deg, rgba(8, 62, 84, 1) 0%, rgba(5, 152, 181, 1) 50%, rgba(83, 88, 237, 1) 100%); */
+    /* background-image: url(../../assets/bg.png);
+    background-size: 100% 100%; */
+    /* transform: translate(-50%, -50%); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    backdrop-filter: blur(12px);
+}
+
+body {
+    background: linear-gradient(60deg, #2193b0, #6dd5ed, #00c9ff, #92fe9d);
+    background-size: 300% 300%;
+    animation: gradientOcean 12s ease-in-out infinite;
+}
+
+@keyframes gradientSunrise {
+    0% {
+        background-position: 0% 100%;
+    }
+
+    50% {
+        background-position: 100% 0%;
+    }
+
+    100% {
+        background-position: 0% 100%;
+    }
+}
+
+
+.back {
+    /* background-color: #00c853; */
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.top_section {
+    width: 95%;
+    height: 15%;
+    z-index: 1000;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    left: 0%;
+    top: 0%;
+    font-size: 25px;
+    color: white;
+    /* color: rgb(203 213 225 / var(--tw-text-opacity, 1)); */
+    font-weight: 700;
+    text-align: start;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 20px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 2s ease-in-out;
+}
+
+.top_section2 {
+    width: 10%;
+    height: 15%;
+    z-index: 1000;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    left: 0%;
+    top: 0%;
+    font-size: 25px;
+    color: white;
+    /* color: rgb(203 213 225 / var(--tw-text-opacity, 1)); */
+    font-weight: 700;
+    text-align: start;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 20px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 2s ease-in-out;
+    cursor: pointer;
+}
+
+.bottom_section {
+    width: 25%;
+    height: 15%;
+    z-index: 1000;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    bottom: 5%;
+    right: 0%;
+    font-size: 25px;
+    color: white;
+    /* color: rgb(203 213 225 / var(--tw-text-opacity, 1)); */
+    font-weight: 700;
+    text-align: start;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 20px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 2s ease-in-out;
+}
+
+.top_section p {
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* .logo {
+    height: 70%;
+    width: 40%;
+    background-color: aqua;
+    position: absolute;
+    transition: all 0.6s ease-in-out;
+} */
+
+@keyframes shrinkAndMove {
+    0% {
+        height: 70%;
+        width: 40%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    100% {
+        height: 20%;
+        width: 15%;
+        top: auto;
+        left: 0;
+        top: 40%;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes shrinkAndMove2 {
+    0% {
+        height: 70%;
+        width: 40%;
+        top: 50%;
+        right: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    100% {
+        height: 20%;
+        width: 15%;
+        top: auto;
+        right: 0;
+        top: 40%;
+        transform: translate(0, 0);
+    }
+}
+
+.home {
+    height: 100%;
+    width: 100%;
+    /* background-color: rgb(15, 116, 203); */
+    position: relative;
+}
+
+.logo {
+    height: 80%;
+    width: 40%;
+    /* background-color: aqua; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* background-image: url(../../assets/tridel_logo.png); */
+    background-size: 100% 100%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo p {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: 0%;
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 2px;
+    /* font-family: 'Jost', sans-serif; */
+    /* color: rgb(203 213 225 / var(--tw-text-opacity, 1)); */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 2s ease-in-out;
+}
+
+.glow-line2 {
+    position: relative;
+    top: -35%;
+    left: 0%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #00f7ff, #00d9ff, #00f7ff);
+    border-radius: 2px;
+    /* animation: blinkGlow 1s infinite alternate; */
+    box-shadow: 0 0 10px #00f7ff, 0 0 20px #00d9ff, 0 0 30px #00f7ff;
+}
+
+@keyframes blinkGlow {
+    0% {
+        opacity: 0.3;
+        box-shadow: 0 0 5px #00f7ff;
+    }
+
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 10px #00f7ff, 0 0 20px #00d9ff, 0 0 30px #00f7ff;
+    }
+}
+
+.glow-line {
+    position: relative;
+    top: -97%;
+    left: -30%;
+    width: 160%;
+    height: 8px;
+    /* Thicker for a 'water line' feel */
+    background: transparent;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Glowing animated water light */
+.glow-line::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100px;
+    background: linear-gradient(90deg, transparent, #02d8f4, #00e5ff, #00bcd4, transparent);
+    animation: glowMove 4s infinite ease-in-out;
+    border-radius: 4px;
+    opacity: 0.6;
+    filter: blur(2px);
+    /* Soft blur for water glow */
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.6),
+        0 0 20px rgba(0, 188, 212, 0.4),
+        0 0 30px rgba(0, 188, 212, 0.2);
+}
+
+@keyframes glowMove {
+    0% {
+        left: 0%;
+        opacity: 0.3;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    50% {
+        left: 100%;
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 0%;
+        opacity: 0.3;
+    }
+}
+
+
+
+.main_section {
+    height: 80%;
+    width: 90%;
+    background-image: url(../../assets/tridel_logo.png);
+    background-size: 100% 100%;
+    animation: fadeIn 2s ease-in-out;
+    /* background-color: aliceblue; */
+}
+
+/* .about_call {
+    height: 20%;
+    width: 125%;
+    background-image: url(../../assets/tridel.png);
+    background-size: 100% 100%;
+    background-color: rgba(127, 255, 212, 0.682);
+} */
+
+.logo.animated1 {
+    animation: shrinkAndMove 0.7s ease-out forwards;
+}
+
+.logo.animated_r {
+    animation: shrinkAndMove2 0.7s ease-out forwards;
+}
+
+
+.zoom_test {
+    height: 10%;
+    width: 10%;
+    background-color: antiquewhite;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+
+}
+
+.zoomable-widget {
+    background-color: #00c853;
+    position: relative;
+
+}
+
+.zoomable-widget .backsvg {
+    height: 30%;
+    width: 3%;
+    top: 40%;
+    left: 0;
+}
+
+.backsvg svg {
+    height: 30%;
+    width: 3%;
+}
+
+.zoomable-widget svg {
+    height: 30%;
+    width: 3%;
+    top: 40%;
+    right: 0;
+
+}
+
+app-zoomable {
+    position: absolute;
+    right: 10%;
+    top: 10%;
+}
+
+
+.about {
+    height: 60%;
+    width: 30%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    animation: open_about 0.7s ease-in-out forwards;
+}
+
+@keyframes open_about {
+    0% {
+        height: 0%;
+        width: 30%;
+        top: 20%;
+        left: 5%;
+    }
+
+    100% {
+        height: 60%;
+        width: 30%;
+        top: 20%;
+        left: 5%;
+    }
+}
+
+.about p {
+    margin-left: 10%;
+    font-size: 1.1rem;
+    width: 80%;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    /* text-wrap: auto; */
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /* text-align: left; */
+    /* border-right: 2px solid #2c3e50; */
+    animation: typing 2.5s steps(60, end), blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+/* @keyframes blink {
+  50% { border-color: transparent }
+} */
+
+
+
+.globe-description {
+    position: absolute;
+    top: 16%;
+    left: 8%;
+    width: 25%;
+    height: 18%;
+    color: white;
+    font-size: 20px;
+    line-height: 1.2;
+    text-align: left;
+    z-index: 2;
+}
+
+.globe-description h2 {
+    text-align: center;
+}
+
+.globe-description p {
+    text-align: justify;
+    margin-top: -5px;
+}
+
+/* .cirle-globe{
+    height:85%;
+    width: 34%;
+    background: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: absolute;
+    left: 38%;
+    top: 15;
+} */
+
+.cirle-globe {
+    height: 70%;
+    width: 35%;
+    /* border-radius: 50%; */
+    /* background-color: #2c3e50; */
+    background-image: url(../../assets/globe-line.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* overflow: hidden; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: animateGlobe 1.5s ease-out forwards;
+    /* z-index: 10; */
+}
+
+@keyframes goleft_globe {
+    0% {
+        top: 50%;
+        left: 50%;
+
+    }
+
+    100% {
+        height: 40%;
+        width: 20%;
+        top: 50%;
+        left: 27%;
+    }
+
+}
+
+.globe-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    animation: air-left 0.7s ease-in-out forwards;
+    gap: 140px;
+    /* Adjust spacing as needed */
+    animation: fadee 2s ease-in-out forwards;
+}
+
+@keyframes fadee {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.main-points {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-color: #00bcd4;
+    top: -5%;
+    left: 20%;
+
+}
+
+@keyframes animateGlobe {
+    0% {
+        width: 50px;
+        height: 50px;
+        top: 5%;
+        left: 95%;
+        transform: translate(-100%, 0%);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    75% {
+        opacity: 0.5;
+    }
+
+    100% {
+        width: 35%;
+        height: 70%;
+        top: 50%;
+        left: 60%;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+
+.air-line {
+    left: -15%;
+    top: -3%;
+    font-weight: bolder;
+    width: 8%;
+    position: absolute;
+    font-weight: bolder;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    border: 3px solid rgb(200, 206, 211);
+    border-radius: 6px;
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: #146383;
+    cursor: pointer;
+    /* animation: air-left 0.7s ease-in-out forwards; */
+}
+
+.airline-go {
+
+    left: -10%;
+    top: -5%;
+    font-weight: bolder;
+    width: 8%;
+    position: absolute;
+    font-weight: bolder;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    border: 3px solid rgb(200, 206, 211);
+    border-radius: 6px;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: #146383;
+    cursor: pointer;
+    /* animation: air-left 0.7s ease-in-out forwards; */
+
+}
+
+.airline-go-active {
+    left: -10%;
+    top: -5%;
+    font-weight: bolder;
+    width: 8%;
+    position: absolute;
+    font-weight: bolder;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    border: 3px solid rgb(0, 116, 211);
+    border-radius: 6px;
+    text-align: center;
+    width: 80px;
+    height: 30px;
+    box-shadow: 0 2px 8px rgba(0, 68, 255, 0.3);
+    transform: scale(1.25);
+    background-color: #146383;
+    cursor: pointer;
+}
+
+@keyframes air-left {
+    0% {
+        left: 38%;
+        top: 11%;
+    }
+
+    100% {
+        left: 10%;
+        top: 11%;
+    }
+}
+
+.air-line.go {
+    height: 30px;
+    width: 70px;
+}
+
+.waterline-go {
+    top: 16%;
+    right: -22%;
+    font-weight: bolder;
+    width: 8%;
+    position: absolute;
+    /* transition: rotate(180deg); */
+    /* z-index: 1; */
+    font-weight: bolder;
+    color: white;
+    font-size: 13px;
+    border: 3px solid rgb(200, 206, 211);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: #146383;
+    cursor: pointer;
+}
+
+.water-line {
+    top: 16%;
+    right: -36%;
+    font-weight: bolder;
+    width: 8%;
+    position: absolute;
+    align-content: center;
+    /* transition: rotate(180deg); */
+    /* z-index: 1; */
+    font-weight: bolder;
+    color: white;
+    font-size: 30px;
+    border: 3px solid rgb(200, 206, 211);
+    border-radius: 6px;
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: #146383;
+    cursor: pointer;
+}
+
+.waterline-go-active {
+    top: 16%;
+    right: -22%;
+    font-weight: bolder;
+    width: 8%;
+    position: absolute;
+    /* transition: rotate(180deg); */
+    /* z-index: 1; */
+    font-weight: bolder;
+    color: white;
+    font-size: 13px;
+    border: 3px solid rgb(0, 116, 211);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: #146383;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.landline-go {
+    bottom: 16%;
+    right: -22%;
+    width: 8%;
+    position: absolute;
+    /* transition: rotate(180deg); */
+    /* z-index: 1; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    color: white;
+    font-size: 13px;
+    border: 3px solid rgb(200, 206, 211);
+    border-radius: 6px;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: #146383;
+    cursor: pointer;
+}
+
+.landline-go-active {
+    bottom: 16%;
+    right: -22%;
+    width: 8%;
+    position: absolute;
+    /* transition: rotate(180deg); */
+    /* z-index: 1; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    color: white;
+    font-size: 13px;
+    border: 3px solid rgb(0, 116, 211);
+    border-radius: 6px;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: #146383;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+
+.land-line {
+    bottom: 16%;
+    right: -35%;
+    width: 8%;
+    position: absolute;
+    align-content: center;
+    /* transition: rotate(180deg); */
+    /* z-index: 1; */
+    font-weight: bolder;
+    color: white;
+    font-size: 30px;
+    border: 3px solid rgb(200, 206, 211);
+    border-radius: 6px;
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: #146383;
+    cursor: pointer;
+}
+
+/* Container needs to be relative for absolute positioning */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes bottomto-center {
+    0% {
+        bottom: -10%;
+
+    }
+
+    100% {
+        bottom: 9%;
+    }
+}
+
+@keyframes topto-center {
+    0% {
+        top: -10%;
+
+    }
+
+    100% {
+        top: 8%;
+    }
+}
+
+.airrr {
+    height: 50px;
+    width: 150px;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    position: absolute;
+    left: 70%;
+    top: 20%;
+
+}
+
+.airrr.go {
+    animation: goleft_line 0.7s ease-in-out forwards;
+}
+
+.waterre.go {
+    animation: goleft_line2 0.7s ease-in-out forwards;
+}
+
+.landddd.go {
+    animation: goleft_line3 0.7s ease-in-out forwards;
+}
+
+.air-line {
+    animation: go-left-line 3s ease-in-out forwards;
+}
+
+.land-line {
+    animation: go-left-line 3s ease-in-out forwards;
+}
+
+.water-line {
+    animation: go-left-line 3s ease-in-out forwards;
+}
+
+.waterre {
+    height: 50px;
+    width: 150px;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    position: absolute;
+    left: 75%;
+    top: 50%;
+}
+
+.landddd {
+    height: 50px;
+    width: 150px;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    position: absolute;
+    left: 70%;
+    top: 70%;
+}
+
+.cirle-globe.goleft {
+    animation: goleft_globe 0.7s ease-in-out forwards;
+}
+
+.cirle-globe.goright {
+    animation: goright_globe 0.7s ease-in-out forwards;
+}
+
+.linee {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@keyframes goleft_line {
+    0% {
+        left: 70%;
+        top: 20%;
+
+    }
+
+    100% {
+        left: 50%;
+        top: 20%;
+    }
+}
+
+@keyframes goleft_line2 {
+    0% {
+        left: 75%;
+        top: 50%;
+
+    }
+
+    100% {
+        left: 55%;
+        top: 50%;
+    }
+}
+
+@keyframes goleft_line3 {
+    0% {
+        left: 70%;
+        top: 70%;
+
+    }
+
+    100% {
+        left: 50%;
+        top: 70%;
+    }
+}
+
+@keyframes go-left-line {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes go-left-line2 {
+    0% {
+        left: 55%;
+        top: 50%;
+    }
+
+    100% {
+        left: 35%;
+        top: 50%;
+    }
+}
+
+@keyframes go-left-line3 {
+    0% {
+        top: 70%;
+        left: 50%;
+    }
+
+    100% {
+        top: 70%;
+        left: 30%;
+    }
+}
+
+@keyframes globe {
+    /* 0%{
+        opacity: 0;
+    }   
+    100%{
+        opacity: 10;
+    } */
+}
+
+
+/* Right */
+@keyframes goright_globe {
+    0% {
+        height: 40%;
+        width: 20%;
+        top: 50%;
+        left: 27%;
+    }
+
+    100% {
+        height: 70%;
+        width: 35%;
+        top: 50%;
+        left: 60%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* End */
+
+.aerial-mapping {
+    height: 100px;
+    width: 20%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    color: white;
+    /* background-image: url(../../assets//slides/nodes.gif); */
+    background-size: 100% 100%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close {
+    height: 30px;
+    width: 30px;
+    background-color: #c80000;
+    position: absolute;
+    top: -25px;
+    right: -25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.aerial-mapping.opened {
+    z-index: 1000;
+    height: 80%;
+    width: 80%;
+    /* background-image: url(../../assets/slides/air.gif); */
+    background: linear-gradient(135deg, #04192b, #005a9e);
+    background-size: 100% 100%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    color: white;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.satellite-derived {
+    height: 100px;
+    width: 20%;
+    position: absolute;
+    right: 10%;
+    top: 40%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.satellite-derived.opened {
+    /* background-image: url(../../assets/slides/air.gif); */
+    background: linear-gradient(135deg, #04192b, #005a9e);
+    background-size: 100% 100%;
+    z-index: 1000;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    color: white;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.weather-forecase {
+    height: 100px;
+    width: 20%;
+    top: 20%;
+    position: absolute;
+    right: 10%;
+    top: 70%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.weather-forecase.opened {
+    /* background-image: url(../../assets/slides/air.gif); */
+    background: linear-gradient(135deg, #04192b, #005a9e);
+    background-size: 100% 100%;
+    z-index: 1000;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    color: white;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+
+/* SVG styles */
+.svg-connector {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* z-index: 1; */
+}
+
+.line {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 2;
+    stroke-dasharray: 5 5;
+    animation: dashmove 1s linear infinite;
+}
+
+@keyframes drawLine {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes dashmove {
+    0% {
+        stroke-dashoffset: 100;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+.buoys {
+    height: 100px;
+    width: 20%;
+    top: 10%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    z-index: 1000;
+}
+
+.buoys.opened {
+    /* background-image: url(../../assets/slides/nodes.gif); */
+    background-size: 100% 100%;
+    background: linear-gradient(135deg, #04192b, #005a9e);
+    z-index: 1000;
+    height: 80%;
+    width: 90%;
+    position: absolute;
+    right: 5%;
+    top: 10%;
+    color: white;
+    /* background-image: url(../../assets/slides/ocean3.gif); */
+    background-size: 100% 100%;
+    background-color: rgba(25, 24, 24, 0.257);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgb(44, 43, 43);
+    border-radius: 10px;
+}
+
+.usv {
+    height: 100px;
+    width: 20%;
+    top: 20%;
+    position: absolute;
+    right: 10%;
+    top: 30%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.usv.opened {
+    /* background-image: url(../../assets/slides/ocean3.gif); */
+    background-size: 100% 100%;
+    background: linear-gradient(135deg, #04192b, #005a9e);
+    z-index: 1000;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    color: white;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+.survay-vessals {
+    height: 100px;
+    width: 20%;
+    top: 20%;
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.survay-vessals.opened {
+    /* background-image: url(../../assets/slides/ocean3.gif); */
+    background-size: 100% 100%;
+    background: linear-gradient(135deg, #04192b, #005a9e);
+    z-index: 1000;
+    height: 80%;
+    width: 85%;
+    position: absolute;
+    right: 7.5%;
+    top: 10%;
+    color: white;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.central-systems {
+    height: 100px;
+    width: 20%;
+    top: 20%;
+    position: absolute;
+    right: 10%;
+    top: 70%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.central-systems.opened {
+    /* background-image: url(../../assets/slides/ocean3.gif); */
+    background-size: 100% 100%;
+    background: linear-gradient(135deg, #04192b, #005a9e);
+    z-index: 1000;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    color: white;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    justify-content: flex-start;
+}
+
+
+.beach-monitoring {
+    height: 70px;
+    width: 20%;
+    top: 20%;
+    position: absolute;
+    right: 10%;
+    top: 16%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.beach-monitoring.opened {
+    /* background-image: url(../../assets/slides/Iug.gif); */
+    background-size: 100% 100%;
+    z-index: 1000;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    color: white;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.port-monitoring {
+    height: 70px;
+    width: 20%;
+    top: 20%;
+    position: absolute;
+    right: 10%;
+    top: 30%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.port-monitoring.opened {
+    /* background-image: url(../../assets/slides/Iug.gif); */
+    background-size: 100% 100%;
+    z-index: 1000;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    color: white;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.air-quality {
+    height: 70px;
+    width: 20%;
+    top: 20%;
+    position: absolute;
+    right: 10%;
+    top: 44%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.air-quality.opened {
+    /* background-image: url(../../assets/slides/Iug.gif); */
+    background-size: 100% 100%;
+    z-index: 1000;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    color: white;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.ground-water {
+    height: 70px;
+    width: 20%;
+    top: 20%;
+    position: absolute;
+    right: 10%;
+    top: 57%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.ground-water.opened {
+    /* background-image: url(../../assets/slides/Iug.gif); */
+    background-size: 100% 100%;
+    z-index: 1000;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    color: white;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.met-ocean {
+    height: 70px;
+    width: 20%;
+    top: 20%;
+    position: absolute;
+    right: 10%;
+    top: 72%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+}
+
+.met-ocean.opened {
+    /* background-image: url(../../assets/slides/Iug.gif); */
+    background-size: 100% 100%;
+    z-index: 1000;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    color: white;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+
+
+
+
+.main_aerial {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    border-radius: 10px;
+    background-image: url(../../assets/slides/Aerial-Mapping.png);
+    background-size: 100% 100%;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.main_sattllite {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    border-radius: 10px;
+    background-image: url(../../assets/slides/Satellite-Derived-Projects.png);
+    background-size: 100% 100%;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.main_weather {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    border-radius: 10px;
+    background-image: url(../../assets/slides/WFS.png);
+    background-size: 100% 100%;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.Deep-Water-Buoy {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    border-radius: 10px;
+    background-image: url(../../assets/slides/about.png);
+    background-size: 100% 100%;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.NUS-with-Winch {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    border-radius: 10px;
+    background-image: url(../../assets/slides/about.png);
+    background-size: 100% 100%;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.Wind-profiler-Buoy {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    border-radius: 10px;
+    background-image: url(../../assets/slides/about.png);
+    background-size: 100% 100%;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.wave-powered-Buoy {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    border-radius: 10px;
+    background-image: url(../../assets/slides/about.png);
+    background-size: 100% 100%;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.Drifter-Buoy {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    border-radius: 10px;
+    background-image: url(../../assets/slides/Drifter-Buoys.png);
+    background-size: 100% 100%;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.Mooring-Buoy {
+
+    background-image: url(../../assets/slides/Mooring-Buoys.png);
+
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    border-radius: 10px;
+
+    background-size: 100% 100%;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.moor {
+    height: 100%;
+    width: 100%;
+    background-color: #00bcd4;
+}
+
+.aerial-left {
+    height: 100%;
+    width: 60%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.aerial-right {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 20px 10px 10px 20px;
+    background-color: rgb(42, 124, 248);
+}
+
+.round-aearial {
+    height: 150px;
+    width: 150px;
+    left: 43%;
+    bottom: 10%;
+    background-color: #11c97c;
+    position: absolute;
+    border-radius: 50%;
+    animation: fromright 0.7s ease-in-out forwards;
+
+}
+
+.round-aearial2 {
+    height: 150px;
+    width: 150px;
+    left: 2%;
+    top: 10%;
+    background-color: #11c97c;
+    position: absolute;
+    border-radius: 50%;
+    animation: fromleft 0.7s ease-in-out forwards;
+}
+
+@keyframes fromleft {
+    0% {
+        left: 0;
+        top: 10%;
+        opacity: 0;
+    }
+
+    100% {
+        left: 2%;
+        top: 10%;
+        opacity: 1;
+    }
+}
+
+@keyframes fromright {
+    0% {
+        left: 53%;
+        bottom: 10%;
+        opacity: 0;
+    }
+
+    100% {
+        left: 43%;
+        bottom: 10%;
+        opacity: 1;
+    }
+
+}
+
+
+
+/* test circle */
+.circle-widget {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin: 50px auto;
+    border-radius: 50%;
+}
+
+.layer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+/* Outer layer - 48% radius */
+.layer1 {
+    width: 96%;
+    height: 96%;
+}
+
+.layer1 .img {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Place images around the circle */
+.img1 {
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.img2 {
+    top: 50%;
+    right: 0%;
+    transform: translate(50%, -50%);
+}
+
+.img3 {
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+.img4 {
+    top: 50%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+}
+
+/* 2nd layer - 5% radius text circle */
+.layer2 {
+    width: 10%;
+    height: 10%;
+}
+
+.layer2 .title {
+    position: absolute;
+    font-size: 12px;
+    white-space: nowrap;
+    transform: translate(-50%, -50%);
+}
+
+.title1 {
+    top: -30px;
+    left: 50%;
+}
+
+.title2 {
+    top: 50%;
+    right: -40px;
+}
+
+.title3 {
+    bottom: -30px;
+    left: 50%;
+}
+
+.title4 {
+    top: 50%;
+    left: -40px;
+}
+
+.title5 {
+    top: 10%;
+    left: 10%;
+}
+
+.title6 {
+    bottom: 10%;
+    right: 10%;
+}
+
+/* 3rd layer - 14% radius */
+.layer3 {
+    width: 28%;
+    height: 28%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.layer3 .text {
+    font-size: 14px;
+    text-align: center;
+    margin: 2px 0;
+}
+
+/* 4th Layer - 29% radius, center circle */
+.layer4 {
+    width: 58%;
+    height: 58%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center-dot {
+    width: 60px;
+    height: 60px;
+    background-color: #3e8ed0;
+    border-radius: 50%;
+}
+
+
+.buoys-left {
+    height: 100%;
+    width: 15%;
+    /* background-color: #00c853; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.land-buoys {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigations {
+    height: 42px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    /* background-color: #00bcd4; */
+    bottom: 45%;
+    z-index: 1;
+    right: 0;
+    opacity: 0.2;
+
+}
+
+.navigations:hover {
+    opacity: 1;
+}
+
+.navigations svg {
+    height: 100px;
+    width: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+.navigations svg ::nth-of-type(2) {
+    transform: rotate(180deg);
+}
+
+.left-arrow {
+    height: 100%;
+    width: 5%;
+    display: flex;
+
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.left-arrow svg {
+    transform: rotate(180deg);
+    color: white;
+    cursor: pointer;
+}
+
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    z-index: 10;
+    color: white;
+    backdrop-filter: blur(8px);
+}
+
+.nav-button.left {
+    left: 10px;
+}
+
+.nav-button.right {
+    right: 10px;
+}
+
+/* .land-buoys svg :nth-child(2){
+    position: absolute;
+    top: 45%;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    z-index: 1;
+} */
+.extra-data-buoy {
+    height: 100%;
+    width: 12%;
+    /* background-color: #00ccff; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: center;
+    /* border:1px solid blue; */
+}
+
+.buoy-list-selected {
+    height: 50px;
+    /* width: auto; */
+    width: 13%;
+    /* margin: 5px; */
+    /* border-radius: 10px; */
+    background-color: #1995AD;
+    box-shadow: 2px 2px 2px 2px 6px grey;
+    backdrop-filter: blur(12px);
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    color: rgb(255, 255, 255);
+    display: flex;
+    /* border: 2px solid rgb(0, 34, 255); */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+    user-select: none;
+    /* padding: 5px; */
+}
+
+.buoy-list-selected1 {
+    height: 58px;
+    width: auto;
+    width: 100%;
+    /* margin: 5px; */
+    border-radius: 10px;
+    background-color: #1995AD;
+    box-shadow: 2px 2px 2px 2px 6px grey;
+    backdrop-filter: blur(12px);
+    /* clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%); */
+    color: rgb(255, 255, 255);
+    display: flex;
+    /* border: 2px solid rgb(0, 34, 255); */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+    user-select: none;
+    /* padding: 5px; */
+}
+
+.buoy-list-selected p {
+    text-align: center;
+    font-size: 11px;
+    /* margin: 5px; */
+    width: 69%;
+}
+
+.buoy-list-selected1 p {
+    text-align: center;
+    font-size: 11px;
+    width: 69%;
+    /* margin: 5px; */
+}
+
+.buoy-list p {
+    text-align: center;
+    font-size: 11px;
+    width: 69%;
+    /* margin: 5px; */
+}
+
+
+
+/* tooltip */
+#top-source::after {
+    content: attr(data-tooltip);
+    /* Get text from data-tooltip attribute */
+    position: absolute;
+    bottom: 120%;
+    /* Position above the div */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+#top-source:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+
+#top-source2::after {
+    content: attr(data-tooltip);
+    /* Get text from data-tooltip attribute */
+    position: absolute;
+    bottom: 120%;
+    /* Position above the div */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+#top-source2:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+
+#top-source3::after {
+    content: attr(data-tooltip);
+    /* Get text from data-tooltip attribute */
+    position: absolute;
+    bottom: 120%;
+    /* Position above the div */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.top_section2::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 75%;
+    left:204%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    /* z-index: 1; */
+    transition: opacity 0.3s;
+}
+
+.top_section2:hover::after {
+    visibility: visible;
+    opacity: 1;
+    /* z-index: 1; */
+}
+
+
+#top-source3:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* end tooltip */
+.extra-data-buoy p {
+    text-align: center;
+}
+
+.buoy-list {
+    height: 50px;
+    width: 13%;
+    /* margin: 5px; */
+    /* border-radius: 10px; */
+    background-color: rgb(255, 255, 255);
+    backdrop-filter: blur(12px);
+    color: rgb(0, 0, 0);
+    display: flex;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    /* border: 2px solid rgb(0, 255, 13); */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+    user-select: none;
+    margin-left: -15px;
+}
+
+.items-list {
+    height: 10%;
+    width: 90%;
+    margin-left: 5%;
+    /* background-color: #00c853; */
+    position: absolute;
+    top: -10%;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.buoy-list1 {
+    height: 50px;
+    width: 90%;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #1995ad59;
+    backdrop-filter: blur(12px);
+    color: rgb(255, 255, 255);
+    display: flex;
+
+    /* border: 2px solid rgb(0, 255, 13); */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+    user-select: none;
+}
+
+.buoy-list1 p {
+    text-align: center;
+    font-size: 11px;
+}
+
+
+
+/* sea floor */
+.seafloor {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Seafloor-Hydrocat550.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border-radius: 2px 20px 20px 2px; */
+
+}
+
+.tridrone {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Seafloor-Tridrone.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border-radius: 2px 20px 20px 2px; */
+}
+
+.aquilon-5600 {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Tridel-Aquilon-5600.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.aquilon-8000 {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Tridel-Aquilon-8000.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tridel-ark {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Tridel-Ark.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Monohul-Survey-Vessel {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Monohull.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Catamaran-Survey-Vessel {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Catamaran-Survey-Vessel.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ECFS-Ship-borne-Weather-station {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Eddy-Covariance-Flux-System.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Deck-Gears {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/about.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Monitoring-Frames-Bottom-Mounts {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Mooring-Frames.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Surface-and-subsurface-Floats {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Surface-and-Subsurface-Floats.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Profiling-Winch {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Profiling-Winch.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Vessel-Side-Mount-ADCP {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Vessel-Side-Mount-ADCP-Frame.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Tridel-Electric-Winch {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Tridel-Electric-Winch-TEW-500.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.TEW-500 {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Tridel-Electric-Winch-TEW-500.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.TEW-1500 {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    animation: openLands 0.8s ease-in-out forwards;
+    background-color: #406478;
+    background-image: url(../../assets/slides/Tridel-Electric-Winch-TEW-1500.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.seafloor h3 {
+    width: 80%;
+
+}
+
+.seafloor p {
+    width: 80%;
+}
+
+.seafloor ul {
+    width: 80%;
+}
+
+.image-seafloor-round {
+    height: 150px;
+    width: 150px;
+    background-color: #3e8ed0;
+    border-radius: 50%;
+
+}
+
+.main-round-seafloor {
+    height: 160px;
+    width: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 5%;
+    right: 10%;
+    background-color: #4043473f;
+    animation: fromr 0.7s ease-in-out forwards;
+}
+
+@keyframes fromr {
+    0% {
+        bottom: 5%;
+        right: 0%;
+        opacity: 0;
+    }
+
+    100% {
+        right: 10%;
+        bottom: 5%;
+        opacity: 1;
+    }
+}
+
+.geodb_main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.tems {
+    height: 100%;
+    width: 98%;
+    background-color: #00c853;
+    background-image: url(../../assets/slides/TEMS.png);
+    background-size: 100% 100%;
+    border-radius: 10px;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.attide {
+    height: 100%;
+    width: 98%;
+    background-color: #00c853;
+    background-image: url(../../assets/slides/attide.png);
+    background-size: 100% 100%;
+    border-radius: 10px;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.tsms {
+    height: 100%;
+    width: 98%;
+    background-color: #00c853;
+    background-image: url(../../assets/slides/TSMS.png);
+    background-size: 100% 100%;
+    border-radius: 10px;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.eSpacia {
+    height: 100%;
+    width: 98%;
+    background-color: #00c853;
+    background-image: url(../../assets/slides/especia.png);
+    background-size: 100% 100%;
+    border-radius: 10px;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.Modelling-and-Forecasting {
+    height: 100%;
+    width: 98%;
+    background-color: #00c853;
+    background-image: url(../../assets/slides/about.png);
+    background-size: 100% 100%;
+    border-radius: 10px;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.ENC {
+    height: 100%;
+    width: 98%;
+    background-color: #00c853;
+    background-image: url(../../assets/slides/Electronic-Navigational-Charts.png);
+    background-size: 100% 100%;
+    border-radius: 10px;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.geodb {
+    height: 100%;
+    width: 98%;
+    background-color: #00c853;
+    background-image: url(../../assets/slides/Geospatial-DataBase.png);
+    background-size: 100% 100%;
+    border-radius: 10px;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.geodb-round-main {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    background-color: #00c853;
+    height: 60%;
+    width: 37%;
+    border-radius: 50%;
+    background-image: url(../../assets/main-round.png);
+    background-size: 100% 100%;
+    /* padding-top: 1px; */
+    animation: rotateOnce 1s ease-in-out forwards;
+}
+
+@keyframes rotateOnce {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.second-last-db-round {
+    position: absolute;
+    top: 35%;
+    left: 19.2%;
+    background-color: #00c853;
+    height: 30%;
+    width: 18.5%;
+    border-radius: 50%;
+    background-image: url(../../assets/second-main.png);
+    background-size: 100% 100%;
+    animation: rotateOnce 1s ease-in-out forwards;
+}
+
+.third-round-db {
+    height: 22%;
+    width: 13.6%;
+    top: 38.7%;
+    left: 21.8%;
+    background-color: #00ccff;
+    position: absolute;
+    border-radius: 50%;
+    background-image: url(../../assets/3rd-main.png);
+    background-size: 100% 100%;
+    animation: rotateOnce 1s ease-in-out forwards;
+}
+
+.center-db {
+    height: 10.5%;
+    width: 6.5%;
+    top: 44.5%;
+    left: 25.5%;
+    background-color: #7bff00;
+    position: absolute;
+    border-radius: 50%;
+    background-image: url(../../assets/center-main.png);
+    background-size: 100% 100%;
+}
+
+.content_geodb {
+    height: 60%;
+    width: 30%;
+    background-color: rgba(44, 51, 96, 0.247);
+    position: absolute;
+    bottom: 15%;
+    right: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+
+}
+
+.content_geodb h4 {
+    width: 80%;
+    margin: 0;
+}
+
+.content_geodb p {
+    width: 80%;
+}
+
+.content_geodb img {
+    height: 30%;
+    width: 80%;
+}
+
+
+.coastal-buoy {
+    height: 100%;
+    width: 98%;
+    background-color: #00c853;
+    background-image: url(../../assets/slides/TCB.png);
+    background-size: 100% 100%;
+    border-radius: 10px;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.navigational-buoy {
+    height: 100%;
+    width: 98%;
+    background-color: #00c853;
+    background-image: url(../../assets/slides/TNB.png);
+    background-size: 100% 100%;
+    border-radius: 10px;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+.data-buoy {
+    height: 100%;
+    width: 98%;
+    background-color: #00c853;
+    background-image: url(../../assets/slides/TDB.png);
+    background-size: 100% 100%;
+    border-radius: 10px;
+    animation: openLands 0.9s ease-in-out forwards;
+}
+
+@keyframes openLands {
+    0% {
+        height: 0%;
+        width: 0%;
+    }
+
+    100% {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.beach-ms {
+    height: 100%;
+    width: 100%;
+    background-image: url(../../assets/slides//BMS.png);
+    background-size: 100% 100%;
+    animation: openLands 0.9s ease-in-out forwards;
+    border-radius: 10px;
+}
+
+.port-monitoringg {
+    height: 100%;
+    width: 100%;
+    background-image: url(../../assets/slides/Port-Monitoring-System.png);
+    background-size: 100% 100%;
+    animation: openLands 0.9s ease-in-out forwards;
+    border-radius: 10px;
+}
+
+.air-qualityy {
+    height: 100%;
+    width: 100%;
+    background-image: url(../../assets/slides/about.png);
+    background-size: 100% 100%;
+    animation: openLands 0.9s ease-in-out forwards;
+    border-radius: 10px;
+}
+
+.ground-waterr {
+    height: 100%;
+    width: 100%;
+    background-image: url(../../assets/slides/Ground-Water-Monitoring.png);
+    background-size: 100% 100%;
+    animation: openLands 0.9s ease-in-out forwards;
+    border-radius: 10px;
+}
+
+.met-oceann {
+    height: 100%;
+    width: 100%;
+    background-image: url(../../assets/slides/MetOcean-System.png);
+    background-size: 100% 100%;
+    animation: openLands 0.9s ease-in-out forwards;
+    border-radius: 10px;
+}
+
+.fullscreen-bg {
+    background-size: 100% 100%;
+    background-position: center;
+    /* height: 300px; */
+    border: 2px solid #999;
+
+}
+
+:fullscreen {
+    width: 100% !important;
+    height: 100% !important;
+    background-color: black;
+}

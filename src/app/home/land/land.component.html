@@ -1,0 +1,92 @@
+<div class="land-container">
+  <!-- Animated Sky Background -->
+  <div class="sky-background"></div>
+
+  <!-- Floating Sun -->
+  <div class="sun"></div>
+
+  <!-- Animated Clouds -->
+  <div class="cloud cloud1">
+    <svg class="cloud-svg" width="120" height="60" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#ffffff" opacity="0.7">
+      <circle cx="20" cy="16" r="12" />
+      <circle cx="36" cy="14" r="10" />
+      <circle cx="48" cy="18" r="8" />
+      <circle cx="28" cy="20" r="10" />
+    </g>
+  </svg>
+  </div>
+  <div class="cloud cloud2">
+    <svg class="cloud-svg" width="120" height="60" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#ffffff" opacity="0.7">
+      <circle cx="20" cy="16" r="12" />
+      <circle cx="36" cy="14" r="10" />
+      <circle cx="48" cy="18" r="8" />
+      <circle cx="28" cy="20" r="10" />
+    </g>
+  </svg>
+  </div>
+  <div class="cloud cloud3">
+    <svg class="cloud-svg" width="120" height="60" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#ffffff" opacity="0.7">
+      <circle cx="20" cy="16" r="12" />
+      <circle cx="36" cy="14" r="10" />
+      <circle cx="48" cy="18" r="8" />
+      <circle cx="28" cy="20" r="10" />
+    </g>
+  </svg>
+  </div>
+
+    <div class="cloud cloud4">
+    <svg class="cloud-svg" width="120" height="60" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#ffffff" opacity="0.7">
+      <circle cx="20" cy="16" r="12" />
+      <circle cx="36" cy="14" r="10" />
+      <circle cx="48" cy="18" r="8" />
+      <circle cx="28" cy="20" r="10" />
+    </g>
+  </svg>
+  </div>
+
+    <div class="cloud cloud5">
+    <svg class="cloud-svg" width="120" height="60" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#ffffff" opacity="0.7">
+      <circle cx="20" cy="16" r="12" />
+      <circle cx="36" cy="14" r="10" />
+      <circle cx="48" cy="18" r="8" />
+      <circle cx="28" cy="20" r="10" />
+    </g>
+  </svg>
+  </div>
+
+    <svg class="hills" viewBox="0 0 100 20" preserveAspectRatio="none">
+    <path
+      d="M0 20 Q 10 5, 20 15 T 40 10 T 60 15 T 80 10 T 100 20 V 20 H 0 Z"
+      fill="#4B5563" />
+  </svg>
+
+  <!-- Rocky Hills -->
+  <div class="hill hill1"></div>
+  <div class="hill hill2"></div>
+
+  <!-- Animated Trees -->
+  <div class="animated-tree">
+  <svg viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg">
+    <!-- Tree trunk -->
+    <rect x="55" y="80" width="10" height="50" fill="#8B4513" rx="2" />
+
+    <!-- Leaves (big oval shape for canopy) -->
+    <ellipse cx="60" cy="70" rx="30" ry="35" fill="#228B22" class="leaves" />
+    <ellipse cx="50" cy="60" rx="20" ry="25" fill="#2ecc71" class="leaves" />
+    <ellipse cx="70" cy="60" rx="20" ry="25" fill="#27ae60" class="leaves" />
+  </svg>
+</div>
+
+  <!-- Animated Grass -->
+  <div class="grass" *ngFor="let i of grassArray" [ngStyle]="{ left: i + '%' }"></div>
+
+  <!-- Floating Dust Particles -->
+  <div class="particle" *ngFor="let p of particles"
+    [ngStyle]="{ left: p.left + '%', top: p.top + '%', animationDelay: p.delay + 's', animationDuration: p.duration + 's' }">
+  </div>
+</div>
