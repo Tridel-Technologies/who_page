@@ -556,7 +556,7 @@ app-zoomable {
 
 .air-line {
     left: -15%;
-    top: -3%;
+    top: -2%;
     font-weight: bolder;
     width: 8%;
     position: absolute;
@@ -667,8 +667,8 @@ app-zoomable {
 }
 
 .water-line {
-    top: 16%;
-    right: -36%;
+    top: 17%;
+    right: -30%;
     font-weight: bolder;
     width: 8%;
     position: absolute;
@@ -763,7 +763,7 @@ app-zoomable {
 
 .land-line {
     bottom: 16%;
-    right: -35%;
+    right: -30%;
     width: 8%;
     position: absolute;
     align-content: center;
@@ -1028,8 +1028,8 @@ app-zoomable {
     z-index: 1000;
     height: 80%;
     width: 80%;
-    /* background-image: url(../../assets/slides/air.gif); */
-    background: linear-gradient(135deg, #04192b, #005a9e);
+    background-image: url(../../assets/air.jpg);
+    /* background: linear-gradient(135deg, #04192b, #005a9e); */
     background-size: 100% 100%;
     position: absolute;
     right: 10%;
@@ -1059,8 +1059,8 @@ app-zoomable {
 }
 
 .satellite-derived.opened {
-    /* background-image: url(../../assets/slides/air.gif); */
-    background: linear-gradient(135deg, #04192b, #005a9e);
+    background-image: url(../../assets/air.jpg);
+    /* background: linear-gradient(135deg, #04192b, #005a9e); */
     background-size: 100% 100%;
     z-index: 1000;
     height: 80%;
@@ -1093,8 +1093,8 @@ app-zoomable {
 }
 
 .weather-forecase.opened {
-    /* background-image: url(../../assets/slides/air.gif); */
-    background: linear-gradient(135deg, #04192b, #005a9e);
+    background-image: url(../../assets/air.jpg);
+    /* background: linear-gradient(135deg, #04192b, #005a9e); */
     background-size: 100% 100%;
     z-index: 1000;
     height: 80%;
@@ -1146,9 +1146,9 @@ app-zoomable {
 }
 
 .buoys {
-    height: 100px;
+    height: 80px;
     width: 20%;
-    top: 10%;
+    top: 8%;
     position: absolute;
     right: 10%;
     top: 10%;
@@ -1166,7 +1166,7 @@ app-zoomable {
 .buoys.opened {
     /* background-image: url(../../assets/slides/nodes.gif); */
     background-size: 100% 100%;
-    background: linear-gradient(135deg, #04192b, #005a9e);
+    /* background: linear-gradient(135deg, #04192b, #005a9e); */
     z-index: 1000;
     height: 80%;
     width: 90%;
@@ -1174,7 +1174,7 @@ app-zoomable {
     right: 5%;
     top: 10%;
     color: white;
-    /* background-image: url(../../assets/slides/ocean3.gif); */
+    background-image: url(../../assets/water.jpg);
     background-size: 100% 100%;
     background-color: rgba(25, 24, 24, 0.257);
     backdrop-filter: blur(30px);
@@ -1183,12 +1183,12 @@ app-zoomable {
 }
 
 .usv {
-    height: 100px;
+    height: 80px;
     width: 20%;
-    top: 20%;
+    top: 25%;
     position: absolute;
     right: 10%;
-    top: 30%;
+    /* top: 30%; */
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
@@ -1199,9 +1199,9 @@ app-zoomable {
 }
 
 .usv.opened {
-    /* background-image: url(../../assets/slides/ocean3.gif); */
+    background-image: url(../../assets/water.jpg);
     background-size: 100% 100%;
-    background: linear-gradient(135deg, #04192b, #005a9e);
+    /* background: linear-gradient(135deg, #04192b, #005a9e); */
     z-index: 1000;
     height: 80%;
     width: 80%;
@@ -1217,12 +1217,12 @@ app-zoomable {
 }
 
 .survay-vessals {
-    height: 100px;
+    height: 80px;
     width: 20%;
-    top: 20%;
+    /* top: 20%; */
     position: absolute;
     right: 10%;
-    top: 50%;
+    top: 55%;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
@@ -1232,10 +1232,11 @@ app-zoomable {
     align-items: center;
 }
 
+
 .survay-vessals.opened {
-    /* background-image: url(../../assets/slides/ocean3.gif); */
+    background-image: url(../../assets/water.jpg);
     background-size: 100% 100%;
-    background: linear-gradient(135deg, #04192b, #005a9e);
+    /* background: linear-gradient(135deg, #04192b, #005a9e); */
     z-index: 1000;
     height: 80%;
     width: 85%;
@@ -1249,8 +1250,8 @@ app-zoomable {
     border-radius: 10px;
 }
 
-.central-systems {
-    height: 100px;
+.met-ocean {
+    height: 80px;
     width: 20%;
     top: 20%;
     position: absolute;
@@ -1261,14 +1262,84 @@ app-zoomable {
     border: 1px solid white;
     border-radius: 10px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+}
+
+.met-ocean.opened {
+    background-image: url(../../assets/land.png);
+    background-size: 100% 100%;
+    z-index: 1000;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    color: white;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.port-monitoring {
+    height: 80px;
+    width: 20%;
+    top: 20%;
+    position: absolute;
+    right: 10%;
+    top: 40%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.port-monitoring.opened {
+    background-image: url(../../assets/land.png);
+    background-size: 100% 100%;
+    z-index: 1000;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    color: white;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+
+.central-systems {
+    height: 80px;
+    width: 20%;
+    /* top: 20%; */
+    position: absolute;
+    right: 10%;
+    top: 85%;
+    background-color: rgba(51, 50, 50, 0.257);
+    backdrop-filter: blur(12px);
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .central-systems.opened {
-    /* background-image: url(../../assets/slides/ocean3.gif); */
+    background-image: url(../../assets/water.jpg);
     background-size: 100% 100%;
-    background: linear-gradient(135deg, #04192b, #005a9e);
+    /* background: linear-gradient(135deg, #04192b, #005a9e); */
     z-index: 1000;
     height: 80%;
     width: 80%;
@@ -1285,7 +1356,7 @@ app-zoomable {
 
 
 .beach-monitoring {
-    height: 70px;
+    height: 90px;
     width: 20%;
     top: 20%;
     position: absolute;
@@ -1303,41 +1374,7 @@ app-zoomable {
 }
 
 .beach-monitoring.opened {
-    /* background-image: url(../../assets/slides/Iug.gif); */
-    background-size: 100% 100%;
-    z-index: 1000;
-    height: 80%;
-    width: 80%;
-    position: absolute;
-    right: 10%;
-    top: 10%;
-    color: white;
-    background-color: rgba(51, 50, 50, 0.257);
-    backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
-}
-
-.port-monitoring {
-    height: 70px;
-    width: 20%;
-    top: 20%;
-    position: absolute;
-    right: 10%;
-    top: 30%;
-    background-color: rgba(51, 50, 50, 0.257);
-    backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
-
-.port-monitoring.opened {
-    /* background-image: url(../../assets/slides/Iug.gif); */
+    background-image: url(../../assets/land.png);
     background-size: 100% 100%;
     z-index: 1000;
     height: 80%;
@@ -1353,12 +1390,12 @@ app-zoomable {
 }
 
 .air-quality {
-    height: 70px;
+    height: 90px;
     width: 20%;
     top: 20%;
     position: absolute;
     right: 10%;
-    top: 44%;
+    top: 47%;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
@@ -1371,7 +1408,7 @@ app-zoomable {
 }
 
 .air-quality.opened {
-    /* background-image: url(../../assets/slides/Iug.gif); */
+    background-image: url(../../assets/land.png);
     background-size: 100% 100%;
     z-index: 1000;
     height: 80%;
@@ -1387,12 +1424,12 @@ app-zoomable {
 }
 
 .ground-water {
-    height: 70px;
+    height: 90px;
     width: 20%;
     top: 20%;
     position: absolute;
     right: 10%;
-    top: 57%;
+    top: 77%;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
@@ -1405,42 +1442,7 @@ app-zoomable {
 }
 
 .ground-water.opened {
-    /* background-image: url(../../assets/slides/Iug.gif); */
-    background-size: 100% 100%;
-    z-index: 1000;
-    height: 80%;
-    width: 80%;
-    position: absolute;
-    right: 10%;
-    top: 10%;
-    color: white;
-    background-color: rgba(51, 50, 50, 0.257);
-    backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
-}
-
-.met-ocean {
-    height: 70px;
-    width: 20%;
-    top: 20%;
-    position: absolute;
-    right: 10%;
-    top: 72%;
-    background-color: rgba(51, 50, 50, 0.257);
-    backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    border-radius: 10px;
-}
-
-.met-ocean.opened {
-    /* background-image: url(../../assets/slides/Iug.gif); */
+    background-image: url(../../assets/land.png);
     background-size: 100% 100%;
     z-index: 1000;
     height: 80%;
@@ -1499,7 +1501,7 @@ app-zoomable {
     flex-direction: row;
     position: relative;
     border-radius: 10px;
-    background-image: url(../../assets/slides/WFS.png);
+    background-image: url(../../assets/slides/Weather-Forecasting-System.png);
     background-size: 100% 100%;
     animation: openLands 0.9s ease-in-out forwards;
 }
@@ -1514,7 +1516,7 @@ app-zoomable {
     flex-direction: row;
     position: relative;
     border-radius: 10px;
-    background-image: url(../../assets/slides/about.png);
+    background-image: url(../../assets/slides/Deep-Water-Buoys.png);
     background-size: 100% 100%;
     animation: openLands 0.9s ease-in-out forwards;
 }
@@ -2337,7 +2339,7 @@ app-zoomable {
     border-radius: 10px;
     animation: openLands 0.8s ease-in-out forwards;
     background-color: #406478;
-    background-image: url(../../assets/slides/Tridel-Electric-Winch-TEW-500.png);
+    background-image: url(../../assets/slides/Tridel-Electric-Winch-\(TEW-500\).png);
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
@@ -2351,7 +2353,7 @@ app-zoomable {
     border-radius: 10px;
     animation: openLands 0.8s ease-in-out forwards;
     background-color: #406478;
-    background-image: url(../../assets/slides/Tridel-Electric-Winch-TEW-500.png);
+    background-image: url(../../assets/slides/Tridel-Electric-Winch-\(TEW-500\).png);
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
@@ -2365,7 +2367,7 @@ app-zoomable {
     border-radius: 10px;
     animation: openLands 0.8s ease-in-out forwards;
     background-color: #406478;
-    background-image: url(../../assets/slides/Tridel-Electric-Winch-TEW-1500.png);
+    background-image: url(../../assets/slides/Tridel-Electric-Winch-\(TEW-1500\).png);
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
@@ -2447,7 +2449,7 @@ app-zoomable {
     height: 100%;
     width: 98%;
     background-color: #00c853;
-    background-image: url(../../assets/slides/attide.png);
+    background-image: url(../../assets/slides/ATtide.png);
     background-size: 100% 100%;
     border-radius: 10px;
     animation: openLands 0.9s ease-in-out forwards;
@@ -2487,7 +2489,7 @@ app-zoomable {
     height: 100%;
     width: 98%;
     background-color: #00c853;
-    background-image: url(../../assets/slides/Electronic-Navigational-Charts.png);
+    background-image: url(../../assets/slides/Nautical-Navigational-Charts.png);
     background-size: 100% 100%;
     border-radius: 10px;
     animation: openLands 0.9s ease-in-out forwards;
@@ -2658,7 +2660,7 @@ app-zoomable {
 .air-qualityy {
     height: 100%;
     width: 100%;
-    background-image: url(../../assets/slides/about.png);
+    background-image: url(../../assets/slides/AQMS.png);
     background-size: 100% 100%;
     animation: openLands 0.9s ease-in-out forwards;
     border-radius: 10px;

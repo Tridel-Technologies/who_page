@@ -23,7 +23,8 @@ initOceanWaves() {
   const waves = [
     { amplitude: 6, length: 0.01, speed: 0.02, color: 'rgba(0, 110, 255, 0.36)' },
     { amplitude: 9, length: 0.015, speed: 0.015, color: 'rgba(0, 140, 255, 0.41)' },
-    { amplitude: 12, length: 0.02, speed: 0.01, color: 'rgba(0, 179, 255, 0.43)' },
+    { amplitude: 15
+      , length: 0.02, speed: 0.01, color: 'rgba(0, 179, 255, 0.43)' },
     { amplitude: 5, length: 0.03, speed: 0.018, color: 'rgba(0, 213, 255, 0.43)' },
   ];
 
@@ -115,8 +116,8 @@ initOceanWaves() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     drawStars();
-    drawMoon();
-    drawShip();
+    // drawMoon();
+    // drawShip();
     drawWaves();
     drawWaves(true);
 

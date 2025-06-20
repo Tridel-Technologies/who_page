@@ -61,7 +61,7 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     }
   }
 
-  globeAnimationClass!:string; // Add this to your component class
+  globeAnimationClass!: string; // Add this to your component class
 
   back() {
     this.is_tapped_air = false;
@@ -84,7 +84,7 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
   }
 
   back2() {
-   
+
     const logo = document.querySelector('.cirle-globe');
 
     logo?.classList.remove('animated1');
@@ -92,7 +92,7 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     logo?.classList.remove('goleft');
     this.pathsData = [];
     // setTimeout(() => {
-       this.is_tapped_main = false;
+    this.is_tapped_main = false;
     this.is_tapped_air = false;
     this.is_tapped_terrain = false;
     this.is_tapped_marine = false;
@@ -171,16 +171,18 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
       'center-target2',
       'center-target3',
       'center-target4',
+      'bottom-target2',
+      'bottom-target5',
     ]);
   }
 
   drawPaths_terrain() {
     this.setPaths('top-source3', [
       'bottom-target1',
-      'bottom-target2',
+      // 'bottom-target2',
       'bottom-target3',
       'bottom-target4',
-      'bottom-target5',
+      // 'bottom-target5',
     ]);
   }
   pathsData: { d: string }[] = [];
@@ -244,9 +246,8 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     const midX = (x1 + x2) / 2;
     const curve = 40;
 
-    return `M ${x1},${y1} C ${midX},${y1 - curve} ${midX},${
-      y2 + curve
-    } ${x2},${y2}`;
+    return `M ${x1},${y1} C ${midX},${y1 - curve} ${midX},${y2 + curve
+      } ${x2},${y2}`;
   }
 
   // ----------- Animation handling --------------
@@ -436,12 +437,15 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
         break;
       case 'usv':
         this.isUsvOpen = true;
+        this.droppedItems2 = 'Aquilon 5600';
         break;
       case 'survay-vessals':
         this.isSurveyVesselOpen = true;
+        this.droppedItems3 = 'Monohull Survey Vessel';
         break;
       case 'central-systems':
         this.isCentralSystemsOpen = true;
+        this.droppedItems4 = 'TEMS';
         break;
 
       case 'beach-monitoring':
@@ -515,16 +519,16 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     'Drifter Buoy',
   ];
   USVData: string[] = [
-    'Seafloor TriDrone',
-    'Seafloor HydroCat-550',
     'Aquilon 5600',
     'Aquilon 8000',
-    'Tridel Ark',
+    'Seafloor TriDrone',
+    'Seafloor HydroCat-550',
   ];
   Survey_Vessel: string[] = [
     'Monohull Survey Vessel',
     'Catamaran Survey Vessel',
     'ECFS & Ship Borne Weather Station',
+    'Tridel Ark',
     'Deck Gears',
   ];
   deck_gears: string[] = [
@@ -551,25 +555,42 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
   currentusvIndex: number = 0;
   currentsurveyIndex: number = 0;
   currentcontrolIndex: number = 0;
+// Add this to your component
+customBuoySequence: string[] = [
+  'Data Buoy',
+  'Coastal Data Buoy',
+  'Deep Water Buoy',
+  'Drifter Buoy',
+  'Navigation Buoy',
+  'Mooring Buoy'
+];
 
-  nextBuoy() {
-    const allItems = [...this.DatabuoyItems];
-    let currentIndex = allItems.indexOf(this.dropBuoyis);
-
-    if (currentIndex < allItems.length - 1) {
-      this.dropBuoyis = allItems[currentIndex + 1];
-    }
-    console.log(this.dropBuoyis);
+// NEXT functione
+nextBuoy() {
+  const index = this.customBuoySequence.indexOf(this.dropBuoyis);
+  if (index < this.customBuoySequence.length - 1) {
+    this.dropBuoyis = this.customBuoySequence[index + 1];
+    this.droppedItems1 = this.customBuoySequence[index + 1];
+  } else {
+    // Optionally loop back to start:
+    this.dropBuoyis = this.customBuoySequence[0];
+    this.droppedItems1 = this.customBuoySequence[0];
   }
+  console.log('Next:', this.dropBuoyis);
+}
 
-  prevBuoy() {
-    const allItems = [...this.buoyItems, ...this.DatabuoyItems];
-    let currentIndex = allItems.indexOf(this.dropBuoyis);
-
-    if (currentIndex > 0) {
-      this.dropBuoyis = allItems[currentIndex - 1];
-    }
+// PREVIOUS function
+prevBuoy() {
+  const index = this.customBuoySequence.indexOf(this.dropBuoyis);
+  if (index > 0) {
+    this.dropBuoyis = this.customBuoySequence[index - 1];
+  } else {
+    // Optionally go to last item:
+    this.dropBuoyis = this.customBuoySequence[this.customBuoySequence.length - 1];
   }
+  console.log('Previous:', this.dropBuoyis);
+}
+
 
   nextusv() {
     this.currentusvIndex = (this.currentusvIndex + 1) % this.USVData.length;
@@ -582,46 +603,107 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
   }
   nextsurvey() {
     console.log(this.droppedItems3);
+    //  'Monohull Survey Vessel',
+    // 'Catamaran Survey Vessel',
+    // 'ECFS & Ship Borne Weather Station',
+    // 'Deck Gears',
+    if (this.droppedItems3 === 'Monohull Survey Vessel' || this.droppedItems3 === 'Catamaran Survey Vessel' || this.droppedItems3 === 'ECFS & Ship Borne Weather Station'
+      // ||this.droppedItems3==='Deck Gears'
+    ) {
+      const i = this.Survey_Vessel.indexOf(this.droppedItems3);
+      if (i < this.Survey_Vessel.length - 1) {
+        this.droppedItems3 = this.Survey_Vessel[i + 1];
+        this.showvessels = false;
+        if (this.droppedItems3 === 'Deck Gears') {
+          setTimeout(() => {
 
-    if (this.deck_gears.includes(this.droppedItems3)) {
-      const index = this.deck_gears.indexOf(this.droppedItems3);
-      if (index < this.deck_gears.length - 1) {
-        this.droppedItems3 = this.deck_gears[index + 1];
-      } else {
-        this.droppedItems3 = this.deck_gears[0];
+            this.droppedItems3 = this.deck_gears[0];
+          }, 50);
+          
+          this.showvessels = true;
+         
+        }
       }
-    } else if (this.winch.includes(this.droppedItems3)) {
-      const index = this.winch.indexOf(this.droppedItems3);
-      if (index < this.winch.length - 1) {
-        this.droppedItems3 = this.winch[index + 1];
-      } else {
-        this.droppedItems3 = this.winch[0];
+      else {
+        this.droppedItems3 = this.Survey_Vessel[0];
       }
     }
+     if (this.deck_gears.includes(this.droppedItems3)) {
+            const index = this.deck_gears.indexOf(this.droppedItems3);
+            if (index < this.deck_gears.length - 1) {
+              this.droppedItems3 = this.deck_gears[index + 1];
+              if (this.droppedItems3 ==='Tridel Electric Winch') {
+                this.droppedItems3 = 'TEW 500';
+                this.showwinch = true;
+                
+              }
+            } else {
+              this.droppedItems3 = this.deck_gears[0];
+            }
+          } else if (this.winch.includes(this.droppedItems3)) {
+            const index = this.winch.indexOf(this.droppedItems3);
+            if (index < this.winch.length - 1) {
+              this.droppedItems3 = this.winch[index + 1];
+            } else {
+              this.droppedItems3 = this.winch[0];
+            }
+          }
+
+
 
     console.log(this.droppedItems3);
   }
 
   prevsurvey() {
-    console.log(this.droppedItems3);
+  
+  console.log(this.droppedItems3);
 
-    if (this.deck_gears.includes(this.droppedItems3)) {
-      const index = this.deck_gears.indexOf(this.droppedItems3);
-      if (index < this.deck_gears.length - 1) {
-        this.droppedItems3 = this.deck_gears[index - 1];
-      } else {
-        this.droppedItems3 = this.deck_gears[0];
-      }
-    } else if (this.winch.includes(this.droppedItems3)) {
-      const index = this.winch.indexOf(this.droppedItems3);
-      if (index < this.winch.length - 1) {
-        this.droppedItems3 = this.winch[index - 1];
-      } else {
-        this.droppedItems3 = this.winch[0];
-      }
+  // Go backward inside winch list
+  if (this.winch.includes(this.droppedItems3)) {
+    const index = this.winch.indexOf(this.droppedItems3);
+    if (index > 0) {
+      this.droppedItems3 = this.winch[index - 1];
+    } else {
+      // Go to last item in deck_gears
+      this.droppedItems3 = this.deck_gears[this.deck_gears.length - 1];
+    }
+  }
+
+  // Go backward inside deck_gears list
+  else if (this.deck_gears.includes(this.droppedItems3)) {
+    const index = this.deck_gears.indexOf(this.droppedItems3);
+    if (index > 0) {
+      this.droppedItems3 = this.deck_gears[index - 1];
+    } else {
+      // Go to last item in Survey_Vessel
+      this.droppedItems3 = this.Survey_Vessel[this.Survey_Vessel.length - 1];
     }
 
-    console.log(this.droppedItems3);
+    this.showwinch = false;
+    this.showvessels = true;
+  }
+
+  // Go backward inside Survey_Vessel list
+  else if (this.Survey_Vessel.includes(this.droppedItems3)) {
+    const index = this.Survey_Vessel.indexOf(this.droppedItems3);
+    if (index > 0) {
+      this.droppedItems3 = this.Survey_Vessel[index - 1];
+    } else {
+      // If first item, go to last deck_gear item
+      this.droppedItems3 = this.deck_gears[this.deck_gears.length - 1];
+    }
+
+    this.showvessels = false;
+    if (this.droppedItems3 === 'Deck Gears') {
+      setTimeout(() => {
+        this.droppedItems3 = this.deck_gears[this.deck_gears.length - 1];
+      }, 50);
+      this.showvessels = true;
+    }
+  }
+
+  console.log(this.droppedItems3);
+  
     // this.currentsurveyIndex = (this.currentsurveyIndex - 1 + this.Survey_Vessel.length) % this.Survey_Vessel.length;
     // this.droppedItems3 = this.Survey_Vessel[this.currentsurveyIndex];
   }
@@ -750,8 +832,11 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
       } else {
         this.droppedItems3 = item; // Handles 'Deck Gears' and others
       }
-      if(this.droppedvessel === 'Deck Gears') {
-        this.droppedItems3='Mooring Frames & Bottom Mounts';
+      if (this.droppedvessel === 'Deck Gears') {
+        this.droppedItems3 = 'Mooring Frames & Bottom Mounts';
+      }
+      if (this.droppedvessel === 'Tridel Electric Winch') {
+        this.droppedItems3 = 'TEW 500';
       }
       if (
         this.droppedvessel === 'Deck Gears' ||
