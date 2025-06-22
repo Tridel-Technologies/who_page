@@ -587,7 +587,8 @@ customBuoySequence: string[] = [
 ];
 
 // NEXT functione
-nextBuoy() {
+nextBuoy(event: Event) {
+  event?.stopPropagation();
   const index = this.customBuoySequence.indexOf(this.dropBuoyis);
   if (index < this.customBuoySequence.length - 1) {
     this.dropBuoyis = this.customBuoySequence[index + 1];
@@ -601,7 +602,8 @@ nextBuoy() {
 }
 
 // PREVIOUS function
-prevBuoy() {
+prevBuoy(event: Event) {
+  event?.stopPropagation();
   const index = this.customBuoySequence.indexOf(this.dropBuoyis);
   if (index > 0) {
     this.dropBuoyis = this.customBuoySequence[index - 1];
@@ -613,17 +615,20 @@ prevBuoy() {
 }
 
 
-  nextusv() {
+  nextusv(event: Event) {
+  event?.stopPropagation();
     this.currentusvIndex = (this.currentusvIndex + 1) % this.USVData.length;
     this.droppedItems2 = this.USVData[this.currentusvIndex];
   }
-  prevusv() {
+  prevusv(event: Event) {
+  event?.stopPropagation();
     this.currentusvIndex =
       (this.currentusvIndex - 1 + this.USVData.length) % this.USVData.length;
     this.droppedItems2 = this.USVData[this.currentusvIndex];
   }
 
-  nextsurvey() {
+  nextsurvey(event: Event) {
+  event?.stopPropagation();
     console.log(this.droppedItems3);
     //  'Monohull Survey Vessel',
     // 'Catamaran Survey Vessel',
@@ -676,7 +681,8 @@ prevBuoy() {
     console.log(this.droppedItems3);
   }
  
-  prevsurvey() {
+  prevsurvey(event: Event) {
+  event?.stopPropagation();
   
   console.log(this.droppedItems3);
  
@@ -731,12 +737,14 @@ prevBuoy() {
   }
  
 
-  nextcontrol() {
+  nextcontrol(event: Event) {
+  event?.stopPropagation();
     this.currentcontrolIndex =
       (this.currentcontrolIndex + 1) % this.Central_System.length;
     this.droppedItems4 = this.Central_System[this.currentcontrolIndex];
   }
-  prevcontrol() {
+  prevcontrol(event: Event) {
+  event?.stopPropagation();
     this.currentcontrolIndex =
       (this.currentcontrolIndex - 1 + this.Central_System.length) %
       this.Central_System.length;
