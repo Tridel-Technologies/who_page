@@ -1,6 +1,8 @@
 <div class="home">
 
-    <div class="back" (click)="back2()"></div>
+    <div class="back" data-tooltip="Click to go Home" (click)="back2()" [ngStyle]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ||!is_tapped_main? {'display':'none'} : {'display':'flex'}">
+        <h1><</h1>
+    </div>
 
     <div class="top_section" *ngIf="!is_tapped_main">
         <p>Connecting<br>Environmental Science,<br>Engineering and Technology </p>
@@ -9,7 +11,7 @@
 
     <!-- (dblclick)="back2()" -->
     <div class="top_section2" (click)="back()" id="backback"
-       *ngIf="is_tapped_main" data-tooltip="click to go back/double click to home"
+       *ngIf="is_tapped_main" [attr.data-tooltip]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? 'click to go back':''"
         [ngStyle]="{'height':is_tapped_air|| is_tapped_marine || is_tapped_terrain ? '50px':'','width':is_tapped_air|| is_tapped_marine || is_tapped_terrain?'50px':'' }">
         <!-- <p>Connecting<br>Environmental Science,<br>Engineering and Technology </p> -->
         <img src="../../assets/tridel_logo.png" alt="Tridel_Logo">
@@ -42,12 +44,13 @@
         <div class="globe-description" style="color:white;"
             *ngIf="!is_tapped_air && !is_tapped_marine && !is_tapped_terrain">
             <h2>About Us</h2>
-            <p>Tridel Technologies specialises in end-to-end Marine, Environmental survey and monitoring solutions</p>
+            <p>TridelTechnologies specialises in</p>
 
-            <p>We build Manned & Unmanned Survey Platforms, Buoys, and Monitoring systems</p>
-            <p>Tridel Technologies provides turnkey solutions to customer specific problems, system integration,
-                deployment, data analytics, and system maintenance</p>
-            <p> We also deliver survey projects in Hydrographic value chain as per IHO standards</p>
+            <p>Providing end-to-end Survey Solutions for real-time monitoring and data acquisition</p>
+            <p>Building manned and unmanned survey vessels, oceanographic buoys, and sensor-based monitoring systems</p>
+            <p>From custom system design to integration, deployment, data analytics, and long-term maintenance</p>
+            <p>Delivering high-quality environmental intelligence through reliable, scalable technologies</p>
+            <p>Executing full-spectrum survey projects aligned with IHO standards across the hydrographic value chain</p>
         </div>
         <div class="cirle-globe">
             <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? is_tapped_air? 'airline-go-active':'airline-go': 'air-line'"
@@ -56,38 +59,45 @@
                 AIR/ATMOS</div>
             <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? is_tapped_marine? 'waterline-go-active': 'waterline-go': 'water-line'"
                 id="top-source2" (click)="moveGlobe('marine')"
-                data-tooltip="Click here to view MARINE Services & Products">MARINE
+                data-tooltip="Click here to view Marine Services & Products">MARINE
             </div>
             <div [ngClass]="is_tapped_air|| is_tapped_marine || is_tapped_terrain ? is_tapped_terrain? 'landline-go-active': 'landline-go': 'land-line'"
                 id="top-source3" (click)="moveGlobe('terrain')"
-                data-tooltip="Click here to view TERRESTRIAL Services & Products">
+                data-tooltip="Click here to view Terrestrial Services & Products">
                 TERRESTRIAL</div>
             <!-- <img src="../../assets/globe.png" alt="Globe" style="width:100%;height:100%;object-fit:contain;" /> -->
         </div>
     </div>
 
-
-    <div class="aerial-mapping zoomable-widget" id="target1" *ngIf="is_tapped_air">
-        <div class="close" *ngIf="isAerialOpen || isSatelliteOpen || isWeatherOpen"
-            (click)="zoomOutt(['aerial-mapping', 'satellite-derived', 'weather-forecase'])">x</div>
-        <h4 *ngIf="!isAerialOpen">Aerial Mapping</h4>
+<!-- <div class="closeee" *ngIf="isAerialOpen || isSatelliteOpen || isWeatherOpen"
+            (click)="zoomOutt(['aerial-mapping', 'satellite-derived', 'weather-forecase'])">x</div> -->
+    <div class="aerial-mapping zoomable-widget" id="target1" *ngIf="is_tapped_air" (click)="onclicked($event)">
+         <div class="close" *ngIf="isAerialOpen"
+           (click)="closeee('aerial-mapping', $event)">
+            x</div>
+        <img *ngIf="!isAerialOpen" class="imgg" src="../../assets/slides/7.png"/><h4 *ngIf="!isAerialOpen">Aerial Mapping</h4>
         <!-- <app-wave *ngIf="isAerialOpen"></app-wave> -->
         <!-- <app-air *ngIf="isAerialOpen"></app-air> -->
         <div *ngIf="isAerialOpen" class="main_aerial fullscreen-bg" id="main_aerialr"
             (dblclick)="toggleFullscreen('main_aerialr')" (touchend)="onTouchEnddd($event, 'main_aeriral')">
         </div>
     </div>
-    <div class="satellite-derived zoomable-widget" id="target2" *ngIf="is_tapped_air">
-        <h4 *ngIf="!isSatelliteOpen">Satellite Derived Products</h4>
+    <div class="satellite-derived zoomable-widget" id="target2" *ngIf="is_tapped_air"  (click)="onclicked($event)">
+        <div class="close" *ngIf="isSatelliteOpen"
+             (click)="closeee('satellite-derived', $event)">
+            x</div>
+       <img *ngIf="!isSatelliteOpen" class="imgg" src="../../assets/slides/8.png"/> <h4 *ngIf="!isSatelliteOpen">Satellite Derived Products</h4>
         <!-- <app-air *ngIf="isSatelliteOpen"></app-air> -->
         <div *ngIf="isSatelliteOpen" class="main_sattllite fullscreen-bg" id="main_sattlliter"
             (dblclick)="toggleFullscreen('main_sattlliter')" (touchend)="onTouchEnddd($event, 'main_sattlliter')">
         </div>
 
     </div>
-    <div class="weather-forecase zoomable-widget" id="target3" *ngIf="is_tapped_air">
-
-        <h4 *ngIf="!isWeatherOpen">Weather Forecasting</h4>
+    <div class="weather-forecase zoomable-widget" id="target3" *ngIf="is_tapped_air"  (click)="onclicked($event)">
+    <div class="close" *ngIf="isWeatherOpen"
+    (click)="closeee('weather-forecase', $event)">
+             x</div>
+       <img *ngIf="!isWeatherOpen" class="imgg" src="../../assets/slides/9.png"/> <h4 *ngIf="!isWeatherOpen">Weather Forecasting</h4>
         <!-- <app-land style=" display: flex; height: 100%; width: 100%;" *ngIf="isWeatherOpen"></app-land> -->
         <!-- <app-air *ngIf="isWeatherOpen"></app-air> -->
         <div *ngIf="isWeatherOpen" class="main_weather fullscreen-bg" id="main_weatherr"
@@ -95,10 +105,12 @@
         </div>
     </div>
 
-    <div class="buoys zoomable-widget" id="center-target1" *ngIf="is_tapped_marine">
+    <div class="buoys zoomable-widget" id="center-target1" *ngIf="is_tapped_marine"  (click)="onclicked($event)"
+    [ngStyle]="{'opacity':isUsvOpen ||isPortMonitoringOpen||isSurveyVesselOpen||isMetOceanOpen||isCentralSystemsOpen?'0':'1'}"
+     >
         <div class="close" [ngStyle]="{'right':isSurveyVesselOpen?'-59px':''}"
-            *ngIf="isBuoysOpen || isUsvOpen || isSatelliteOpen||isSurveyVesselOpen|| isCentralSystemsOpen|| isBeachMonitoringOpen|| isPortMonitoringOpen|| isAirQualityOpen||isGroundWaterOpen|| isMetOceanOpen"
-            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            *ngIf="isBuoysOpen  || isSatelliteOpen|| isBeachMonitoringOpen|| isAirQualityOpen||isGroundWaterOpen"
+    (click)="closeee('buoys', $event)">
             x</div>
         <div class="navigations" *ngIf="isBuoysOpen">
             <div class="left-arrow" (click)="prevBuoy()">
@@ -122,7 +134,7 @@
                 </g>
             </svg>
         </div>
-        <h4 *ngIf="!isBuoysOpen" style="color: white; align-self: center">Buoys</h4>
+        <img *ngIf="!isBuoysOpen" class="imgg" src="../../assets/slides/1.png"/><h4 *ngIf="!isBuoysOpen" style="color: white; align-self: center">Buoys</h4>
         <!-- <app-wave *ngIf="isBuoysOpen"></app-wave> -->
         <div class="items-list" *ngIf="isBuoysOpen">
             <div [ngClass]="dropBuoyis ===item? 'buoy-list-selected':'buoy-list'" *ngFor="let item of buoyItems"
@@ -221,7 +233,10 @@
 
 
 
-    <div class="usv zoomable-widget" id="center-target2" *ngIf="is_tapped_marine">
+    <div class="usv zoomable-widget" id="center-target2" *ngIf="is_tapped_marine" (click)="onclicked($event)">
+        <div class="close" *ngIf="isUsvOpen"
+            (click)="closeee('usv', $event)">
+            x</div>
         <div class="navigations" *ngIf="isUsvOpen">
             <div class="left-arrow" (click)="prevusv()">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -244,7 +259,7 @@
                 </g>
             </svg>
         </div>
-        <h4 style="color: white;" *ngIf="!isUsvOpen">USV</h4>
+        <img *ngIf="!isUsvOpen" class="imgg" src="../../assets/slides/2.png"/><h4 style="color: white;" *ngIf="!isUsvOpen">USVs</h4>
         <!-- <app-wave *ngIf="isUsvOpen"></app-wave> -->
         <div *ngIf="isUsvOpen" class="items-list">
             <div [ngClass]="droppedItems2 ===item? 'buoy-list-selected':'buoy-list'" *ngFor="let item of USVData"
@@ -294,27 +309,31 @@
             </div> -->
 
     </div>
- <div class="port-monitoring zoomable-widget" id="bottom-target2" *ngIf="is_tapped_marine">
+ <div class="port-monitoring zoomable-widget" id="bottom-target2" *ngIf="is_tapped_marine"  (click)="onclicked($event)">
+
         <div class="close" *ngIf="isPortMonitoringOpen"
-            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            (click)="closeee('port-monitoring', $event)">
             x</div>
-        <h4 *ngIf="!isPortMonitoringOpen">Port Monitoring System</h4>
+        <img *ngIf="!isPortMonitoringOpen" class="imgg" src="../../assets/slides/3.png"/><h4 *ngIf="!isPortMonitoringOpen">Port Monitoring System</h4>
         <div *ngIf="isPortMonitoringOpen" class="port-monitoringg fullscreen-bg" id="portDiv"
             (dblclick)="toggleFullscreen('portDiv')" (touchend)="onTouchEnddd($event, 'portDiv')"></div>
 
        
     </div>
-    <div class="met-ocean zoomable-widget" id="bottom-target5" *ngIf="is_tapped_marine">
+    <div class="met-ocean zoomable-widget" id="bottom-target5" *ngIf="is_tapped_marine" (click)="onclicked($event)">
         <div class="close" *ngIf=" isMetOceanOpen"
-            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            (click)="closeee('met-ocean', $event)">
             x</div>
-        <h4 *ngIf="!isMetOceanOpen">MetOcean System</h4>
+        <img *ngIf="!isMetOceanOpen" class="imgg" src="../../assets/slides/5.png"/><h4 *ngIf="!isMetOceanOpen">MetOcean System</h4>
         <div *ngIf="isMetOceanOpen" class="met-oceann fullscreen-bg" id="metDiv" (dblclick)="toggleFullscreen('metDiv')"
             (touchend)="onTouchEnddd($event, 'metDiv')"></div>
 
     </div>
     
-    <div class="survay-vessals zoomable-widget" id="center-target3" *ngIf="is_tapped_marine">
+    <div class="survay-vessals zoomable-widget" id="center-target3" *ngIf="is_tapped_marine" (click)="onclicked($event)">
+        <div class="close" *ngIf="isSurveyVesselOpen"
+            (click)="closeee('survay-vessals', $event)">
+            x</div>
         <div class="navigations" *ngIf="isSurveyVesselOpen">
             <div class="left-arrow" (click)="prevsurvey()">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -337,7 +356,7 @@
                 </g>
             </svg>
         </div>
-        <h4 style="color: white;" *ngIf="!isSurveyVesselOpen">Survey Vessels </h4>
+        <img *ngIf="!isSurveyVesselOpen" class="imgg" src="../../assets/slides/4.png"/><h4 style="color: white;" *ngIf="!isSurveyVesselOpen">Survey Vessels </h4>
         <!-- <app-wave *ngIf="isSurveyVesselOpen"></app-wave> -->
         <div *ngIf="isSurveyVesselOpen" class="items-list">
             <div [ngClass]="droppedItems3 ===item? 'buoy-list-selected':'buoy-list'" *ngFor="let item of Survey_Vessel"
@@ -431,7 +450,11 @@
 
 
 
-    <div class="central-systems zoomable-widget" id="center-target4" *ngIf="is_tapped_marine">
+    <div class="central-systems zoomable-widget" id="center-target4"  (click)="onclicked($event)" *ngIf="is_tapped_marine" [ngStyle]="{'opacity':isUsvOpen || isPortMonitoringOpen || isSurveyVesselOpen || isMetOceanOpen || isBuoysOpen? '0':'1'}"
+  >
+        <div class="close" *ngIf="isCentralSystemsOpen"
+            (click)="closeee('central-systems', $event)">
+            x</div>
         <div class="navigations" *ngIf="isCentralSystemsOpen">
             <div class="left-arrow" (click)="prevcontrol()">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -454,7 +477,7 @@
                 </g>
             </svg>
         </div>
-        <h4 style="color: white;" *ngIf="!isCentralSystemsOpen"> Central System</h4>
+        <img *ngIf="!isCentralSystemsOpen" class="imgg" src="../../assets/slides/6.png"/><h4 style="color: white;" *ngIf="!isCentralSystemsOpen"> Software Solutions</h4>
         <!-- <app-wave *ngIf="isCentralSystemsOpen"></app-wave> -->
         <div *ngIf="isCentralSystemsOpen" class="items-list">
             <div [ngClass]="droppedItems4 ===item? 'buoy-list-selected':'buoy-list'" *ngFor="let item of Central_System"
@@ -520,11 +543,11 @@
     </div>
 
 
-    <div class="beach-monitoring zoomable-widget" id="bottom-target1" *ngIf="is_tapped_terrain">
+    <div class="beach-monitoring zoomable-widget" id="bottom-target1" *ngIf="is_tapped_terrain"  (click)="onclicked($event)">
         <div class="close" *ngIf="isBeachMonitoringOpen"
-            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            (click)="closeee('beach-monitoring', $event)">
             x</div>
-        <h4 *ngIf="!isBeachMonitoringOpen">Beach Monitoring System</h4>
+        <img *ngIf="!isBeachMonitoringOpen" class="imgg" src="../../assets/slides/10.png"/><h4 *ngIf="!isBeachMonitoringOpen">Beach Monitoring System</h4>
         <div *ngIf="isBeachMonitoringOpen" class="beach-ms fullscreen-bg" id="beachDiv"
             (dblclick)="toggleFullscreen('beachDiv')" (touchend)="onTouchEnddd($event, 'beachDiv')"></div>
 
@@ -534,11 +557,11 @@
 
    
 
-    <div class="air-quality zoomable-widget" id="bottom-target3" *ngIf="is_tapped_terrain">
+    <div class="air-quality zoomable-widget" id="bottom-target3" *ngIf="is_tapped_terrain" (click)="onclicked($event)">
         <div class="close" *ngIf="isAirQualityOpen"
-            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            (click)="closeee('air-quality', $event)">
             x</div>
-        <h4 *ngIf="!isAirQualityOpen">Air Quality Monitoring System</h4>
+        <img *ngIf="!isAirQualityOpen" class="imgg" src="../../assets/slides/11.png"/><h4 *ngIf="!isAirQualityOpen">Air Quality Monitoring System</h4>
         <div *ngIf="isAirQualityOpen" class="air-qualityy fullscreen-bg" id="airDiv"
             (dblclick)="toggleFullscreen('airDiv')" (touchend)="onTouchEnddd($event, 'airDiv')"></div>
 
@@ -546,11 +569,11 @@
             *ngIf="isAirQualityOpen"></app-land> -->
     </div>
 
-    <div class="ground-water zoomable-widget" id="bottom-target4" *ngIf="is_tapped_terrain">
+    <div class="ground-water zoomable-widget" id="bottom-target4" *ngIf="is_tapped_terrain"  (click)="onclicked($event)">
         <div class="close" *ngIf="isGroundWaterOpen"
-            (click)="zoomOutt(['aerial-mapping','buoys', 'satellite-derived','met-ocean','air-quality', 'weather-forecase','ground-water', 'usv', 'survay-vessals', 'central-systems', 'beach-monitoring', 'port-monitoring'])">
+            (click)="closeee('ground-water', $event)">
             x</div>
-        <h4 *ngIf="!isGroundWaterOpen">Ground Water Monitoring System</h4>
+        <img *ngIf="!isGroundWaterOpen" class="imgg" src="../../assets/slides/12.png"/><h4 *ngIf="!isGroundWaterOpen">Ground Water Monitoring System</h4>
         <div *ngIf="isGroundWaterOpen" class="ground-waterr fullscreen-bg" id="groundDiv"
             (dblclick)="toggleFullscreen('groundDiv')" (touchend)="onTouchEnddd($event, 'groundDiv')"></div>
 

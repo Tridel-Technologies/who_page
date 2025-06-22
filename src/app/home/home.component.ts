@@ -75,7 +75,7 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     logo?.classList.remove('animated_r');
     logo?.classList.add('goright');
     this.pathsData = [];
-
+    this.hasMovedLeft=false;
     this.globeAnimationClass = 'goright';
 
     setTimeout(() => {
@@ -97,67 +97,51 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     this.is_tapped_terrain = false;
     this.is_tapped_marine = false;
     this.isTapped_about = false;
-
+    this.hasMovedLeft = false; // Reset the flag
     this.paths = [];
     // }, 50);
   }
-
-  moveGlobe(call: string) {
-    this.is_tapped_air = call === 'air';
-    this.is_tapped_marine = call === 'marine';
-    this.is_tapped_terrain = call === 'terrain';
-    const air_line = document.querySelector('.airr') as HTMLElement;
-    const water_line = document.querySelector('.water-line') as HTMLElement;
-    const land_line = document.querySelector('.land-line') as HTMLElement;
-    const airr = document.querySelector('.airrr') as HTMLElement;
-    const waterrr = document.querySelector('.waterre') as HTMLElement;
-    const landdd = document.querySelector('.landddd') as HTMLElement;
-    const globe = document.querySelector('.cirle-globe') as HTMLElement;
-
-    this.is_tapped_main = true;
-
-    if (call === 'air') this.is_tapped_air = true;
-    else if (call === 'marine') this.is_tapped_marine = true;
-    else if (call === 'terrain') this.is_tapped_terrain = true;
-
+// Add this flag in your class:
+private hasMovedLeft = false;
+ 
+moveGlobe(call: string) {
+  this.pathsData = []
+  this.is_tapped_air = call === 'air';
+  this.is_tapped_marine = call === 'marine';
+  this.is_tapped_terrain = call === 'terrain';
+ 
+  const air_line = document.querySelector('.airr') as HTMLElement;
+  const water_line = document.querySelector('.water-line') as HTMLElement;
+  const land_line = document.querySelector('.land-line') as HTMLElement;
+  const airr = document.querySelector('.airrr') as HTMLElement;
+  const waterrr = document.querySelector('.waterre') as HTMLElement;
+  const landdd = document.querySelector('.landddd') as HTMLElement;
+  const globe = document.querySelector('.cirle-globe') as HTMLElement;
+ 
+  this.is_tapped_main = true;
+ 
+  // Only trigger globe animation if not already moved
+  if (!this.hasMovedLeft) {
     this.globeAnimationClass = 'goleft'; // Trigger left animation
-
+ 
     globe?.classList.remove('goleft');
-
     globe?.classList.remove('goright');
-    // setTimeout(() => {
-    // air_line?.classList.remove('go');
-    // water_line?.classList.remove('go');
-    // land_line?.classList.remove('go');
-    //   airr?.classList.remove('go');
-    //   waterrr?.classList.remove('go');
-    //   landdd?.classList.remove('go');
-    // }, 50);
-
+ 
     void globe!.offsetWidth; // force reflow
-
+ 
     globe!.classList.add('goleft');
-    // void air_line!.offsetWidth; // force reflow
-    // void water_line!.offsetWidth; // force reflow
-    // void land_line!.offsetWidth; // force reflow
-    // void airr!.offsetWidth; // force reflow
-    // void waterrr!.offsetWidth; // force reflow
-    // void landdd!.offsetWidth; // force reflow
-    // setTimeout(() => {
-    // air_line!.classList.add('go');
-    // water_line!.classList.add('go');
-    // land_line!.classList.add('go');
-    //   airr!.classList.add('go');
-    //   landdd!.classList.add('go');
-    //   waterrr!.classList.add('go');
-    // }, 50);
-
-    setTimeout(() => {
-      if (this.is_tapped_air) this.drawPaths_air();
-      else if (this.is_tapped_marine) this.drawPaths_marine();
-      else if (this.is_tapped_terrain) this.drawPaths_terrain();
-    }, 700);
+ 
+    // Mark as moved
+    this.hasMovedLeft = true;
   }
+ 
+  setTimeout(() => {
+    if (this.is_tapped_air) this.drawPaths_air();
+    else if (this.is_tapped_marine) this.drawPaths_marine();
+    else if (this.is_tapped_terrain) this.drawPaths_terrain();
+  }, 1000);
+}
+ 
 
   paths: string[] = [];
 
@@ -202,7 +186,7 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     const sourceRect = source.getBoundingClientRect();
     const sourceX = sourceRect.right;
     const sourceY = sourceRect.top + sourceRect.height / 2;
-    const distance = this.is_tapped_air ? 650 : 200;
+    const distance = this.is_tapped_air ? 550 : 200;
     const spineX = sourceX + distance; // horizontal offset for spine
 
     const spineYs = targetRects.map((r) => r.top + r.height / 2);
@@ -302,6 +286,25 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
       this.zoomOut(widgetClass);
     }
   }
+  onclicked(event:Event){
+     const target = event.target as HTMLElement;
+
+    const zoomable = target.closest('.zoomable-widget') as HTMLElement;
+
+    if (!zoomable) return;
+    const classList = Array.from(zoomable.classList).filter(
+      (c) => c !== 'zoomable-widget' && c !== 'opened'
+    );
+    const widgetClass = classList.join(' ');
+    console.log('target', widgetClass);
+    event.preventDefault();
+    // const delta = Math.sign(event.deltaY);
+    // if (delta < 0) {
+      this.zoomIn(widgetClass);
+    // } else {
+    //   this.zoomOut(widgetClass);
+    // }
+  }
 
   // Touch-based pinch zoom tracking
   private initialDistance: number | null = null;
@@ -366,6 +369,7 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     this.setZoomedWidgetState('clas');
   }
   zoomOutt(clas: string[]) {
+    console.log('Zooming Out, Scale:', this.scale, clas);
     clas.forEach((className) => {
       const element = document.querySelector(`.${className}`);
       if (element) {
@@ -381,6 +385,23 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     this.droppedItems = '';
     this.dropBuoyis = '';
   }
+
+  closeee(classs: string, event?: Event) {
+  event?.stopPropagation(); // Stop bubbling if provided
+
+  const element = document.querySelector(`.${classs}`);
+  if (element) {
+    element.classList.remove('opened');
+    this.showwinch = false;
+    this.showvessels = false;
+    this.isSurveyVesselOpen = false;
+  }
+  this.setZoomedWidgetState('');
+  this.droppedItems1 = '';
+  this.droppedItems = '';
+  this.dropBuoyis = '';
+}
+
 
   // currentIindex: number = 0;
 
@@ -601,13 +622,14 @@ prevBuoy() {
       (this.currentusvIndex - 1 + this.USVData.length) % this.USVData.length;
     this.droppedItems2 = this.USVData[this.currentusvIndex];
   }
+
   nextsurvey() {
     console.log(this.droppedItems3);
     //  'Monohull Survey Vessel',
     // 'Catamaran Survey Vessel',
     // 'ECFS & Ship Borne Weather Station',
     // 'Deck Gears',
-    if (this.droppedItems3 === 'Monohull Survey Vessel' || this.droppedItems3 === 'Catamaran Survey Vessel' || this.droppedItems3 === 'ECFS & Ship Borne Weather Station'
+    if (this.droppedItems3 === 'Monohull Survey Vessel' || this.droppedItems3 === 'Catamaran Survey Vessel' || this.droppedItems3 === 'ECFS & Ship Borne Weather Station' || this.droppedItems3==='Tridel Ark'
       // ||this.droppedItems3==='Deck Gears'
     ) {
       const i = this.Survey_Vessel.indexOf(this.droppedItems3);
@@ -616,7 +638,7 @@ prevBuoy() {
         this.showvessels = false;
         if (this.droppedItems3 === 'Deck Gears') {
           setTimeout(() => {
-
+ 
             this.droppedItems3 = this.deck_gears[0];
           }, 50);
           
@@ -648,16 +670,16 @@ prevBuoy() {
               this.droppedItems3 = this.winch[0];
             }
           }
-
-
-
+ 
+ 
+ 
     console.log(this.droppedItems3);
   }
-
+ 
   prevsurvey() {
   
   console.log(this.droppedItems3);
-
+ 
   // Go backward inside winch list
   if (this.winch.includes(this.droppedItems3)) {
     const index = this.winch.indexOf(this.droppedItems3);
@@ -668,7 +690,7 @@ prevBuoy() {
       this.droppedItems3 = this.deck_gears[this.deck_gears.length - 1];
     }
   }
-
+ 
   // Go backward inside deck_gears list
   else if (this.deck_gears.includes(this.droppedItems3)) {
     const index = this.deck_gears.indexOf(this.droppedItems3);
@@ -678,11 +700,11 @@ prevBuoy() {
       // Go to last item in Survey_Vessel
       this.droppedItems3 = this.Survey_Vessel[this.Survey_Vessel.length - 1];
     }
-
+ 
     this.showwinch = false;
     this.showvessels = true;
   }
-
+ 
   // Go backward inside Survey_Vessel list
   else if (this.Survey_Vessel.includes(this.droppedItems3)) {
     const index = this.Survey_Vessel.indexOf(this.droppedItems3);
@@ -692,7 +714,7 @@ prevBuoy() {
       // If first item, go to last deck_gear item
       this.droppedItems3 = this.deck_gears[this.deck_gears.length - 1];
     }
-
+ 
     this.showvessels = false;
     if (this.droppedItems3 === 'Deck Gears') {
       setTimeout(() => {
@@ -701,12 +723,13 @@ prevBuoy() {
       this.showvessels = true;
     }
   }
-
+ 
   console.log(this.droppedItems3);
   
     // this.currentsurveyIndex = (this.currentsurveyIndex - 1 + this.Survey_Vessel.length) % this.Survey_Vessel.length;
     // this.droppedItems3 = this.Survey_Vessel[this.currentsurveyIndex];
   }
+ 
 
   nextcontrol() {
     this.currentcontrolIndex =

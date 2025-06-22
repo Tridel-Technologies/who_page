@@ -40,13 +40,22 @@ body {
 
 .back {
     /* background-color: #00c853; */
-    height: 60px;
-    width: 60px;
+    height: 30px;
+    width:30px;
     position: absolute;
     top: 0;
+
     left: 0;
-    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 1000;
     cursor: pointer;
+}
+.back h1{
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .top_section {
@@ -320,7 +329,7 @@ body {
 }
 
 .zoomable-widget {
-    background-color: #00c853;
+    /* background-color: #00c853; */
     position: relative;
 
 }
@@ -995,18 +1004,80 @@ app-zoomable {
     width: 20%;
     position: absolute;
     right: 10%;
-    top: 10%;
+    top: 20%;
     color: white;
     /* background-image: url(../../assets//slides/nodes.gif); */
     background-size: 100% 100%;
-    background-color: rgba(51, 50, 50, 0.257);
-    backdrop-filter: blur(12px);
-    border: 1px solid white;
+    /* background-color: rgba(51, 50, 50, 0.257); */
+    /* backdrop-filter: blur(12px); */
+    /* border: 1px solid white; */
     border-radius: 10px;
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    animation: aerial-init 0.7s ease-in-out forwards;
+}
+@keyframes aerial-init {
+    0% {
+        opacity: 0;
+        height: 0;
+        width: 0;
+        top: 30%;
+        right: 75%;
+    }
+
+    100% {
+        opacity: 1;
+        height: 80px;
+        width: 20%;
+        right: 10%;
+        top: 20%;
+    }
+    
+}
+@keyframes satellite-init {
+    0% {
+        opacity: 0;
+        height: 0;
+        width: 0;
+        top: 30%;
+        right: 75%;
+    }
+
+    100% {
+        opacity: 1;
+        height: 80px;
+        width: 20%;
+        right: 10%;
+        top: 45%;
+    }
+    
+}
+@keyframes weather-init {
+    0% {
+        opacity: 0;
+        height: 0;
+        width: 0;
+        top: 30%;
+        right: 75%;
+    }
+
+    100% {
+        opacity: 1;
+        height: 80px;
+        width: 20%;
+        right: 10%;
+        top: 70%;
+    }
+    
+}
+
+/* .aerial-mapping h4{
     justify-content: center;
     align-items: center;
-}
+    display: flex;
+} */
 
 .close {
     height: 30px;
@@ -1026,14 +1097,14 @@ app-zoomable {
 
 .aerial-mapping.opened {
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     background-image: url(../../assets/air.jpg);
     /* background: linear-gradient(135deg, #04192b, #005a9e); */
     background-size: 100% 100%;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1047,15 +1118,18 @@ app-zoomable {
     width: 20%;
     position: absolute;
     right: 10%;
-    top: 40%;
-    background-color: rgba(51, 50, 50, 0.257);
+    top: 45%;
+    /* background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
+    border: 1px solid white; */
     border-radius: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     color: white;
+    /* background-image: url(../../assets//slides/nodes.gif); */
+    /* background-size: 100% 100%; */
+    animation: satellite-init 0.7s ease-in-out forwards;
 }
 
 .satellite-derived.opened {
@@ -1063,11 +1137,11 @@ app-zoomable {
     /* background: linear-gradient(135deg, #04192b, #005a9e); */
     background-size: 100% 100%;
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1078,18 +1152,22 @@ app-zoomable {
 .weather-forecase {
     height: 100px;
     width: 20%;
-    top: 20%;
+    bottom: 20%;
     position: absolute;
     right: 10%;
-    top: 70%;
-    background-color: rgba(51, 50, 50, 0.257);
-    backdrop-filter: blur(12px);
-    border: 1px solid white;
+    /* background-color: rgba(51, 50, 50, 0.257); */
+    /* backdrop-filter: blur(12px); */
+    /* border: 1px solid white; */
     border-radius: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     color: white;
+
+
+    /* background-image: url(../../assets//slides/nodes.gif); */
+    /* background-size: 100% 100%; */
+    animation: weather-init 0.7s ease-in-out forwards;
 }
 
 .weather-forecase.opened {
@@ -1097,11 +1175,11 @@ app-zoomable {
     /* background: linear-gradient(135deg, #04192b, #005a9e); */
     background-size: 100% 100%;
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1145,6 +1223,101 @@ app-zoomable {
     }
 }
 
+@keyframes buoy-init {
+    0%{
+        /* opacity: 0; */
+        height: 0;
+        width: 0;
+        top: 30%;
+        right: 55%;
+    }100%{
+        /* opacity: 1; */
+        height: 80px;
+        width: 20%;
+        top: 8%;
+        right: 10%;
+    }
+}
+@keyframes usv-init {
+    0%{
+        opacity: 0;
+        height: 0;
+        width: 0;
+        top: 30%;
+        right: 55%;
+    }100%{
+        opacity: 1;
+        height: 80px;
+        width: 20%;
+        top: 25%;
+        right: 10%;
+    }
+    
+}
+@keyframes port-init {
+    0%{
+        opacity: 0;
+        height: 0;
+        width: 0;
+        top: 30%;
+        right: 55%;
+    }100%{
+        opacity: 1;
+        height: 80px;
+        width: 20%;
+        right: 10%;
+        top: 40%;
+    }
+    
+}
+@keyframes survay-init {
+    0%{
+        opacity: 0;
+        height: 0;
+        width: 0;
+        top: 30%;
+        right: 55%;
+    }100%{
+        opacity: 1;
+        height: 80px;
+        width: 20%;
+        right: 10%;
+        top: 55%;
+    }
+    
+}
+@keyframes met-init {
+    0%{
+        opacity: 0;
+        height: 0;
+        width: 0;
+        top: 30%;
+        right: 55%;
+    }100%{
+        opacity: 1;
+        height: 80px;
+        width: 20%;
+        right: 10%;
+        top: 70%;
+    }
+    
+}
+@keyframes central-init {
+    0%{
+        /* opacity: 0; */
+        height: 0;
+        width: 0;
+        top: 30%;
+        right: 55%;
+    }100%{
+        /* opacity: 1; */
+        height: 80px;
+        width: 20%;
+        right: 10%;
+        top: 85%;
+    }
+    
+}
 .buoys {
     height: 80px;
     width: 20%;
@@ -1152,15 +1325,16 @@ app-zoomable {
     position: absolute;
     right: 10%;
     top: 10%;
-    background-color: rgba(51, 50, 50, 0.257);
+    /* background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
+    border: 1px solid white; */
     border-radius: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-direction: row;
     z-index: 1000;
+    animation: buoy-init 0.7s ease-in-out forwards;
 }
 
 .buoys.opened {
@@ -1168,11 +1342,11 @@ app-zoomable {
     background-size: 100% 100%;
     /* background: linear-gradient(135deg, #04192b, #005a9e); */
     z-index: 1000;
-    height: 80%;
-    width: 90%;
+    height: 85% !important;
+    width: 90% !important;
     position: absolute;
-    right: 5%;
-    top: 10%;
+    right: 5% !important;
+    top: 10% !important;
     color: white;
     background-image: url(../../assets/water.jpg);
     background-size: 100% 100%;
@@ -1189,13 +1363,16 @@ app-zoomable {
     position: absolute;
     right: 10%;
     /* top: 30%; */
-    background-color: rgba(51, 50, 50, 0.257);
+    /* background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
+    border: 1px solid white; */
     border-radius: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    /* z-index: 1000; */
+    animation: usv-init 0.7s ease-in-out forwards;
 }
 
 .usv.opened {
@@ -1203,11 +1380,11 @@ app-zoomable {
     background-size: 100% 100%;
     /* background: linear-gradient(135deg, #04192b, #005a9e); */
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 81% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1223,13 +1400,16 @@ app-zoomable {
     position: absolute;
     right: 10%;
     top: 55%;
-    background-color: rgba(51, 50, 50, 0.257);
+    /* background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
+    border: 1px solid white; */
     border-radius: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    color: white;  
+    animation: survay-init 0.7s ease-in-out forwards;
 }
 
 
@@ -1238,11 +1418,11 @@ app-zoomable {
     background-size: 100% 100%;
     /* background: linear-gradient(135deg, #04192b, #005a9e); */
     z-index: 1000;
-    height: 80%;
-    width: 85%;
+    height: 81% !important;
+    width: 85% !important;
     position: absolute;
-    right: 7.5%;
-    top: 10%;
+    right: 7.5% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1257,27 +1437,28 @@ app-zoomable {
     position: absolute;
     right: 10%;
     top: 70%;
-    background-color: rgba(51, 50, 50, 0.257);
+    /* background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
+    border: 1px solid white; */
     border-radius: 10px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
     color: white;
     border-radius: 10px;
+    animation: met-init 0.7s ease-in-out forwards;
 }
 
 .met-ocean.opened {
-    background-image: url(../../assets/land.png);
+    background-image: url(../../assets/water.jpg);
     background-size: 100% 100%;
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 81% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1292,26 +1473,27 @@ app-zoomable {
     position: absolute;
     right: 10%;
     top: 40%;
-    background-color: rgba(51, 50, 50, 0.257);
+    /* background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
+    border: 1px solid white; */
     border-radius: 10px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
     color: white;
+    animation: port-init 0.9s ease-in-out forwards;
 }
 
 .port-monitoring.opened {
-    background-image: url(../../assets/land.png);
+    background-image: url(../../assets/water.jpg);
     background-size: 100% 100%;
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 81% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1327,13 +1509,16 @@ app-zoomable {
     position: absolute;
     right: 10%;
     top: 85%;
-    background-color: rgba(51, 50, 50, 0.257);
+    /* background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
+    border: 1px solid white; */
     border-radius: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    color: white;
+    animation: central-init 0.9s ease-in-out forwards;
 }
 
 .central-systems.opened {
@@ -1341,11 +1526,11 @@ app-zoomable {
     background-size: 100% 100%;
     /* background: linear-gradient(135deg, #04192b, #005a9e); */
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 81.5% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1358,64 +1543,73 @@ app-zoomable {
 .beach-monitoring {
     height: 90px;
     width: 20%;
-    top: 20%;
+    top: 25%;
     position: absolute;
     right: 10%;
-    top: 16%;
-    background-color: rgba(51, 50, 50, 0.257);
+    /* top: 16%; */
+    /* background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
+    border: 1px solid white; */
     border-radius: 10px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
     color: white;
+    animation: beach-init 0.9s ease-in-out forwards;
 }
 
 .beach-monitoring.opened {
     background-image: url(../../assets/land.png);
     background-size: 100% 100%;
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
-    background-color: rgba(51, 50, 50, 0.257);
+    background-color: #33323242;
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
 }
 
+.imgg{
+    height: 75px;
+    width: 75px;
+    margin-right: 20px;
+    margin-left: 10px;
+    /* margin-bottom: 10px; */
+}
 .air-quality {
     height: 90px;
     width: 20%;
-    top: 20%;
+    /* top: 20%; */
     position: absolute;
     right: 10%;
     top: 47%;
-    background-color: rgba(51, 50, 50, 0.257);
+    /* background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
+    border: 1px solid white; */
     border-radius: 10px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
     color: white;
+    animation: air-init 0.9s ease-in-out forwards;
 }
 
 .air-quality.opened {
     background-image: url(../../assets/land.png);
     background-size: 100% 100%;
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1426,30 +1620,84 @@ app-zoomable {
 .ground-water {
     height: 90px;
     width: 20%;
-    top: 20%;
+    bottom: 20%;
     position: absolute;
     right: 10%;
-    top: 77%;
-    background-color: rgba(51, 50, 50, 0.257);
+    /* top: 77%; */
+    /* background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
+    border: 1px solid white; */
     border-radius: 10px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
     color: white;
+    animation: ground-init 0.9s ease-in-out forwards;
 }
 
+@keyframes ground-init {
+    0% {
+        opacity: 0;
+        height: 0;
+        width: 0;
+        right: 50%;
+        bottom:50%;
+    }
+
+    100% {
+        height: 90px;
+        width: 20%;
+        opacity: 1;
+        right: 10%;
+        bottom: 20%;
+    }
+}
+@keyframes air-init {
+    0% {
+        opacity: 0;
+        height: 0;
+        width: 0;
+        right: 50%;
+        top:50%;
+    }
+
+    100% {
+        height: 90px;
+        width: 20%;
+        opacity: 1;
+        right: 10%;
+        top: 47%;
+    }
+    
+}
+@keyframes beach-init {
+    0% {
+        opacity: 0;
+        height: 0;
+        width: 0;
+        right: 50%;
+        top:50%;
+    }
+
+    100% {
+        height: 90px;
+        width: 20%;
+        opacity: 1;
+        right: 10%;
+        top: 25%;
+    }
+    
+}
 .ground-water.opened {
     background-image: url(../../assets/land.png);
     background-size: 100% 100%;
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1459,7 +1707,21 @@ app-zoomable {
 
 
 
-
+.closeee{
+     height: 50px;
+    width: 50px;
+    background-color: #ef6d6d82;
+    position: absolute;
+    top: 50px;
+    right: 150px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    z-index: 1000;
+}
 
 .main_aerial {
     height: 100%;
@@ -1824,8 +2086,8 @@ app-zoomable {
     position: relative;
     overflow: hidden;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .navigations {
@@ -2073,6 +2335,33 @@ app-zoomable {
 }
 
 .top_section2:hover::after {
+    visibility: visible;
+    opacity: 1;
+    /* z-index: 1; */
+}
+
+
+
+.back::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -20%;
+    left:260%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    /* z-index: 1; */
+    transition: opacity 0.3s;
+}
+
+.back:hover::after {
     visibility: visible;
     opacity: 1;
     /* z-index: 1; */

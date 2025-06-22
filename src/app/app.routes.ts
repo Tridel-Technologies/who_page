@@ -16,4 +16,9 @@ export const routes: Routes = [
         path:'land',
         component:LandComponent
     },
+
+    {
+        path:'**',
+        redirectTo:'base'
+    },
 ];
