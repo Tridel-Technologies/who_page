@@ -991,21 +991,66 @@ app-zoomable {
 /* End */
 
 .aerial-mapping {
-    height: 100px;
-    width: 20%;
+    height: 200px;
+    width: 200px;
     position: absolute;
-    right: 10%;
+    right: 18%;
     top: 10%;
     color: white;
     /* background-image: url(../../assets//slides/nodes.gif); */
     background-size: 100% 100%;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
+    /* border: 1px solid rgb(255, 255, 255); */
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(../../assets/thumb/7.png);
+    background-size: 100% 100%;
+    animation: aerial-init 0.7s ease-in-out forwards;
+}
+@keyframes aerial-init {
+    0%{
+        height: 0px;
+        width: 0px;
+        top: 20%;
+        right: 50%;
+    }
+    100%{
+        height: 200px;
+        width: 200px;
+        right: 18%;
+        top: 10%;
+    }
+}
+@keyframes satellite-init {
+    0%{
+        height: 0px;
+        width: 0px;
+        top: 40%;
+        right: 50%;
+    }
+    100%{
+        height: 200px;
+        width: 200px;
+        right: 10%;
+        top: 40%;
+    }
+}
+@keyframes weather-init {
+    0%{
+        height: 0px;
+        width: 0px;
+        top: 58%;
+        right: 50%;
+    }
+    100%{
+        height: 200px;
+        width: 200px;
+        right: 18%;
+        top: 70%;
+    }
 }
 
 .close {
@@ -1023,17 +1068,32 @@ app-zoomable {
     cursor: pointer;
     z-index: 1000;
 }
+.closeee{
+     height: 50px;
+    width: 50px;
+    background-color: #ef6d6d82;
+    position: absolute;
+    top: 50px;
+    right: 150px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    z-index: 1000;
+}
 
 .aerial-mapping.opened {
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     background-image: url(../../assets/air.jpg);
     /* background: linear-gradient(135deg, #04192b, #005a9e); */
     background-size: 100% 100%;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1043,19 +1103,22 @@ app-zoomable {
 }
 
 .satellite-derived {
-    height: 100px;
-    width: 20%;
+    height: 200px;
+    width: 200px;
     position: absolute;
     right: 10%;
     top: 40%;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
+    /* border: 1px solid white; */
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
+    background-image: url(../../assets/thumb/8.png);
+    background-size: 100% 100%;
+    animation: satellite-init 0.7s ease-in-out forwards;
 }
 
 .satellite-derived.opened {
@@ -1063,11 +1126,11 @@ app-zoomable {
     /* background: linear-gradient(135deg, #04192b, #005a9e); */
     background-size: 100% 100%;
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1076,20 +1139,23 @@ app-zoomable {
 }
 
 .weather-forecase {
-    height: 100px;
-    width: 20%;
+    height: 200px;
+    width: 200px;
     top: 20%;
     position: absolute;
-    right: 10%;
+    right: 18%;
     top: 70%;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
+    /* border: 1px solid white; */
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
+    background-image: url(../../assets/thumb/9.png);
+    background-size: 100% 100%;
+    animation: weather-init 0.7s ease-in-out forwards;
 }
 
 .weather-forecase.opened {
@@ -1097,11 +1163,11 @@ app-zoomable {
     /* background: linear-gradient(135deg, #04192b, #005a9e); */
     background-size: 100% 100%;
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1146,21 +1212,24 @@ app-zoomable {
 }
 
 .buoys {
-    height: 80px;
-    width: 20%;
+    height: 130px;
+    width: 130px;
     top: 8%;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 28%;
+    top: 7%;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
+    /* border: 1px solid white; */
+    border-radius: 50%;
+    background-image: url(../../assets/thumb/1.png);
+    background-size: 100% 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: row;
     z-index: 1000;
+    animation: buoys-init 0.7s ease-in-out forwards;
 }
 
 .buoys.opened {
@@ -1168,11 +1237,11 @@ app-zoomable {
     background-size: 100% 100%;
     /* background: linear-gradient(135deg, #04192b, #005a9e); */
     z-index: 1000;
-    height: 80%;
-    width: 90%;
+    height: 80% !important;
+    width: 90% !important;
     position: absolute;
-    right: 5%;
-    top: 10%;
+    right: 5% !important;
+    top: 10% !important;
     color: white;
     background-image: url(../../assets/water.jpg);
     background-size: 100% 100%;
@@ -1183,19 +1252,22 @@ app-zoomable {
 }
 
 .usv {
-    height: 80px;
-    width: 20%;
-    top: 25%;
+    height: 130px;
+    width: 130px;
+    top: 18%;
+    background-image: url(../../assets/thumb/2.png);
+    background-size: 100% 100%;
     position: absolute;
-    right: 10%;
+    right: 17%;
     /* top: 30%; */
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
+    /* border: 1px solid white; */
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: usv-init 0.7s ease-in-out forwards;
 }
 
 .usv.opened {
@@ -1203,11 +1275,11 @@ app-zoomable {
     background-size: 100% 100%;
     /* background: linear-gradient(135deg, #04192b, #005a9e); */
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1217,19 +1289,22 @@ app-zoomable {
 }
 
 .survay-vessals {
-    height: 80px;
-    width: 20%;
+    height: 130px;
+    width: 130px;
+    background-image: url(../../assets/thumb/4.png);
+    background-size: 100% 100%;
     /* top: 20%; */
     position: absolute;
     right: 10%;
-    top: 55%;
+    top: 53%;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
+    /* border: 1px solid white; */
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: survay-vessals-init 0.7s ease-in-out forwards;
 }
 
 
@@ -1238,46 +1313,49 @@ app-zoomable {
     background-size: 100% 100%;
     /* background: linear-gradient(135deg, #04192b, #005a9e); */
     z-index: 1000;
-    height: 80%;
-    width: 85%;
+    height: 80% !important;
+    width: 85% !important;
     position: absolute;
-    right: 7.5%;
-    top: 10%;
+    right: 7.5% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
     border: 1px solid white;
     border-radius: 10px;
 }
-
+/* 18, 37, 70, 53 */
 .met-ocean {
-    height: 80px;
-    width: 20%;
+    height: 130px;
+    width: 130px;
+    background-image: url(../../assets/thumb/5.png);
+    background-size: 100% 100%;
     top: 20%;
     position: absolute;
-    right: 10%;
-    top: 70%;
+    right: 17%;
+    top: 68%;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
+    /* border: 1px solid white; */
+    border-radius: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
     border-radius: 10px;
+    animation: met-ocean-init 0.7s ease-in-out forwards;
 }
 
 .met-ocean.opened {
     background-image: url(../../assets/land.png);
     background-size: 100% 100%;
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1286,32 +1364,35 @@ app-zoomable {
 }
 
 .port-monitoring {
-    height: 80px;
-    width: 20%;
+    height: 130px;
+    width: 130px;
+    background-image: url(../../assets/thumb/3.png);
+    background-size: 100% 100%;
     top: 20%;
     position: absolute;
     right: 10%;
-    top: 40%;
+    top: 36%;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
+    /* border: 1px solid white; */
+    border-radius: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
+    animation: port-monitoring-init 0.7s ease-in-out forwards;
 }
 
 .port-monitoring.opened {
     background-image: url(../../assets/land.png);
     background-size: 100% 100%;
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1321,19 +1402,22 @@ app-zoomable {
 
 
 .central-systems {
-    height: 80px;
-    width: 20%;
+    height: 130px;
+    width: 130px;
+    background-image: url(../../assets/thumb/6.png);
+    background-size: 100% 100%;
     /* top: 20%; */
     position: absolute;
-    right: 10%;
-    top: 85%;
+    right: 28%;
+    bottom: 7%;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
+    /* border: 1px solid white; */
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: central-systems-init 0.7s ease-in-out forwards;
 }
 
 .central-systems.opened {
@@ -1341,11 +1425,11 @@ app-zoomable {
     background-size: 100% 100%;
     /* background: linear-gradient(135deg, #04192b, #005a9e); */
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1356,32 +1440,35 @@ app-zoomable {
 
 
 .beach-monitoring {
-    height: 90px;
-    width: 20%;
+    height: 200px;
+    width: 200px;
+    background-image: url(../../assets/thumb/10.png);
+    background-size: 100% 100%;
     top: 20%;
     position: absolute;
-    right: 10%;
-    top: 16%;
+    right: 15%;
+    top: 10%;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
+    /* border: 1px solid white; */
+    border-radius: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
+    animation: beach-monitoring-init 0.7s ease-in-out forwards;
 }
 
 .beach-monitoring.opened {
     background-image: url(../../assets/land.png);
     background-size: 100% 100%;
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1390,32 +1477,35 @@ app-zoomable {
 }
 
 .air-quality {
-    height: 90px;
-    width: 20%;
+   height: 200px;
+    width: 200px;
+    background-image: url(../../assets/thumb/11.png);
+    background-size: 100% 100%;
     top: 20%;
     position: absolute;
-    right: 10%;
-    top: 47%;
+    right: 7%;
+    top: 42%;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
+    /* border: 1px solid white; */
+    border-radius: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
+    animation: air-quality-init 0.7s ease-in-out forwards;
 }
 
 .air-quality.opened {
     background-image: url(../../assets/land.png);
     background-size: 100% 100%;
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1424,32 +1514,35 @@ app-zoomable {
 }
 
 .ground-water {
-    height: 90px;
-    width: 20%;
-    top: 20%;
+   height: 200px;
+    width: 200px;
+    background-image: url(../../assets/thumb/12.png);
+    background-size: 100% 100%;
+    /* top: 20%; */
     position: absolute;
-    right: 10%;
-    top: 77%;
+        right: 15%;
+    bottom: 10%;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
-    border: 1px solid white;
-    border-radius: 10px;
+    /* border: 1px solid white; */
+    border-radius: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
+    animation: ground-water-init 0.7s ease-in-out forwards;
 }
 
 .ground-water.opened {
     background-image: url(../../assets/land.png);
     background-size: 100% 100%;
     z-index: 1000;
-    height: 80%;
-    width: 80%;
+    height: 80% !important;
+    width: 80% !important;
     position: absolute;
-    right: 10%;
-    top: 10%;
+    right: 10% !important;
+    top: 10% !important;
     color: white;
     background-color: rgba(51, 50, 50, 0.257);
     backdrop-filter: blur(12px);
@@ -1458,6 +1551,140 @@ app-zoomable {
 }
 
 
+@keyframes buoys-init {
+    0%{
+        height: 0px;
+        width: 0px;
+        top: 20%;
+        right: 50%;
+    }
+    100%{
+        height: 130px;
+        width: 130px;
+        top: 7%;
+        right: 28%;
+    }
+}
+
+@keyframes usv-init {
+    0%{
+        height: 0px;
+        width: 0px;
+        top: 30%;
+        right: 50%;
+    }
+    100%{
+        height: 130px;
+        width: 130px;
+        top: 18%;
+        right: 17%;
+    }
+}
+
+@keyframes survay-vessals-init {
+    0%{
+        height: 0px;
+        width: 0px;
+        top: 60%;
+        right: 50%;
+    }
+    100%{
+        height: 130px;
+        width: 130px;
+        top: 53%;
+        right: 10%;
+    }
+}
+
+@keyframes met-ocean-init {
+    0%{
+        height: 0px;
+        width: 0px;
+        top: 80%;
+        right: 50%;
+    }
+    100%{
+        height: 130px;
+        width: 130px;
+        top: 68%;
+        right: 17%;
+    }
+}
+
+@keyframes port-monitoring-init {
+    0%{
+        height: 0px;
+        width: 0px;
+        top: 50%;
+        right: 50%;
+    }
+    100%{
+        height: 130px;
+        width: 130px;
+        top: 36%;
+        right: 10%;
+    }
+}
+
+@keyframes central-systems-init {
+    0%{
+        height: 0px;
+        width: 0px;
+        bottom: 0%;
+        right: 50%;
+    }
+    100%{
+        height: 130px;
+        width: 130px;
+        bottom: 7%;
+        right: 28%;
+    }
+}
+
+@keyframes beach-monitoring-init {
+    0%{
+        height: 0px;
+        width: 0px;
+        top: 20%;
+        right: 50%;
+    }
+    100%{
+        height: 200px;
+        width: 200px;
+        top: 10%;
+        right: 15%;
+    }
+}
+
+@keyframes air-quality-init {
+    0%{
+        height: 0px;
+        width: 0px;
+        top: 50%;
+        right: 50%;
+    }
+    100%{
+        height: 200px;
+        width: 200px;
+        top: 42%;
+        right: 7%;
+    }
+}
+
+@keyframes ground-water-init {
+    0%{
+        height: 0px;
+        width: 0px;
+        bottom: 0%;
+        right: 50%;
+    }
+    100%{
+        height: 200px;
+        width: 200px;
+        bottom: 10%;
+        right: 15%;
+    }
+}
 
 
 
@@ -2696,4 +2923,23 @@ app-zoomable {
     width: 100% !important;
     height: 100% !important;
     background-color: black;
+}
+
+
+
+
+
+
+
+/* curves */
+.test{
+    height: 250px;
+    width: 250px;
+    border: 9px solid rgba(255, 255, 255, 0.415);
+    position: absolute;
+    right: 9%;
+    top: 6%;
+    color: white;
+    border-radius: 50%;
+    z-index: 1;
 }

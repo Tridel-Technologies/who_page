@@ -5,6 +5,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  OnInit,
   QueryList,
   ViewChildren,
 } from '@angular/core';
@@ -20,7 +21,7 @@ import { LandComponent } from './land/land.component';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements AfterViewChecked, AfterViewInit {
+export class HomeComponent implements AfterViewChecked, AfterViewInit, OnInit {
   is_tapped_main: boolean = false;
   isTapped_about: boolean = false;
   is_tapped_air: boolean = false;
@@ -36,7 +37,9 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     'Tridel provides turnkey <br>solutions to customer-specific problems, system integration, deployment, data analysis, and system maintenance.',
     'We also deliver survey <br>projects in the Hydrographic value chain <br>as per IHO standards.',
   ];
-
+ngOnInit(): void {
+    this.hasMovedLeft = false;
+}
   showNextParagraph() {
     if (this.currentIndex < this.allParagraphs.length) {
       this.visibleParagraphs.push(this.allParagraphs[this.currentIndex]);
@@ -67,7 +70,7 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     this.is_tapped_air = false;
     this.is_tapped_marine = false;
     this.is_tapped_terrain = false;
-
+    this.hasMovedLeft = false;
     this.paths = [];
     const logo = document.querySelector('.cirle-globe');
 
@@ -97,67 +100,51 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     this.is_tapped_terrain = false;
     this.is_tapped_marine = false;
     this.isTapped_about = false;
-
+    this.hasMovedLeft = false;
     this.paths = [];
     // }, 50);
   }
+// Add this flag in your class:
+private hasMovedLeft = false;
 
-  moveGlobe(call: string) {
-    this.is_tapped_air = call === 'air';
-    this.is_tapped_marine = call === 'marine';
-    this.is_tapped_terrain = call === 'terrain';
-    const air_line = document.querySelector('.airr') as HTMLElement;
-    const water_line = document.querySelector('.water-line') as HTMLElement;
-    const land_line = document.querySelector('.land-line') as HTMLElement;
-    const airr = document.querySelector('.airrr') as HTMLElement;
-    const waterrr = document.querySelector('.waterre') as HTMLElement;
-    const landdd = document.querySelector('.landddd') as HTMLElement;
-    const globe = document.querySelector('.cirle-globe') as HTMLElement;
+moveGlobe(call: string) {
+  this.paths = []
+  this.is_tapped_air = call === 'air';
+  this.is_tapped_marine = call === 'marine';
+  this.is_tapped_terrain = call === 'terrain';
 
-    this.is_tapped_main = true;
+  const air_line = document.querySelector('.airr') as HTMLElement;
+  const water_line = document.querySelector('.water-line') as HTMLElement;
+  const land_line = document.querySelector('.land-line') as HTMLElement;
+  const airr = document.querySelector('.airrr') as HTMLElement;
+  const waterrr = document.querySelector('.waterre') as HTMLElement;
+  const landdd = document.querySelector('.landddd') as HTMLElement;
+  const globe = document.querySelector('.cirle-globe') as HTMLElement;
 
-    if (call === 'air') this.is_tapped_air = true;
-    else if (call === 'marine') this.is_tapped_marine = true;
-    else if (call === 'terrain') this.is_tapped_terrain = true;
+  this.is_tapped_main = true;
 
+  // Only trigger globe animation if not already moved
+  if (!this.hasMovedLeft) {
     this.globeAnimationClass = 'goleft'; // Trigger left animation
 
     globe?.classList.remove('goleft');
-
     globe?.classList.remove('goright');
-    // setTimeout(() => {
-    // air_line?.classList.remove('go');
-    // water_line?.classList.remove('go');
-    // land_line?.classList.remove('go');
-    //   airr?.classList.remove('go');
-    //   waterrr?.classList.remove('go');
-    //   landdd?.classList.remove('go');
-    // }, 50);
 
     void globe!.offsetWidth; // force reflow
 
     globe!.classList.add('goleft');
-    // void air_line!.offsetWidth; // force reflow
-    // void water_line!.offsetWidth; // force reflow
-    // void land_line!.offsetWidth; // force reflow
-    // void airr!.offsetWidth; // force reflow
-    // void waterrr!.offsetWidth; // force reflow
-    // void landdd!.offsetWidth; // force reflow
-    // setTimeout(() => {
-    // air_line!.classList.add('go');
-    // water_line!.classList.add('go');
-    // land_line!.classList.add('go');
-    //   airr!.classList.add('go');
-    //   landdd!.classList.add('go');
-    //   waterrr!.classList.add('go');
-    // }, 50);
 
-    setTimeout(() => {
-      if (this.is_tapped_air) this.drawPaths_air();
-      else if (this.is_tapped_marine) this.drawPaths_marine();
-      else if (this.is_tapped_terrain) this.drawPaths_terrain();
-    }, 700);
+    // Mark as moved
+    this.hasMovedLeft = true;
   }
+
+  setTimeout(() => {
+    if (this.is_tapped_air) this.drawPaths_air();
+    else if (this.is_tapped_marine) this.drawPaths_marine();
+    else if (this.is_tapped_terrain) this.drawPaths_terrain();
+  }, 700);
+}
+
 
   paths: string[] = [];
 
@@ -186,6 +173,64 @@ export class HomeComponent implements AfterViewChecked, AfterViewInit {
     ]);
   }
   pathsData: { d: string }[] = [];
+
+//   setPaths(sourceId: string, targetIds: string[]) {
+//   const source = document.getElementById(sourceId);
+//   if (!source) return;
+
+//   const targetRects: DOMRect[] = [];
+//   for (let id of targetIds) {
+//     const el = document.getElementById(id);
+//     if (el) targetRects.push(el.getBoundingClientRect());
+//   }
+
+//   if (targetRects.length === 0) return;
+
+//   const sourceRect = source.getBoundingClientRect();
+//   const sourceX = sourceRect.right;
+//   const sourceY = sourceRect.top + sourceRect.height / 2;
+
+//   // Compute junction point between source and middle of targets
+//   const minY = Math.min(...targetRects.map(r => r.top + r.height / 2));
+//   const maxY = Math.max(...targetRects.map(r => r.top + r.height / 2));
+//   const spliter = this.is_tapped_air? 3.1:2
+//   const junctionY = (minY + maxY) /  spliter;
+//   const stopPoint = this.is_tapped_air ? 600:this.is_tapped_marine?100:this.is_tapped_terrain?100:50;
+//   const junctionX = sourceX + stopPoint; // 50px to the right
+
+//   // Build paths: one from source to junction, others from junction to targets
+//   const paths: string[] = [];
+
+//   // Vertical line from source to junction
+//   paths.push(`M ${sourceX},${sourceY} L ${junctionX},${junctionY}`);
+
+//   for (const rect of targetRects) {
+//     const targetX = rect.left;
+//     const targetY = rect.top + rect.height / 2;
+
+//     // Path from junction to each target
+//     paths.push(`M ${junctionX},${junctionY} L ${targetX},${targetY}`);
+//   }
+
+//   this.paths = paths;
+// }
+
+
+//   generateCurvedPath(fromEl: HTMLElement, toEl: HTMLElement): string {
+//     const fromRect = fromEl.getBoundingClientRect();
+//     const toRect = toEl.getBoundingClientRect();
+
+//     const x1 = fromRect.right;
+//     const y1 = fromRect.top + fromRect.height / 2;
+
+//     const x2 = toRect.left;
+//     const y2 = toRect.top + toRect.height / 2;
+
+//     const midX = (x1 + x2) / 2;
+//     const curve = 40;
+
+//     return `M ${x1},${y1} C ${midX},${y1 - curve} ${midX},${y2 + curve} ${x2},${y2}`;
+//   }
 
   setPaths(sourceId: string, targetIds: string[]) {
     const source = document.getElementById(sourceId);
